@@ -49,6 +49,7 @@ export default function Footer() {
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 12, fontFamily: F.body, fontSize: 12, color: C.muted }}>
               <span>info@oblige.jp</span>
+              <a href="https://www.instagram.com/oblige.co.ltd/" target="_blank" rel="noopener noreferrer" style={{ color: C.muted, transition: "color 0.3s" }}>Instagram</a>
               <span>大阪府大阪市北区曽根崎新地</span>
             </div>
           </div>

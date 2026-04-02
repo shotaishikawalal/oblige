@@ -293,14 +293,24 @@ export default function TopPage() {
             </p>
           </Reveal>
           <Reveal delay={0.4}>
-            <a href="mailto:info@oblige.jp" style={{
-              display: "inline-block", padding: "14px 56px",
-              background: C.white, color: C.dark,
-              fontFamily: F.label, fontSize: 11, letterSpacing: 3,
-              textTransform: "uppercase", transition: "all 0.3s",
-            }}>
-              Email
-            </a>
+            <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
+              <a href="mailto:info@oblige.jp" style={{
+                display: "inline-block", padding: "14px 56px",
+                background: C.white, color: C.dark,
+                fontFamily: F.label, fontSize: 11, letterSpacing: 3,
+                textTransform: "uppercase", transition: "all 0.3s",
+              }}>
+                Email
+              </a>
+              <a href="https://www.instagram.com/oblige.co.ltd/" target="_blank" rel="noopener noreferrer" style={{
+                display: "inline-block", padding: "14px 56px",
+                border: `1px solid ${C.accent}`, color: C.accent,
+                fontFamily: F.label, fontSize: 11, letterSpacing: 3,
+                textTransform: "uppercase", transition: "all 0.3s",
+              }}>
+                Instagram
+              </a>
+            </div>
           </Reveal>
         </div>
       </section>
