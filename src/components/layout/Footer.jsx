@@ -49,7 +49,14 @@ export default function Footer() {
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 12, fontFamily: F.body, fontSize: 12, color: C.muted }}>
               <span>info@oblige.jp</span>
-              <a href="https://www.instagram.com/oblige.co.ltd/" target="_blank" rel="noopener noreferrer" style={{ color: C.muted, transition: "color 0.3s" }}>Instagram</a>
+              <a href="https://www.instagram.com/oblige.co.ltd/" target="_blank" rel="noopener noreferrer" style={{ color: C.muted, transition: "color 0.3s", display: "flex", alignItems: "center", gap: 8 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <circle cx="12" cy="12" r="5" />
+                  <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+                </svg>
+                Instagram
+              </a>
               <span>大阪市中央区南船場4-13-12</span>
             </div>
           </div>
