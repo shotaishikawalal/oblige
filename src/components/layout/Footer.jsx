@@ -50,7 +50,7 @@ export default function Footer() {
             <div style={{ display: "flex", flexDirection: "column", gap: 12, fontFamily: F.body, fontSize: 12, color: C.muted }}>
               <span>info@oblige.jp</span>
               <a href="https://www.instagram.com/oblige.co.ltd/" target="_blank" rel="noopener noreferrer" style={{ color: C.muted, transition: "color 0.3s" }}>Instagram</a>
-              <span>大阪府大阪市北区曽根崎新地</span>
+              <span>大阪市中央区南船場4-13-12</span>
             </div>
           </div>
         </div>
@@ -66,7 +66,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Oblige Co., Ltd.
           </span>
           <span style={{ fontFamily: F.body, fontSize: 10, color: "rgba(255,255,255,0.3)" }}>
-            大阪府大阪市北区曽根崎新地
+            大阪市中央区南船場4-13-12
           </span>
         </div>
       </div>
