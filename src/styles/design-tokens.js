@@ -1,38 +1,57 @@
-/* ═══════ DESIGN TOKENS ═══════ */
+/* ═══════ DESIGN TOKENS — oblige! Brand System ═══════ */
+/* Philosophy: 的を射る (hitting the mark) + ! (surprise & strong will) */
+/* White-first: クリーンでラグジュアリーな白基調 */
 
 export const C = {
-  bg: "#FFFFFF",
-  text: "#1A1A1A",
-  sub: "#6B6560",
-  light: "#9B9490",
-  muted: "#B5ADA6",
-  accent: "#B8956A",
-  accentLight: "#D4B896",
-  accentDark: "#8B6F4E",
-  surface: "#F8F7F5",
-  surfaceAlt: "#F0EDEA",
-  border: "#E8E4DF",
-  dark: "#1A1614",
-  darkText: "#E8E4DF",
-  white: "#FFFFFF",
-  black: "#000000",
+  // Base — warm cream (Claude-inspired)
+  bg:           "#F5F3EE",
+  bgAlt:        "#EDEAE4",
+  surface:      "#E5E1DA",
+  surfaceHover: "#DDD8D0",
+
+  // Dark sections — brown-black (not pure black)
+  dark:         "#1A1714",
+  darkAlt:      "#13110E",
+  darkSurface:  "#221F1B",
+
+  // Text — soft black + warm greys
+  text:         "#1A1A1A",
+  textMuted:    "#8A8478",
+  textDim:      "#9A9590",
+  textLight:    "#F0EDED",
+
+  // Brand orange — Claude-inspired muted terracotta
+  accent:       "#DA7756",
+  accentLight:  "#E58B6C",
+  accentDark:   "#C4654A",
+  accentGlow:   "rgba(218,119,86,0.10)",
+  accentSoft:   "rgba(218,119,86,0.05)",
+
+  // Utility
+  white:        "#FFFFFF",
+  black:        "#000000",
+  border:       "rgba(0,0,0,0.05)",
+  borderActive: "rgba(218,119,86,0.20)",
+  borderDark:   "rgba(255,255,255,0.06)",
 };
 
 export const F = {
-  heading: "'Cormorant Garamond', 'Noto Serif JP', serif",
-  body: "'Noto Sans JP', sans-serif",
-  en: "'Cormorant Garamond', serif",
-  label: "'Montserrat', sans-serif",
+  display:  "'Barlow Semi Condensed', sans-serif",         // Hero / impact
+  heading:  "'Barlow Semi Condensed', 'Noto Sans JP', sans-serif",  // Sections
+  body:     "'Noto Sans JP', sans-serif",                  // Body copy
+  mono:     "'Barlow', monospace",                         // HUD / data
+  label:    "'Barlow Semi Condensed', sans-serif",         // Uppercase labels
 };
 
 export const fontSize = {
-  heroTitle: "clamp(36px, 5vw, 72px)",
-  sectionTitle: "clamp(24px, 3.5vw, 42px)",
-  subTitle: "clamp(18px, 2.5vw, 28px)",
-  body: "clamp(14px, 1.2vw, 16px)",
-  small: "clamp(11px, 1vw, 13px)",
-  label: "clamp(10px, 0.9vw, 12px)",
-  caption: "9px",
+  hero:     "clamp(48px, 8vw, 120px)",
+  display:  "clamp(32px, 5vw, 72px)",
+  section:  "clamp(20px, 3vw, 36px)",
+  subhead:  "clamp(16px, 2vw, 24px)",
+  body:     "clamp(14px, 1.1vw, 16px)",
+  small:    "clamp(12px, 1vw, 14px)",
+  label:    "clamp(9px, 0.8vw, 11px)",
+  data:     "clamp(8px, 0.7vw, 10px)",
 };
 
 export const spacing = {
@@ -45,6 +64,17 @@ export const spacing = {
   sectionPadding: "clamp(80px, 12vw, 160px)",
   containerMax: 1200,
   containerNarrow: 860,
+};
+
+export const timing = {
+  instant:    "0.1s",
+  fast:       "0.25s",
+  normal:     "0.4s",
+  slow:       "0.8s",
+  reveal:     "1.2s",
+  easeOut:    "cubic-bezier(0.22, 1, 0.36, 1)",
+  easeSnap:   "cubic-bezier(0.85, 0, 0.15, 1)",
+  easeBounce: "cubic-bezier(0.34, 1.56, 0.64, 1)",
 };
 
 export const breakpoints = {

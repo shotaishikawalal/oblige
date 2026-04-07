@@ -59,7 +59,7 @@ export const divisions = [
     id: "interior-design",
     number: "03",
     path: "/interior-design",
-    nameJa: "内装インテリア設計事業",
+    nameJa: "インテリア設計事業",
     nameEn: "Interior Design",
     tagline: "空間が語る、ブランドの物語",
     description: "高級クラブ・ラウンジ・バーなど、ナイトタイムシーンに特化した内装設計。ブランディングの観点から空間コンセプトを策定し、設計・素材選定・照明計画まで一貫してプロデュースします。",

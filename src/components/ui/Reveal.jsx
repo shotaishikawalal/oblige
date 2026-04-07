@@ -7,7 +7,7 @@ export function Reveal({ children, delay = 0, style = {} }) {
       ...style,
       opacity: vis ? 1 : 0,
       transform: vis ? "translateY(0)" : "translateY(36px)",
-      transition: `all 1s cubic-bezier(.22,1,.36,1) ${delay}s`,
+      transition: `all 0.8s cubic-bezier(0.85, 0, 0.15, 1) ${delay}s`,
     }}>
       {children}
     </div>

@@ -1,12 +1,20 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { C, F, fontSize } from "../../styles/design-tokens";
+import { C, F, timing } from "../../styles/design-tokens";
+import { useLang } from "../../i18n/LanguageContext";
 
-const navLinks = [
-  { label: "Business", path: "/#business" },
-  { label: "About", path: "/#about" },
-  { label: "Company", path: "/#company" },
-  { label: "Contact", path: "/#contact" },
+const navLinkDefs = [
+  { key: "business", path: "/#business" },
+  { key: "about", path: "/about" },
+  { key: "column", path: "/column" },
+  { key: "company", path: "/#company" },
+  { key: "contact", path: "/#contact" },
+];
+
+const langOptions = [
+  { code: "ja", label: "JA" },
+  { code: "en", label: "EN" },
+  { code: "zh", label: "ZH" },
 ];
 
 export default function Header() {
@@ -14,6 +22,9 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const isTop = location.pathname === "/";
+  const { lang, setLang, t } = useLang();
+
+  const navLinks = navLinkDefs.map(d => ({ label: t.nav[d.key], path: d.path }));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -31,18 +42,21 @@ export default function Header() {
     }
   };
 
+  // Hero is dark (photo bg), so header text starts white, then becomes dark on scroll
   const headerBg = scrolled ? "rgba(255,255,255,0.95)" : "transparent";
-  const headerBorder = scrolled ? `1px solid ${C.border}` : "1px solid transparent";
-  const textColor = scrolled ? C.text : C.white;
-  const headerBlur = scrolled ? "blur(12px)" : "none";
+  const borderBottom = scrolled ? `1px solid ${C.border}` : "1px solid transparent";
+  const navColor = scrolled ? C.textMuted : "rgba(255,255,255,0.7)";
+  const navHover = scrolled ? C.accent : C.white;
 
   return (
     <>
       <header style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        background: headerBg, backdropFilter: headerBlur, WebkitBackdropFilter: headerBlur,
-        borderBottom: headerBorder,
-        transition: "all 0.4s ease",
+        background: headerBg,
+        backdropFilter: scrolled ? "blur(16px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+        borderBottom,
+        transition: `all ${timing.normal} ease`,
         padding: "0 clamp(24px, 4vw, 64px)",
       }}>
         <div style={{
@@ -51,19 +65,12 @@ export default function Header() {
           height: 72,
         }}>
           {/* Logo */}
-          <Link to="/" style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <svg width="28" height="28" viewBox="0 0 40 40">
-              <circle cx="20" cy="20" r="18" fill="none" stroke={textColor} strokeWidth="1.5" style={{ transition: "stroke 0.4s" }} />
-              <circle cx="20" cy="20" r="10" fill="none" stroke={textColor} strokeWidth="1.5" style={{ transition: "stroke 0.4s" }} />
-              <circle cx="20" cy="20" r="4" fill={C.accent} />
-            </svg>
-            <span style={{
-              fontFamily: F.label, fontWeight: 500, fontSize: 14,
-              letterSpacing: 4, color: textColor, transition: "color 0.4s",
-              textTransform: "uppercase",
-            }}>
-              Oblige
-            </span>
+          <Link to="/" style={{ display: "flex", alignItems: "center" }}>
+            <img
+              src="/logo.svg"
+              alt="oblige!"
+              style={{ height: 28 }}
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -75,13 +82,42 @@ export default function Header() {
                 onClick={(e) => handleNavClick(e, l.path)}
                 style={{
                   fontFamily: F.label, fontSize: 11, fontWeight: 400,
-                  letterSpacing: 3, color: textColor, transition: "color 0.4s",
+                  letterSpacing: 3, color: navColor,
                   textTransform: "uppercase",
+                  transition: `color ${timing.fast}`,
                 }}
+                onMouseEnter={e => { e.currentTarget.style.color = navHover; }}
+                onMouseLeave={e => { e.currentTarget.style.color = navColor; }}
               >
                 {l.label}
               </Link>
             ))}
+
+            {/* Language Switcher */}
+            <div style={{ display: "flex", alignItems: "center", marginLeft: 8 }}>
+              {langOptions.map((opt, i) => (
+                <span key={opt.code}>
+                  {i > 0 && (
+                    <span style={{
+                      fontFamily: F.label, fontSize: 10, color: navColor,
+                      margin: "0 4px", userSelect: "none",
+                    }}>/</span>
+                  )}
+                  <button
+                    onClick={() => setLang(opt.code)}
+                    style={{
+                      fontFamily: F.label, fontSize: 10, fontWeight: 400,
+                      letterSpacing: 2,
+                      color: lang === opt.code ? C.accent : (scrolled ? C.textMuted : "rgba(255,255,255,0.45)"),
+                      cursor: "pointer", padding: 0,
+                      transition: `color ${timing.fast}`,
+                    }}
+                  >
+                    {opt.label}
+                  </button>
+                </span>
+              ))}
+            </div>
           </nav>
 
           {/* Mobile Burger */}
@@ -91,23 +127,16 @@ export default function Header() {
             style={{ width: 32, height: 32, position: "relative" }}
             aria-label="Menu"
           >
-            <span style={{
-              position: "absolute", left: 4, width: 24, height: 1.5, background: textColor,
-              top: menuOpen ? 15 : 10,
-              transform: menuOpen ? "rotate(45deg)" : "none",
-              transition: "all 0.3s ease",
-            }} />
-            <span style={{
-              position: "absolute", left: 4, width: 24, height: 1.5, background: textColor,
-              top: 15, opacity: menuOpen ? 0 : 1,
-              transition: "all 0.3s ease",
-            }} />
-            <span style={{
-              position: "absolute", left: 4, width: 24, height: 1.5, background: textColor,
-              top: menuOpen ? 15 : 20,
-              transform: menuOpen ? "rotate(-45deg)" : "none",
-              transition: "all 0.3s ease",
-            }} />
+            {[0, 1, 2].map(i => (
+              <span key={i} style={{
+                position: "absolute", left: 4, width: 24, height: 1.5,
+                background: scrolled ? C.text : C.white,
+                top: menuOpen ? 15 : 10 + i * 5,
+                opacity: menuOpen && i === 1 ? 0 : 1,
+                transform: menuOpen ? (i === 0 ? "rotate(45deg)" : i === 2 ? "rotate(-45deg)" : "none") : "none",
+                transition: `all ${timing.fast} ease`,
+              }} />
+            ))}
           </button>
         </div>
       </header>
@@ -126,13 +155,39 @@ export default function Header() {
               to={l.path}
               onClick={(e) => { handleNavClick(e, l.path); setMenuOpen(false); }}
               style={{
-                fontFamily: F.label, fontSize: 14, fontWeight: 400,
+                fontFamily: F.label, fontSize: 14, fontWeight: 500,
                 letterSpacing: 4, color: C.text, textTransform: "uppercase",
               }}
             >
               {l.label}
             </Link>
           ))}
+
+          {/* Mobile Language Switcher */}
+          <div style={{ display: "flex", alignItems: "center", marginTop: 16 }}>
+            {langOptions.map((opt, i) => (
+              <span key={opt.code}>
+                {i > 0 && (
+                  <span style={{
+                    fontFamily: F.label, fontSize: 10, color: C.textMuted,
+                    margin: "0 6px", userSelect: "none",
+                  }}>/</span>
+                )}
+                <button
+                  onClick={() => setLang(opt.code)}
+                  style={{
+                    fontFamily: F.label, fontSize: 10, fontWeight: 400,
+                    letterSpacing: 2,
+                    color: lang === opt.code ? C.accent : C.textMuted,
+                    cursor: "pointer", padding: 0,
+                    transition: `color ${timing.fast}`,
+                  }}
+                >
+                  {opt.label}
+                </button>
+              </span>
+            ))}
+          </div>
         </div>
       )}
     </>
