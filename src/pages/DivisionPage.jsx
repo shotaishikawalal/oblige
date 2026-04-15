@@ -217,6 +217,9 @@ export default function DivisionPage() {
         </div>
       </section>
 
+      {/* ═══════ TAIHO SEIKA — Food & Beverage exclusive launch showcase ═══════ */}
+      {div.id === "food-beverage" && <TaihoSeikaShowcase />}
+
       {/* ═══════ STRENGTHS (light surface) ═══════ */}
       <section id="sec-strengths" style={{ padding: spacing.sectionPadding + " 0", background: C.bgAlt }}>
         <div className="container">
@@ -491,6 +494,212 @@ function DivisionCTA({ divName, t }) {
             </svg>
           </div>
         </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ── TAIHO SEIKA — Coming Summer 2026 Showcase ── */
+function TaihoSeikaShowcase() {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <section style={{
+      padding: spacing.sectionPadding + " 0",
+      background: C.bg,
+      position: "relative", overflow: "hidden",
+    }}>
+      {/* Top accent line */}
+      <div style={{
+        position: "absolute", top: 0, left: 0, right: 0,
+        height: 2, background: C.accent,
+      }} />
+
+      {/* Watermark text */}
+      <span aria-hidden style={{
+        position: "absolute", top: "50%", left: "50%",
+        transform: "translate(-50%, -50%)",
+        fontFamily: F.display, fontSize: "clamp(120px, 20vw, 280px)",
+        fontWeight: 700, color: "rgba(26,23,20,0.035)", lineHeight: 1,
+        letterSpacing: "0.04em", userSelect: "none", pointerEvents: "none",
+        whiteSpace: "nowrap",
+      }}>
+        SUMMER 2026
+      </span>
+
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
+        {/* Eyebrow badge */}
+        <Reveal>
+          <div style={{
+            display: "flex", alignItems: "center", gap: 16,
+            marginBottom: 32,
+          }}>
+            <span style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              fontFamily: F.label, fontSize: 11, fontWeight: 500,
+              letterSpacing: 3, textTransform: "uppercase",
+              color: C.accent,
+              padding: "6px 14px",
+              border: `1px solid ${C.accent}`,
+              borderRadius: 20,
+            }}>
+              <span style={{
+                width: 6, height: 6, borderRadius: "50%",
+                background: C.accent,
+                boxShadow: `0 0 8px ${C.accent}`,
+              }} />
+              Coming Summer 2026
+            </span>
+            <span style={{
+              fontFamily: F.body, fontSize: 12,
+              color: C.textMuted, letterSpacing: "0.06em",
+            }}>— 今夏リリース予定</span>
+          </div>
+        </Reveal>
+
+        <div className="grid-2col" style={{
+          display: "grid", gridTemplateColumns: "1fr 1fr",
+          gap: "clamp(40px, 5vw, 80px)", alignItems: "center",
+        }}>
+          {/* Left — Package image */}
+          <Reveal delay={0.1}>
+            <a
+              href="https://taiho-seika.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+              style={{
+                display: "block",
+                position: "relative",
+                aspectRatio: "4 / 5",
+                background: C.white,
+                overflow: "hidden",
+                border: `1px solid ${C.border}`,
+                cursor: "pointer",
+              }}
+            >
+              <img
+                src="/taiho-seika-package.png"
+                alt="大宝青果 パッケージデザイン"
+                style={{
+                  width: "100%", height: "100%", objectFit: "contain",
+                  padding: "clamp(20px, 4vw, 48px)",
+                  transform: hovered ? "scale(1.04)" : "scale(1)",
+                  transition: `transform 0.7s ${timing.easeOut}`,
+                }}
+              />
+              {/* View site hint */}
+              <div style={{
+                position: "absolute", bottom: 16, right: 16,
+                display: "inline-flex", alignItems: "center", gap: 6,
+                fontFamily: F.label, fontSize: 10, fontWeight: 500,
+                letterSpacing: 2, textTransform: "uppercase",
+                color: C.white,
+                background: "rgba(26,23,20,0.75)", backdropFilter: "blur(8px)",
+                padding: "6px 10px", borderRadius: 14,
+                opacity: hovered ? 1 : 0.7,
+                transition: `opacity ${timing.fast}`,
+              }}>
+                Visit Site
+                <span>↗</span>
+              </div>
+            </a>
+          </Reveal>
+
+          {/* Right — Logo + description */}
+          <div>
+            {/* Logo */}
+            <Reveal delay={0.15}>
+              <div style={{
+                background: C.white,
+                padding: "clamp(28px, 4vw, 48px) clamp(32px, 5vw, 64px)",
+                marginBottom: 36,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                minHeight: 140,
+                border: `1px solid ${C.border}`,
+              }}>
+                <img
+                  src="/taiho-seika-logo.png"
+                  alt="大宝青果 ロゴ"
+                  style={{
+                    width: "100%", maxWidth: 320, height: "auto",
+                    objectFit: "contain",
+                  }}
+                />
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.2}>
+              <p style={{
+                fontFamily: F.label, fontSize: 11, fontWeight: 500,
+                letterSpacing: 4, textTransform: "uppercase",
+                color: C.accent, marginBottom: 16,
+              }}>
+                Partnership — Green Smoothie
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.25}>
+              <h2 style={{
+                fontFamily: F.heading, fontSize: "clamp(28px, 3.5vw, 42px)",
+                fontWeight: 700, color: C.text, lineHeight: 1.3,
+                letterSpacing: "0.02em", marginBottom: 24,
+              }}>
+                大宝青果
+                <br />
+                <span style={{
+                  fontFamily: F.display, fontSize: "0.55em",
+                  color: C.textMuted, letterSpacing: "0.08em",
+                  textTransform: "uppercase", fontWeight: 500,
+                }}>
+                  TAIHO SEIKA × oblige
+                </span>
+              </h2>
+            </Reveal>
+
+            <Reveal delay={0.3}>
+              <p style={{
+                fontFamily: F.body, fontSize: fontSize.body,
+                color: C.textMuted, lineHeight: 2.2,
+                marginBottom: 32,
+              }}>
+                大阪の老舗青果店「大宝青果」のフレッシュなグリーンスムージーを、
+                obligeのキッチンカーで2026年夏より展開予定。
+                青果のプロが厳選した素材と、ナイトタイムシーンへの新しい食体験を掛け合わせ、
+                夜の街に健やかな一杯をお届けします。
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.35}>
+              <a
+                href="https://taiho-seika.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 10,
+                  fontFamily: F.label, fontSize: 12, fontWeight: 500,
+                  letterSpacing: 3, textTransform: "uppercase",
+                  color: C.white,
+                  padding: "14px 28px",
+                  background: C.accent,
+                  transition: `all ${timing.fast}`,
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.boxShadow = "0 10px 24px rgba(218,119,86,0.3)";
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              >
+                Visit taiho-seika.com
+                <span style={{ fontSize: 14 }}>↗</span>
+              </a>
+            </Reveal>
+          </div>
+        </div>
       </div>
     </section>
   );
