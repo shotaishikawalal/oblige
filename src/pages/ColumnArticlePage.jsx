@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { C, F, fontSize, spacing, timing } from "../styles/design-tokens";
 import { Reveal } from "../components/ui/Reveal";
 import { articles } from "../data/articles";
+import { useLang } from "../i18n/LanguageContext";
 
 /* ═══════════════════════════════════════════════════════
    oblige! — Column Article Detail Page
@@ -85,6 +86,7 @@ function ArticleBody({ blocks }) {
 
 /* ═══════ ARTICLE PAGE ═══════ */
 export default function ColumnArticlePage() {
+  const { t } = useLang();
   const { id } = useParams();
   const article = articles.find(a => a.id === id);
 
@@ -95,14 +97,14 @@ export default function ColumnArticlePage() {
           <h1 style={{
             fontFamily: F.heading, fontSize: 32,
             color: C.text, marginBottom: 24,
-          }}>記事が見つかりません</h1>
+          }}>{t.column.notFound}</h1>
           <Link to="/column" style={{
             fontFamily: F.label, fontSize: 12,
             letterSpacing: 3, color: C.accent,
             textTransform: "uppercase",
             borderBottom: `1px solid ${C.accent}`,
             paddingBottom: 4,
-          }}>← コラム一覧に戻る</Link>
+          }}>{t.column.backToList}</Link>
         </div>
       </div>
     );
@@ -155,7 +157,7 @@ export default function ColumnArticlePage() {
                 <span style={{
                   fontFamily: F.label, fontSize: 10,
                   letterSpacing: 1, color: C.textDim,
-                }}>読了 {article.readTime}</span>
+                }}>{t.column.readTime} {article.readTime}</span>
               )}
             </div>
           </Reveal>
@@ -239,7 +241,7 @@ export default function ColumnArticlePage() {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12,19 5,12 12,5" />
             </svg>
-            Back to Column
+            {t.column.backToColumn}
           </Link>
         </div>
       </section>
@@ -257,7 +259,7 @@ export default function ColumnArticlePage() {
                 fontWeight: 700, color: C.text,
                 letterSpacing: "0.04em", textTransform: "uppercase",
                 marginBottom: 48,
-              }}>Related Articles</h2>
+              }}>{t.column.related}</h2>
             </Reveal>
 
             <div className="article-grid" style={{

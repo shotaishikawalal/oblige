@@ -93,59 +93,32 @@ function CEOMessage({ t }) {
 
           {/* Text */}
           <div>
-            <Reveal delay={0.1}>
-              <p style={{
-                fontFamily: F.body, fontSize: "clamp(13px, 1.1vw, 15px)",
-                lineHeight: 2.4, color: C.text, letterSpacing: "0.04em",
-              }}>
-                ナイトタイムエコノミー——夜の経済圏は、日本において未だ大きなポテンシャルを秘めた領域です。
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.15}>
-              <p style={{
-                fontFamily: F.body, fontSize: "clamp(13px, 1.1vw, 15px)",
-                lineHeight: 2.4, color: C.text, letterSpacing: "0.04em",
-                marginTop: 24,
-              }}>
-                私たちobligeは、その可能性を信じ、不動産・インテリア設計・建設・飲食・ブランディング・デジタルマーケティングの6つの事業を通じて、夜の街に確かな価値を届けることを使命としています。
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.2}>
-              <p style={{
-                fontFamily: F.body, fontSize: "clamp(13px, 1.1vw, 15px)",
-                lineHeight: 2.4, color: C.text, letterSpacing: "0.04em",
-                marginTop: 24,
-              }}>
-                「oblige」とは、義務を負う、恩義を施す、喜ぶことをする。この言葉に込めた想いは、お客様への約束です。的を射る提案で期待を超え、最後まで責任を持って伴走する。その姿勢こそが、私たちの価値だと考えています。
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.25}>
-              <p style={{
-                fontFamily: F.body, fontSize: "clamp(13px, 1.1vw, 15px)",
-                lineHeight: 2.4, color: C.text, letterSpacing: "0.04em",
-                marginTop: 24,
-              }}>
-                銀座・北新地を起点に、夜の街で培った経験と人脈を活かし、ワンストップで事業をプロデュース。空間づくりからブランド戦略、集客まで、すべてを一貫してサポートします。
-              </p>
-            </Reveal>
+            {t.about.message.paragraphs.map((para, i) => (
+              <Reveal key={i} delay={0.1 + i * 0.05}>
+                <p style={{
+                  fontFamily: F.body, fontSize: "clamp(13px, 1.1vw, 15px)",
+                  lineHeight: 2.4, color: C.text, letterSpacing: "0.04em",
+                  marginTop: i === 0 ? 0 : 24,
+                }}>
+                  {para}
+                </p>
+              </Reveal>
+            ))}
 
             <Reveal delay={0.3}>
               <div style={{ marginTop: 48 }}>
                 <p style={{
                   fontFamily: F.label, fontSize: 10, letterSpacing: 3,
                   color: C.textDim, textTransform: "uppercase", marginBottom: 8,
-                }}>CEO / Founder</p>
+                }}>{t.about.message.ceoLabel}</p>
                 <p style={{
                   fontFamily: F.heading, fontSize: "clamp(18px, 2vw, 24px)",
                   fontWeight: 600, color: C.text, letterSpacing: "0.02em",
-                }}>香山 達也</p>
+                }}>{t.about.message.ceoName}</p>
                 <p style={{
                   fontFamily: F.label, fontSize: 11, letterSpacing: 2,
                   color: C.textMuted, marginTop: 4,
-                }}>Tatsuya Kayama</p>
+                }}>{t.about.message.ceoNameEn}</p>
               </div>
             </Reveal>
           </div>

@@ -51,18 +51,9 @@ const labelStyle = {
   display: "block",
 };
 
-const categories = [
-  "建設事業について",
-  "不動産事業について",
-  "内装インテリア設計について",
-  "飲食事業について",
-  "SNS/WEB広告について",
-  "ブランディングについて",
-  "その他",
-];
-
 export default function ContactPage() {
   const { t } = useLang();
+  const categories = t.contactPage.categories;
   const [form, setForm] = useState({
     company: "",
     name: "",
@@ -96,19 +87,19 @@ export default function ContactPage() {
     // Layer 3: Time gate — reject if submitted in < 3 seconds
     const elapsed = Date.now() - mountTime.current;
     if (elapsed < 3000) {
-      setError("送信が早すぎます。もう一度お試しください。");
+      setError(t.contactPage.errors.tooFast);
       return;
     }
 
     // Layer 4: URL blocker — spam messages almost always contain links
     if (URL_REGEX.test(form.message) || URL_REGEX.test(form.name) || URL_REGEX.test(form.company)) {
-      setError("URLを含むメッセージは送信できません。");
+      setError(t.contactPage.errors.hasUrl);
       return;
     }
 
     // Layer 5: Math CAPTCHA
     if (parseInt(captchaInput, 10) !== challenge.answer) {
-      setError("計算の答えが正しくありません。");
+      setError(t.contactPage.errors.wrongAnswer);
       return;
     }
 
@@ -136,15 +127,15 @@ export default function ContactPage() {
             <h1 style={{
               fontFamily: F.heading, fontSize: "clamp(28px, 4vw, 44px)",
               fontWeight: 700, color: C.text, marginBottom: 20,
-            }}>Thank you</h1>
+            }}>{t.contactPage.success.heading}</h1>
           </Reveal>
           <Reveal delay={0.15}>
             <p style={{
               fontFamily: F.body, fontSize: fontSize.body,
               color: C.textMuted, lineHeight: 2.2,
+              whiteSpace: "pre-line",
             }}>
-              お問い合わせいただきありがとうございます。<br />
-              内容を確認の上、2営業日以内にご連絡いたします。
+              {t.contactPage.success.body}
             </p>
           </Reveal>
         </div>
@@ -162,23 +153,23 @@ export default function ContactPage() {
               fontFamily: F.label, fontSize: fontSize.label,
               letterSpacing: 4, color: C.accent, textTransform: "uppercase",
               fontWeight: 500,
-            }}>Contact</span>
+            }}>{t.contactPage.eyebrow}</span>
           </Reveal>
           <Reveal delay={0.05}>
             <h1 style={{
               fontFamily: F.heading, fontSize: "clamp(36px, 5vw, 64px)",
               fontWeight: 700, color: C.text, lineHeight: 1.2,
               letterSpacing: "0.02em", marginTop: 16,
-            }}>Get in touch</h1>
+            }}>{t.contactPage.heading}</h1>
           </Reveal>
           <Reveal delay={0.1}>
             <p style={{
               fontFamily: F.body, fontSize: fontSize.body,
               color: C.textMuted, lineHeight: 2.2, marginTop: 24,
               maxWidth: 500,
+              whiteSpace: "pre-line",
             }}>
-              事業に関するご相談・お見積りは無料です。<br />
-              お気軽にお問い合わせください。
+              {t.contactPage.desc}
             </p>
           </Reveal>
         </div>
@@ -191,14 +182,14 @@ export default function ContactPage() {
             {/* Company */}
             <Reveal delay={0.12}>
               <div style={{ marginBottom: 40 }}>
-                <label style={labelStyle}>Company</label>
+                <label style={labelStyle}>{t.contactPage.labels.company}</label>
                 <input
                   type="text"
                   value={form.company}
                   onChange={e => update("company", e.target.value)}
                   onFocus={() => setFocused("company")}
                   onBlur={() => setFocused(null)}
-                  placeholder="会社名（任意）"
+                  placeholder={t.contactPage.placeholders.company}
                   style={{
                     ...inputBase,
                     borderBottomColor: focused === "company" ? C.accent : C.surface,
@@ -210,7 +201,7 @@ export default function ContactPage() {
             {/* Name */}
             <Reveal delay={0.14}>
               <div style={{ marginBottom: 40 }}>
-                <label style={labelStyle}>Name <span style={{ color: C.accent }}>*</span></label>
+                <label style={labelStyle}>{t.contactPage.labels.name} <span style={{ color: C.accent }}>*</span></label>
                 <input
                   type="text"
                   required
@@ -218,7 +209,7 @@ export default function ContactPage() {
                   onChange={e => update("name", e.target.value)}
                   onFocus={() => setFocused("name")}
                   onBlur={() => setFocused(null)}
-                  placeholder="お名前"
+                  placeholder={t.contactPage.placeholders.name}
                   style={{
                     ...inputBase,
                     borderBottomColor: focused === "name" ? C.accent : C.surface,
@@ -234,7 +225,7 @@ export default function ContactPage() {
                 marginBottom: 40,
               }}>
                 <div>
-                  <label style={labelStyle}>Email <span style={{ color: C.accent }}>*</span></label>
+                  <label style={labelStyle}>{t.contactPage.labels.email} <span style={{ color: C.accent }}>*</span></label>
                   <input
                     type="email"
                     required
@@ -242,7 +233,7 @@ export default function ContactPage() {
                     onChange={e => update("email", e.target.value)}
                     onFocus={() => setFocused("email")}
                     onBlur={() => setFocused(null)}
-                    placeholder="メールアドレス"
+                    placeholder={t.contactPage.placeholders.email}
                     style={{
                       ...inputBase,
                       borderBottomColor: focused === "email" ? C.accent : C.surface,
@@ -250,14 +241,14 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label style={labelStyle}>Phone</label>
+                  <label style={labelStyle}>{t.contactPage.labels.phone}</label>
                   <input
                     type="tel"
                     value={form.phone}
                     onChange={e => update("phone", e.target.value)}
                     onFocus={() => setFocused("phone")}
                     onBlur={() => setFocused(null)}
-                    placeholder="電話番号（任意）"
+                    placeholder={t.contactPage.placeholders.phone}
                     style={{
                       ...inputBase,
                       borderBottomColor: focused === "phone" ? C.accent : C.surface,
@@ -270,7 +261,7 @@ export default function ContactPage() {
             {/* Category */}
             <Reveal delay={0.18}>
               <div style={{ marginBottom: 40 }}>
-                <label style={labelStyle}>Category <span style={{ color: C.accent }}>*</span></label>
+                <label style={labelStyle}>{t.contactPage.labels.category} <span style={{ color: C.accent }}>*</span></label>
                 <select
                   required
                   value={form.category}
@@ -288,7 +279,7 @@ export default function ContactPage() {
                     backgroundPosition: "right 4px center",
                   }}
                 >
-                  <option value="" disabled>お問い合わせ内容を選択</option>
+                  <option value="" disabled>{t.contactPage.placeholders.selectCategory}</option>
                   {categories.map(c => (
                     <option key={c} value={c}>{c}</option>
                   ))}
@@ -299,7 +290,7 @@ export default function ContactPage() {
             {/* Message */}
             <Reveal delay={0.2}>
               <div style={{ marginBottom: 56 }}>
-                <label style={labelStyle}>Message <span style={{ color: C.accent }}>*</span></label>
+                <label style={labelStyle}>{t.contactPage.labels.message} <span style={{ color: C.accent }}>*</span></label>
                 <textarea
                   required
                   rows={6}
@@ -307,7 +298,7 @@ export default function ContactPage() {
                   onChange={e => update("message", e.target.value)}
                   onFocus={() => setFocused("message")}
                   onBlur={() => setFocused(null)}
-                  placeholder="お問い合わせ内容を入力してください"
+                  placeholder={t.contactPage.placeholders.message}
                   style={{
                     ...inputBase,
                     borderBottomColor: focused === "message" ? C.accent : C.surface,
@@ -335,7 +326,7 @@ export default function ContactPage() {
             <Reveal delay={0.21}>
               <div style={{ marginBottom: 40 }}>
                 <label style={labelStyle}>
-                  スパム防止 <span style={{ color: C.accent }}>*</span>
+                  {t.contactPage.labels.spam} <span style={{ color: C.accent }}>*</span>
                 </label>
                 <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                   <span style={{
@@ -352,7 +343,7 @@ export default function ContactPage() {
                     onChange={e => { setCaptchaInput(e.target.value); setError(""); }}
                     onFocus={() => setFocused("captcha")}
                     onBlur={() => setFocused(null)}
-                    placeholder="答え"
+                    placeholder={t.contactPage.placeholders.answer}
                     style={{
                       ...inputBase,
                       width: 80,
@@ -393,7 +384,7 @@ export default function ContactPage() {
                 onMouseEnter={e => { e.currentTarget.style.background = C.accent; }}
                 onMouseLeave={e => { e.currentTarget.style.background = C.dark; }}
               >
-                Send
+                {t.contactPage.send}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12,5 19,12 12,19" />
                 </svg>
@@ -412,7 +403,7 @@ export default function ContactPage() {
               flexWrap: "wrap",
             }}>
               <div>
-                <span style={{ ...labelStyle, marginBottom: 12 }}>Email</span>
+                <span style={{ ...labelStyle, marginBottom: 12 }}>{t.contactPage.directLabels.email}</span>
                 <a href="mailto:info@oblige.jp" style={{
                   fontFamily: F.body, fontSize: fontSize.body,
                   color: C.text, borderBottom: `1px solid ${C.border}`,
@@ -423,7 +414,7 @@ export default function ContactPage() {
                 >info@oblige.jp</a>
               </div>
               <div>
-                <span style={{ ...labelStyle, marginBottom: 12 }}>Instagram</span>
+                <span style={{ ...labelStyle, marginBottom: 12 }}>{t.contactPage.directLabels.instagram}</span>
                 <a href="https://www.instagram.com/oblige.co.ltd/" target="_blank" rel="noopener noreferrer" style={{
                   fontFamily: F.body, fontSize: fontSize.body,
                   color: C.text, borderBottom: `1px solid ${C.border}`,
@@ -442,14 +433,13 @@ export default function ContactPage() {
                 </a>
               </div>
               <div>
-                <span style={{ ...labelStyle, marginBottom: 12 }}>Address</span>
+                <span style={{ ...labelStyle, marginBottom: 12 }}>{t.contactPage.directLabels.address}</span>
                 <p style={{
                   fontFamily: F.body, fontSize: fontSize.body,
                   color: C.text, lineHeight: 1.8,
+                  whiteSpace: "pre-line",
                 }}>
-                  〒542-0081<br />
-                  大阪市中央区南船場4-13-12<br />
-                  南船場OMビル6階
+                  {t.contactPage.addressFull}
                 </p>
               </div>
             </div>

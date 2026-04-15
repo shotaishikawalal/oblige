@@ -504,19 +504,20 @@ function DivisionCTA({ divName, t }) {
 
 /* ── TAIHO SEIKA — Cinematic editorial showcase ── */
 function TaihoSeikaShowcase() {
+  const { t } = useLang();
   const [hovered, setHovered] = useState(false);
+  const p = t.partnership;
   const work = {
-    nameEn: "TAIHO SEIKA",
-    nameJa: "大宝青果 × oblige",
-    category: "Partnership · Green Smoothie",
-    location: "Osaka · Coming Summer 2026",
-    locationJa: "大阪 / Osaka",
-    type: "Green Smoothie",
-    release: "Summer 2026",
-    scope: "F&B Partnership",
-    tagline: "夜の街に、健やかな一杯を。",
-    description:
-      "大阪の老舗青果店「大宝青果」のフレッシュなグリーンスムージーを、obligeのキッチンカーで2026年夏より展開予定。青果のプロが厳選した素材と、ナイトタイムシーンへの新しい食体験を掛け合わせ、夜の街に健やかな一杯をお届けします。",
+    nameEn: p.titleEn,
+    nameJa: p.titleSubJa,
+    category: p.category,
+    location: p.location,
+    locationJa: p.dataValues.location,
+    type: p.dataValues.type,
+    release: p.dataValues.release,
+    scope: p.scope,
+    tagline: p.tagline,
+    description: p.description,
     link: "https://taiho-seika.com/",
     linkLabel: "taiho-seika.com",
     linkType: "web",
@@ -551,7 +552,7 @@ function TaihoSeikaShowcase() {
             letterSpacing: 4, textTransform: "uppercase",
             color: C.accent, marginBottom: 14,
           }}>
-            ● New Partnership
+            {p.eyebrow}
           </p>
         </Reveal>
 
@@ -575,7 +576,7 @@ function TaihoSeikaShowcase() {
                 background: C.accent,
                 boxShadow: `0 0 8px ${C.accent}`,
               }} />
-              Coming Summer 2026
+              {p.comingBadge}
             </span>
             <span style={{
               fontFamily: F.label, fontSize: 11, fontWeight: 500,
@@ -695,10 +696,10 @@ function TaihoSeikaShowcase() {
           <Reveal delay={0.1}>
             <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               {[
-                { k: "Location", v: work.locationJa },
-                { k: "Type", v: work.type },
-                { k: "Release", v: work.release },
-                { k: "Scope", v: work.scope },
+                { k: p.dataLabels.location, v: work.locationJa },
+                { k: p.dataLabels.type, v: work.type },
+                { k: p.dataLabels.release, v: work.release },
+                { k: p.dataLabels.scope, v: work.scope },
               ].map(({ k, v }) => (
                 <div key={k} style={{
                   paddingBottom: 12,
@@ -757,14 +758,14 @@ function TaihoSeikaShowcase() {
                 letterSpacing: "0.24em", textTransform: "uppercase",
                 color: C.accent,
               }}>
-                / Brand Identity
+                {p.brandIdentity}
               </span>
               <span style={{ flex: 1, height: 1, background: C.border }} />
               <span style={{
                 fontFamily: F.mono, fontSize: 10, fontWeight: 500,
                 letterSpacing: "0.2em", color: C.textDim,
               }}>
-                Logo · 大宝青果
+                {p.logoNote}
               </span>
             </div>
             <div style={{

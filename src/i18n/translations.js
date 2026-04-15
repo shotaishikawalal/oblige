@@ -131,6 +131,15 @@ export const translations = {
       message: {
         sectionEn: "Message",
         sectionJa: "代表挨拶",
+        paragraphs: [
+          "ナイトタイムエコノミー——夜の経済圏は、日本において未だ大きなポテンシャルを秘めた領域です。",
+          "私たちobligeは、その可能性を信じ、不動産・インテリア設計・建設・飲食・ブランディング・デジタルマーケティングの6つの事業を通じて、夜の街に確かな価値を届けることを使命としています。",
+          "「oblige」とは、義務を負う、恩義を施す、喜ぶことをする。この言葉に込めた想いは、お客様への約束です。的を射る提案で期待を超え、最後まで責任を持って伴走する。その姿勢こそが、私たちの価値だと考えています。",
+          "銀座・北新地を起点に、夜の街で培った経験と人脈を活かし、ワンストップで事業をプロデュース。空間づくりからブランド戦略、集客まで、すべてを一貫してサポートします。",
+        ],
+        ceoLabel: "CEO / Founder",
+        ceoName: "香山 達也",
+        ceoNameEn: "Tatsuya Kayama",
       },
       philosophy: {
         sectionEn: "Philosophy",
@@ -148,6 +157,133 @@ export const translations = {
       title: "コラム",
       allCategory: "すべて",
       emptyMessage: "このカテゴリーの記事はまだありません。",
+      readTime: "読了",
+      backToList: "← コラム一覧に戻る",
+      backToColumn: "Back to Column",
+      notFound: "記事が見つかりません",
+      related: "Related Articles",
+    },
+
+    // Contact page
+    contactPage: {
+      eyebrow: "Contact",
+      heading: "Get in touch",
+      desc: "事業に関するご相談・お見積りは無料です。\nお気軽にお問い合わせください。",
+      labels: {
+        company: "Company",
+        name: "Name",
+        email: "Email",
+        phone: "Phone",
+        category: "Category",
+        message: "Message",
+        spam: "スパム防止",
+        required: "*",
+      },
+      placeholders: {
+        company: "会社名(任意)",
+        name: "お名前",
+        email: "メールアドレス",
+        phone: "電話番号(任意)",
+        selectCategory: "お問い合わせ内容を選択",
+        message: "お問い合わせ内容を入力してください",
+        answer: "答え",
+      },
+      categories: [
+        "建設事業について",
+        "不動産事業について",
+        "内装インテリア設計について",
+        "飲食事業について",
+        "SNS/WEB広告について",
+        "ブランディングについて",
+        "その他",
+      ],
+      errors: {
+        tooFast: "送信が早すぎます。もう一度お試しください。",
+        hasUrl: "URLを含むメッセージは送信できません。",
+        wrongAnswer: "計算の答えが正しくありません。",
+      },
+      send: "Send",
+      success: {
+        heading: "Thank you",
+        body: "お問い合わせいただきありがとうございます。\n内容を確認の上、2営業日以内にご連絡いたします。",
+      },
+      directLabels: {
+        email: "Email",
+        instagram: "Instagram",
+        address: "Address",
+      },
+      addressFull: "〒542-0081\n大阪市中央区南船場4-13-12\n南船場OMビル6階",
+    },
+
+    // Privacy policy
+    privacy: {
+      eyebrow: "Policy",
+      heading: "Privacy Policy",
+      subtitle: "個人情報保護方針",
+      intro: "株式会社oblige(以下「当社」)は、お客様の個人情報の保護を重要な責務と認識し、以下のとおりプライバシーポリシーを定め、個人情報の適切な管理・保護に努めてまいります。",
+      contactTitle: "お問い合わせ窓口",
+      contactBody: "株式会社oblige\n〒542-0081 大阪市中央区南船場4-13-12 南船場OMビル6階\nE-mail: info@oblige.jp",
+      policies: [
+        {
+          title: "個人情報の収集について",
+          body: "当社は、お客様の個人情報を収集する場合、利用目的を明示し、適法かつ公正な手段によって収集いたします。収集する個人情報の範囲は、利用目的を達成するために必要な範囲に限定いたします。",
+        },
+        {
+          title: "個人情報の利用目的",
+          body: "当社は、お客様からお預かりした個人情報を、以下の目的で利用いたします。\n\n・お問い合わせへの回答およびご連絡\n・サービスの提供・改善・開発\n・各種ご案内やお知らせの送付\n・契約の履行および管理\n・その他、上記利用目的に付随する業務",
+        },
+        {
+          title: "個人情報の第三者提供",
+          body: "当社は、以下の場合を除き、お客様の個人情報を第三者に提供することはありません。\n\n・お客様の同意がある場合\n・法令に基づく場合\n・人の生命、身体または財産の保護のために必要がある場合\n・業務委託先に対して、利用目的の達成に必要な範囲で提供する場合",
+        },
+        {
+          title: "個人情報の安全管理",
+          body: "当社は、お客様の個人情報の漏洩、紛失、破壊、改ざんおよび不正なアクセスを防止するため、必要かつ適切なセキュリティ対策を実施し、個人情報の安全管理に努めます。",
+        },
+        {
+          title: "個人情報の開示・訂正・削除",
+          body: "お客様ご自身の個人情報について、開示・訂正・追加・削除・利用停止等のご要望がある場合は、所定の手続きに基づき、速やかに対応いたします。下記のお問い合わせ窓口までご連絡ください。",
+        },
+        {
+          title: "Cookieの使用について",
+          body: "当社のウェブサイトでは、お客様の利便性向上およびアクセス解析のためにCookieを使用しています。Cookieによって個人を特定できる情報は取得しておりません。ブラウザの設定によりCookieの受け取りを拒否することも可能ですが、一部サービスが正常に機能しない場合があります。",
+        },
+        {
+          title: "SSL暗号化通信について",
+          body: "当社のウェブサイトでは、お客様の個人情報を保護するため、SSL(Secure Sockets Layer)暗号化通信を採用しています。入力された情報は暗号化されて送信されるため、第三者に情報が傍受される心配はありません。",
+        },
+        {
+          title: "プライバシーポリシーの改定",
+          body: "当社は、法令の変更や事業内容の変更等に伴い、本プライバシーポリシーを改定することがあります。改定した場合は、当ウェブサイトにて公表いたします。",
+        },
+      ],
+    },
+
+    // Partnership (food-beverage division)
+    partnership: {
+      eyebrow: "● New Partnership",
+      comingBadge: "Coming Summer 2026",
+      comingSub: "— 今夏リリース予定",
+      category: "Partnership · Green Smoothie",
+      scope: "F&B Partnership",
+      titleEn: "TAIHO SEIKA",
+      titleSubJa: "大宝青果 × oblige",
+      location: "Osaka · Coming Summer 2026",
+      tagline: "夜の街に、健やかな一杯を。",
+      description: "大阪の老舗青果店「大宝青果」のフレッシュなグリーンスムージーを、obligeのキッチンカーで2026年夏より展開予定。青果のプロが厳選した素材と、ナイトタイムシーンへの新しい食体験を掛け合わせ、夜の街に健やかな一杯をお届けします。",
+      dataLabels: {
+        location: "Location",
+        type: "Type",
+        release: "Release",
+        scope: "Scope",
+      },
+      dataValues: {
+        location: "大阪 / Osaka",
+        type: "Green Smoothie",
+        release: "Summer 2026",
+      },
+      brandIdentity: "/ Brand Identity",
+      logoNote: "Logo · 大宝青果",
     },
 
     // Division page
@@ -178,6 +314,9 @@ export const translations = {
       tagline: "ナイトタイムエコノミーの\nトータルプロデュース",
       copyright: `\u00A9 ${new Date().getFullYear()} Oblige Co., Ltd.`,
       address: "〒542-0081 大阪市中央区南船場4-13-12 南船場OMビル6階",
+      addressShort: "大阪市中央区南船場4-13-12",
+      contactLabel: "Contact",
+      businessLabel: "Business",
     },
   },
 
@@ -299,6 +438,15 @@ export const translations = {
       message: {
         sectionEn: "Message",
         sectionJa: "CEO Message",
+        paragraphs: [
+          "The nighttime economy holds enormous untapped potential in Japan.",
+          "At oblige, we believe in that potential. Through our six divisions — real estate, interior design, construction, F&B, branding, and digital marketing — our mission is to deliver real value to the night.",
+          "The word 'oblige' means to be obligated, to do a favor, to please. That meaning is our promise to our clients. Exceeding expectations with precision proposals, and walking alongside them with full responsibility to the end — that commitment is what we stand for.",
+          "Based in Ginza and Kitashinchi, we leverage our experience and networks in the nighttime scene to produce businesses end-to-end — from space design through brand strategy to customer acquisition.",
+        ],
+        ceoLabel: "CEO / Founder",
+        ceoName: "Tatsuya Kayama",
+        ceoNameEn: "香山 達也",
       },
       philosophy: {
         sectionEn: "Philosophy",
@@ -315,6 +463,130 @@ export const translations = {
       title: "Column",
       allCategory: "All",
       emptyMessage: "No articles in this category yet.",
+      readTime: "Read",
+      backToList: "← Back to Column",
+      backToColumn: "Back to Column",
+      notFound: "Article not found",
+      related: "Related Articles",
+    },
+
+    contactPage: {
+      eyebrow: "Contact",
+      heading: "Get in touch",
+      desc: "Consultations and estimates are free.\nFeel free to reach out.",
+      labels: {
+        company: "Company",
+        name: "Name",
+        email: "Email",
+        phone: "Phone",
+        category: "Category",
+        message: "Message",
+        spam: "Anti-spam",
+        required: "*",
+      },
+      placeholders: {
+        company: "Company name (optional)",
+        name: "Your name",
+        email: "Email address",
+        phone: "Phone number (optional)",
+        selectCategory: "Select an inquiry category",
+        message: "Tell us about your project",
+        answer: "Answer",
+      },
+      categories: [
+        "Construction",
+        "Real Estate",
+        "Interior Design",
+        "Food & Beverage",
+        "Digital Marketing",
+        "Branding",
+        "Other",
+      ],
+      errors: {
+        tooFast: "Submission too fast. Please try again.",
+        hasUrl: "Messages containing URLs cannot be sent.",
+        wrongAnswer: "Incorrect answer to the math question.",
+      },
+      send: "Send",
+      success: {
+        heading: "Thank you",
+        body: "Thank you for your inquiry.\nWe will review your message and get back to you within 2 business days.",
+      },
+      directLabels: {
+        email: "Email",
+        instagram: "Instagram",
+        address: "Address",
+      },
+      addressFull: "Minamisenba OM Bldg. 6F\n4-13-12 Minamisenba, Chuo-ku\nOsaka 542-0081, Japan",
+    },
+
+    privacy: {
+      eyebrow: "Policy",
+      heading: "Privacy Policy",
+      subtitle: "Personal Information Protection",
+      intro: "Oblige Co., Ltd. (hereinafter 'the Company') recognizes the protection of our customers' personal information as a critical responsibility, and establishes this Privacy Policy to ensure proper management and protection of personal information.",
+      contactTitle: "Contact for Inquiries",
+      contactBody: "Oblige Co., Ltd.\nMinamisenba OM Bldg. 6F, 4-13-12 Minamisenba, Chuo-ku, Osaka 542-0081\nE-mail: info@oblige.jp",
+      policies: [
+        {
+          title: "Collection of Personal Information",
+          body: "When collecting personal information, the Company clearly states the purpose of use and collects information through lawful and fair means. The scope of personal information collected is limited to what is necessary to achieve the stated purpose.",
+        },
+        {
+          title: "Purpose of Use",
+          body: "The Company uses personal information entrusted by customers for the following purposes:\n\n・Responding to inquiries and communications\n・Providing, improving, and developing services\n・Sending various notifications and announcements\n・Performance and management of contracts\n・Other operations incidental to the above purposes",
+        },
+        {
+          title: "Provision to Third Parties",
+          body: "The Company does not provide personal information to third parties except in the following cases:\n\n・With the customer's consent\n・As required by law\n・When necessary to protect life, body, or property\n・When providing to business partners within the scope necessary to achieve the purpose of use",
+        },
+        {
+          title: "Security Management",
+          body: "The Company implements necessary and appropriate security measures to prevent leakage, loss, destruction, falsification, and unauthorized access to customers' personal information, and strives for the safe management of personal information.",
+        },
+        {
+          title: "Disclosure, Correction, and Deletion",
+          body: "If customers request disclosure, correction, addition, deletion, or suspension of use of their own personal information, we will respond promptly based on the prescribed procedures. Please contact the inquiry desk below.",
+        },
+        {
+          title: "Use of Cookies",
+          body: "This website uses cookies to improve user convenience and for access analysis. Cookies do not collect personally identifiable information. You can refuse to accept cookies through your browser settings, but some services may not function correctly.",
+        },
+        {
+          title: "SSL Encrypted Communication",
+          body: "This website uses SSL (Secure Sockets Layer) encryption to protect customers' personal information. Information entered is transmitted in encrypted form, so there is no concern about interception by third parties.",
+        },
+        {
+          title: "Revision of Privacy Policy",
+          body: "The Company may revise this Privacy Policy in accordance with changes in laws or business content. Any revisions will be announced on this website.",
+        },
+      ],
+    },
+
+    partnership: {
+      eyebrow: "● New Partnership",
+      comingBadge: "Coming Summer 2026",
+      comingSub: "— Launching this summer",
+      category: "Partnership · Green Smoothie",
+      scope: "F&B Partnership",
+      titleEn: "TAIHO SEIKA",
+      titleSubJa: "Taiho Seika × oblige",
+      location: "Osaka · Coming Summer 2026",
+      tagline: "A healthy glass for the night.",
+      description: "We are launching fresh green smoothies from Osaka's long-established greengrocer Taiho Seika through oblige food trucks from summer 2026. By combining produce specialists' carefully selected ingredients with a new food experience for the nighttime scene, we deliver a healthy glass to the night.",
+      dataLabels: {
+        location: "Location",
+        type: "Type",
+        release: "Release",
+        scope: "Scope",
+      },
+      dataValues: {
+        location: "Osaka, Japan",
+        type: "Green Smoothie",
+        release: "Summer 2026",
+      },
+      brandIdentity: "/ Brand Identity",
+      logoNote: "Logo · Taiho Seika",
     },
 
     division: {
@@ -343,6 +615,9 @@ export const translations = {
       tagline: "Total Production for\nthe Nighttime Economy",
       copyright: `\u00A9 ${new Date().getFullYear()} Oblige Co., Ltd.`,
       address: "Minamisenba OM Bldg. 6F, 4-13-12 Minamisenba, Chuo-ku, Osaka 542-0081",
+      addressShort: "4-13-12 Minamisenba, Chuo-ku, Osaka",
+      contactLabel: "Contact",
+      businessLabel: "Business",
     },
   },
 
@@ -464,6 +739,15 @@ export const translations = {
       message: {
         sectionEn: "Message",
         sectionJa: "代表致辞",
+        paragraphs: [
+          "夜间经济——夜晚的经济领域，在日本仍是一片拥有巨大潜力的蓝海。",
+          "我们oblige坚信这份潜力，通过房地产、室内设计、建设、餐饮、品牌塑造、数字营销六大事业，致力于为夜之街带来实在的价值。",
+          "「oblige」意为承担义务、施予恩义、使人欢喜。这份含义是我们对客户的承诺。以精准的提案超越期待，以负责任的态度陪伴到最后——这份坚持，正是我们的价值所在。",
+          "以银座、北新地为据点，充分运用在夜之街积累的经验与人脉，提供一站式事业制作服务。从空间打造到品牌战略、集客推广，全程一体化支持。",
+        ],
+        ceoLabel: "CEO / Founder",
+        ceoName: "香山 达也",
+        ceoNameEn: "Tatsuya Kayama",
       },
       philosophy: {
         sectionEn: "Philosophy",
@@ -480,6 +764,130 @@ export const translations = {
       title: "专栏",
       allCategory: "全部",
       emptyMessage: "该分类暂无文章。",
+      readTime: "阅读",
+      backToList: "← 返回专栏列表",
+      backToColumn: "Back to Column",
+      notFound: "未找到该文章",
+      related: "Related Articles",
+    },
+
+    contactPage: {
+      eyebrow: "Contact",
+      heading: "Get in touch",
+      desc: "关于事业的咨询与报价均为免费。\n欢迎随时联系我们。",
+      labels: {
+        company: "Company",
+        name: "Name",
+        email: "Email",
+        phone: "Phone",
+        category: "Category",
+        message: "Message",
+        spam: "防垃圾信息",
+        required: "*",
+      },
+      placeholders: {
+        company: "公司名称(选填)",
+        name: "您的姓名",
+        email: "电子邮箱",
+        phone: "电话号码(选填)",
+        selectCategory: "请选择咨询类型",
+        message: "请输入咨询内容",
+        answer: "答案",
+      },
+      categories: [
+        "关于建设事业",
+        "关于房地产事业",
+        "关于室内设计",
+        "关于餐饮事业",
+        "关于SNS/网络广告",
+        "关于品牌塑造",
+        "其他",
+      ],
+      errors: {
+        tooFast: "提交过快，请稍后再试。",
+        hasUrl: "包含URL的消息无法发送。",
+        wrongAnswer: "计算答案不正确。",
+      },
+      send: "Send",
+      success: {
+        heading: "Thank you",
+        body: "感谢您的咨询。\n我们将在确认内容后于2个工作日内与您联系。",
+      },
+      directLabels: {
+        email: "Email",
+        instagram: "Instagram",
+        address: "Address",
+      },
+      addressFull: "〒542-0081\n大阪市中央区南船场4-13-12\n南船场OM大厦6层",
+    },
+
+    privacy: {
+      eyebrow: "Policy",
+      heading: "Privacy Policy",
+      subtitle: "个人信息保护方针",
+      intro: "株式会社oblige(以下简称「本公司」)将保护客户个人信息视为重要职责，特制定以下隐私政策，致力于个人信息的妥善管理与保护。",
+      contactTitle: "咨询窗口",
+      contactBody: "株式会社oblige\n〒542-0081 大阪市中央区南船场4-13-12 南船场OM大厦6层\nE-mail: info@oblige.jp",
+      policies: [
+        {
+          title: "关于个人信息的收集",
+          body: "本公司在收集客户个人信息时，将明示使用目的，并以合法且公正的方式进行收集。所收集的个人信息范围，仅限于为达成使用目的所必需的范围。",
+        },
+        {
+          title: "个人信息的使用目的",
+          body: "本公司将客户提供的个人信息用于以下目的:\n\n・回复咨询及联络\n・服务的提供、改善与开发\n・各类通知与信息发送\n・合同的履行与管理\n・其他与上述目的相关的业务",
+        },
+        {
+          title: "向第三方提供个人信息",
+          body: "除以下情况外，本公司不会向第三方提供客户的个人信息:\n\n・已获得客户同意\n・依据法令规定\n・为保护人的生命、身体或财产所必要\n・在为达成使用目的所必需的范围内，向业务委托方提供",
+        },
+        {
+          title: "个人信息的安全管理",
+          body: "本公司为防止客户个人信息的泄漏、遗失、破坏、篡改及非法访问，将实施必要且适当的安全对策，致力于个人信息的安全管理。",
+        },
+        {
+          title: "个人信息的公开、更正、删除",
+          body: "客户如需对自己的个人信息进行公开、更正、追加、删除、停止使用等，本公司将根据规定流程迅速处理。请联系下方咨询窗口。",
+        },
+        {
+          title: "关于Cookie的使用",
+          body: "本公司网站为提升用户便利性及进行访问分析而使用Cookie。通过Cookie不会获取可识别个人的信息。您可以通过浏览器设置拒绝接收Cookie，但部分服务可能无法正常使用。",
+        },
+        {
+          title: "SSL加密通信",
+          body: "本公司网站为保护客户的个人信息，采用SSL(Secure Sockets Layer)加密通信。输入的信息以加密形式发送，不必担心被第三方截获。",
+        },
+        {
+          title: "隐私政策的修订",
+          body: "本公司可能会随法令变更或业务内容变化修订本隐私政策。修订后将在本网站上公布。",
+        },
+      ],
+    },
+
+    partnership: {
+      eyebrow: "● New Partnership",
+      comingBadge: "Coming Summer 2026",
+      comingSub: "— 今夏发布",
+      category: "Partnership · Green Smoothie",
+      scope: "F&B Partnership",
+      titleEn: "TAIHO SEIKA",
+      titleSubJa: "大宝青果 × oblige",
+      location: "Osaka · Coming Summer 2026",
+      tagline: "为夜之街，献上健康的一杯。",
+      description: "大阪老牌青果店「大宝青果」的新鲜绿色蔬果昔，预计将于2026年夏季通过oblige的餐车展开。结合青果专家精选的食材与夜间场景的全新餐饮体验，为夜之街献上健康的一杯。",
+      dataLabels: {
+        location: "Location",
+        type: "Type",
+        release: "Release",
+        scope: "Scope",
+      },
+      dataValues: {
+        location: "大阪 / Osaka",
+        type: "Green Smoothie",
+        release: "Summer 2026",
+      },
+      brandIdentity: "/ Brand Identity",
+      logoNote: "Logo · 大宝青果",
     },
 
     division: {
@@ -508,6 +916,9 @@ export const translations = {
       tagline: "夜间经济的\n全方位制作",
       copyright: `\u00A9 ${new Date().getFullYear()} Oblige Co., Ltd.`,
       address: "〒542-0081 大阪市中央区南船场4-13-12 南船场OM大厦6层",
+      addressShort: "大阪市中央区南船场4-13-12",
+      contactLabel: "Contact",
+      businessLabel: "Business",
     },
   },
 };

@@ -524,7 +524,16 @@ function PhilosophySection() {
               fontFamily: F.heading, fontSize: "clamp(18px, 2.2vw, 28px)",
               fontWeight: 500, color: C.textMuted, lineHeight: 1.8,
             }}>
-              的を射る提案で、夜の街に驚き<span style={{ color: C.accent, fontWeight: 600 }}>!</span>を。
+              {(() => {
+                const parts = t.philosophy.tagline.split("!");
+                return (
+                  <>
+                    {parts[0]}
+                    <span style={{ color: C.accent, fontWeight: 600 }}>!</span>
+                    {parts.slice(1).join("!")}
+                  </>
+                );
+              })()}
             </p>
           </Reveal>
 
@@ -532,9 +541,9 @@ function PhilosophySection() {
             <p style={{
               fontFamily: F.body, fontSize: fontSize.small,
               lineHeight: 2.2, color: C.textDim, maxWidth: 480, margin: "20px auto 0",
+              whiteSpace: "pre-line",
             }}>
-              obligeとは「義務を負う」「恩義を施す」「喜ぶことをする」。<br />
-              ナイトタイムエコノミーに特化した総合プロデュース。
+              {t.philosophy.taglineSub}
             </p>
           </Reveal>
         </div>

@@ -35,7 +35,7 @@ export default function Footer() {
             <div style={{
               fontFamily: F.label, fontSize: 10, letterSpacing: 3,
               color: C.accent, marginBottom: 20, textTransform: "uppercase", fontWeight: 500,
-            }}>Business</div>
+            }}>{t.footer.businessLabel}</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {divisions.map(d => (
                 <Link key={d.id} to={d.path} style={{
@@ -45,7 +45,7 @@ export default function Footer() {
                 onMouseEnter={e => { e.currentTarget.style.color = C.accent; }}
                 onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }}
                 >
-                  {d.nameJa}
+                  {t.divisions[d.id]?.nameJa || d.nameJa}
                 </Link>
               ))}
             </div>
@@ -56,7 +56,7 @@ export default function Footer() {
             <div style={{
               fontFamily: F.label, fontSize: 10, letterSpacing: 3,
               color: C.accent, marginBottom: 20, textTransform: "uppercase", fontWeight: 500,
-            }}>Contact</div>
+            }}>{t.footer.contactLabel}</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 12, fontFamily: F.body, fontSize: 12, color: "rgba(255,255,255,0.5)" }}>
               <span>info@oblige.jp</span>
               <a href="https://www.instagram.com/oblige.co.ltd/" target="_blank" rel="noopener noreferrer" style={{
@@ -73,7 +73,7 @@ export default function Footer() {
                 </svg>
                 Instagram
               </a>
-              <span>大阪市中央区南船場4-13-12</span>
+              <span>{t.footer.addressShort}</span>
             </div>
           </div>
         </div>
