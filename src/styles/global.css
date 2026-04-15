@@ -167,6 +167,12 @@ ul, ol { list-style: none; }
 }
 .loop-hover { animation: loopSpinFast 1s cubic-bezier(0.22,1,0.36,1) infinite; transform-origin: 40px 40px; }
 
+/* ═══════ WORKS GALLERY — horizontal scroll ═══════ */
+.works-gallery::-webkit-scrollbar { height: 4px; }
+.works-gallery::-webkit-scrollbar-track { background: rgba(0,0,0,0.04); }
+.works-gallery::-webkit-scrollbar-thumb { background: rgba(218,119,86,0.5); border-radius: 2px; }
+.works-gallery::-webkit-scrollbar-thumb:hover { background: #DA7756; }
+
 /* ═══════ ANCHOR NAV ARROW BOUNCE ═══════ */
 @keyframes arrowBounce {
   0%, 100% { transform: translateY(0); }

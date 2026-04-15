@@ -708,42 +708,48 @@ function TaihoSeikaShowcase() {
   );
 }
 
-/* ── INTERIOR WORKS — Featured completed projects ── */
+/* ── INTERIOR WORKS — Cinematic editorial showcase ── */
 const INTERIOR_WORKS = [
   {
     id: "club-shuki",
-    category: "Lounge Interior",
+    category: "Lounge / Club",
     nameJa: "北新地 クラブ朱妃",
-    nameEn: "Club Shuki",
-    location: "大阪・北新地 堂島ビル 1F",
+    nameEn: "CLUB SHUKI",
+    location: "Osaka, Kitashinchi",
+    locationJa: "大阪・北新地 堂島ビル 1F",
+    year: "2025",
+    scope: "Design + Build",
     tagline: "洗練とラグジュアリーが交差する、ピアノが響く高級クラブ空間。",
     description:
       "北新地の中心に構える高級クラブ「朱妃」。シャンパン・ワイン・ウイスキー・焼酎が並ぶメインカウンターと、生ピアノの音色が溶け合う空間を、照明計画・素材選定・動線設計まで一貫してプロデュース。夜の余韻を最大化する、静謐で上質な内装を実現しました。",
     image: "/251206-003.jpg",
-    subImages: ["/251206-017.jpg", "/251206-051.jpg", "/251206-102.jpg"],
+    subImages: ["/251206-017.jpg", "/251206-051.jpg", "/251206-102.jpg", "/251206-029.jpg", "/251206-074.jpg", "/251206-098.jpg"],
     link: "https://club-shuki.jp/",
-    linkLabel: "Visit club-shuki.jp",
+    linkLabel: "Visit Site",
   },
   {
     id: "collectons-bar",
-    category: "Bar Interior",
+    category: "Bar",
     nameJa: "コレクトンズ バー",
-    nameEn: "Collectons Bar",
-    location: "大阪市中央区南本町 3-1-3 カネセオ第3ビル B1",
+    nameEn: "COLLECTONS BAR",
+    location: "Osaka, Minamihonmachi",
+    locationJa: "大阪市中央区南本町 3-1-3 カネセオ第3ビル B1",
+    year: "2024",
+    scope: "Design + Build",
     tagline: "こだわりの一杯と、静かに愉しむ大人の時間。",
     description:
       "カウンターに身を預け、静かに会話を愉しむための空間設計。素材感のある壁面と間接照明で、夜の密度を丁寧に整えました。バックバーのディスプレイ、座面の奥行き、カウンターの高さまで、バーテンダーとゲスト双方の所作を考慮した設計を実施しています。",
     image: "/yamaneya_1642.jpg",
-    subImages: ["/yamaneya_1229.JPG", "/yamaneya_1151.JPG", "/yamaneya_1960.JPG"],
+    subImages: ["/yamaneya_1229.JPG", "/yamaneya_1151.JPG", "/yamaneya_1960.JPG", "/yamaneya_1265.JPG", "/yamaneya_1908.JPG", "/yamaneya_1938.JPG"],
     link: "https://www.instagram.com/collectons_bar/",
-    linkLabel: "View on Instagram",
+    linkLabel: "View Instagram",
   },
 ];
 
 function InteriorWorksShowcase() {
   return (
     <section style={{
-      padding: spacing.sectionPadding + " 0",
+      padding: "clamp(80px, 12vw, 160px) 0 0",
       background: C.bg,
       position: "relative", overflow: "hidden",
     }}>
@@ -753,227 +759,333 @@ function InteriorWorksShowcase() {
         height: 2, background: C.accent,
       }} />
 
-      <div className="container" style={{ position: "relative", zIndex: 1 }}>
-        {/* Section head */}
-        <Reveal>
-          <div style={{
-            display: "flex", alignItems: "baseline", gap: 16,
-            marginBottom: 16,
-          }}>
+      {/* Header */}
+      <div className="container" style={{
+        display: "flex", alignItems: "flex-end", justifyContent: "space-between",
+        gap: 32, flexWrap: "wrap", marginBottom: "clamp(48px, 6vw, 88px)",
+      }}>
+        <div>
+          <Reveal>
+            <p style={{
+              fontFamily: F.label, fontSize: 11, fontWeight: 500,
+              letterSpacing: 4, textTransform: "uppercase",
+              color: C.accent, marginBottom: 14,
+            }}>
+              ● Selected Projects
+            </p>
+          </Reveal>
+          <Reveal delay={0.08}>
             <h2 style={{
-              fontFamily: F.heading, fontSize: "clamp(28px, 3.5vw, 44px)",
-              fontWeight: 700, color: C.text, lineHeight: 1,
-              letterSpacing: "0.04em", textTransform: "uppercase",
-            }}>Featured Works</h2>
-            <span style={{
-              fontFamily: F.body, fontSize: "clamp(12px, 1vw, 14px)",
+              fontFamily: F.heading,
+              fontSize: "clamp(40px, 7vw, 96px)",
+              fontWeight: 700, color: C.text, lineHeight: 0.95,
+              letterSpacing: "-0.01em", textTransform: "uppercase",
+            }}>
+              Works<span style={{ color: C.accent }}>.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.14}>
+            <p style={{
+              fontFamily: F.body, fontSize: "clamp(13px, 1vw, 15px)",
               color: C.textMuted, letterSpacing: "0.06em",
-            }}>— 施工事例</span>
+              marginTop: 16,
+            }}>
+              ナイトタイムシーンに特化した、選りすぐりの空間設計事例。
+            </p>
+          </Reveal>
+        </div>
+
+        <Reveal delay={0.18}>
+          <div style={{
+            fontFamily: F.mono, fontSize: 11, fontWeight: 500,
+            letterSpacing: "0.18em", textTransform: "uppercase",
+            color: C.textDim, textAlign: "right",
+            lineHeight: 1.8,
+          }}>
+            <div>{String(INTERIOR_WORKS.length).padStart(2, "0")} Featured</div>
+            <div style={{ color: C.textMuted }}>Scroll ↓</div>
           </div>
         </Reveal>
-        <Reveal delay={0.1}>
-          <p style={{
-            fontFamily: F.body, fontSize: fontSize.body,
-            color: C.textMuted, lineHeight: 2, marginBottom: 72,
-            maxWidth: 640,
-          }}>
-            ナイトタイムシーンに特化したインテリア設計の施工事例。
-            クラブ、ラウンジ、バーそれぞれの業態特性に応じた空間をプロデュースしています。
-          </p>
-        </Reveal>
+      </div>
 
-        {/* Works list */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(80px, 10vw, 140px)" }}>
-          {INTERIOR_WORKS.map((work, i) => (
-            <InteriorWorkCard key={work.id} work={work} reverse={i % 2 === 1} index={i} />
-          ))}
-        </div>
+      {/* Works */}
+      <div>
+        {INTERIOR_WORKS.map((work, i) => (
+          <InteriorWorkSpread key={work.id} work={work} index={i} />
+        ))}
       </div>
     </section>
   );
 }
 
-function InteriorWorkCard({ work, reverse, index }) {
+function InteriorWorkSpread({ work, index }) {
   const [hovered, setHovered] = useState(false);
+  const num = String(index + 1).padStart(2, "0");
 
   return (
-    <div className="grid-2col" style={{
-      display: "grid",
-      gridTemplateColumns: "1.15fr 1fr",
-      gap: "clamp(40px, 5vw, 72px)",
-      alignItems: "center",
-      direction: reverse ? "rtl" : "ltr",
+    <article style={{
+      padding: "clamp(80px, 10vw, 160px) 0",
+      position: "relative",
+      borderTop: index > 0 ? `1px solid ${C.border}` : "none",
     }}>
-      {/* Main image */}
-      <Reveal delay={0.1}>
-        <a
-          href={work.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-          style={{
-            display: "block", position: "relative",
-            aspectRatio: "4 / 5",
-            overflow: "hidden",
-            background: C.surface,
-            border: `1px solid ${C.border}`,
-            direction: "ltr",
-            cursor: "pointer",
-          }}
-        >
-          <img
-            src={work.image}
-            alt={work.nameJa}
-            style={{
-              width: "100%", height: "100%", objectFit: "cover",
-              transform: hovered ? "scale(1.04)" : "scale(1)",
-              transition: `transform 0.7s ${timing.easeOut}`,
-            }}
-          />
-          {/* Number watermark */}
-          <div style={{
-            position: "absolute", top: 16, left: 16,
-            fontFamily: F.display, fontSize: 14, fontWeight: 500,
-            letterSpacing: 3, color: C.white,
-            background: "rgba(26,23,20,0.5)", backdropFilter: "blur(6px)",
-            padding: "4px 10px", borderRadius: 4,
-          }}>
-            {String(index + 1).padStart(2, "0")} / {String(INTERIOR_WORKS.length).padStart(2, "0")}
-          </div>
-          {/* Visit hint */}
-          <div style={{
-            position: "absolute", bottom: 16, right: 16,
-            display: "inline-flex", alignItems: "center", gap: 6,
-            fontFamily: F.label, fontSize: 10, fontWeight: 500,
-            letterSpacing: 2, textTransform: "uppercase",
-            color: C.white,
-            background: "rgba(26,23,20,0.75)", backdropFilter: "blur(8px)",
-            padding: "6px 10px", borderRadius: 14,
-            opacity: hovered ? 1 : 0.7,
-            transition: `opacity ${timing.fast}`,
-          }}>
-            View <span>↗</span>
-          </div>
-        </a>
-      </Reveal>
+      {/* Giant backdrop type */}
+      <span aria-hidden style={{
+        position: "absolute", top: "clamp(40px, 6vw, 80px)", left: "-2vw",
+        fontFamily: F.display,
+        fontSize: "clamp(140px, 22vw, 340px)",
+        fontWeight: 700, color: "rgba(26,23,20,0.04)", lineHeight: 0.85,
+        letterSpacing: "-0.04em", userSelect: "none", pointerEvents: "none",
+        whiteSpace: "nowrap", textTransform: "uppercase",
+      }}>
+        {work.nameEn}
+      </span>
 
-      {/* Content */}
-      <div style={{ direction: "ltr" }}>
-        <Reveal delay={0.15}>
-          <p style={{
-            fontFamily: F.label, fontSize: 11, fontWeight: 500,
-            letterSpacing: 4, textTransform: "uppercase",
-            color: C.accent, marginBottom: 16,
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
+        {/* Meta strip */}
+        <Reveal>
+          <div style={{
+            display: "flex", alignItems: "center", gap: 20,
+            marginBottom: 28, flexWrap: "wrap",
           }}>
-            {work.category}
-          </p>
+            <span style={{
+              fontFamily: F.display, fontSize: 14, fontWeight: 600,
+              letterSpacing: "0.12em", color: C.accent,
+            }}>
+              — {num}
+            </span>
+            <span style={{
+              fontFamily: F.label, fontSize: 11, fontWeight: 500,
+              letterSpacing: 3, textTransform: "uppercase",
+              color: C.textMuted,
+            }}>
+              {work.category}
+            </span>
+            <span style={{
+              flex: 1, height: 1, background: C.border,
+              minWidth: 40,
+            }} />
+            <span style={{
+              fontFamily: F.mono, fontSize: 11, fontWeight: 500,
+              letterSpacing: "0.2em", color: C.textDim,
+            }}>
+              {work.year} · {work.scope}
+            </span>
+          </div>
         </Reveal>
 
-        <Reveal delay={0.2}>
+        {/* Title */}
+        <Reveal delay={0.05}>
           <h3 style={{
-            fontFamily: F.heading, fontSize: "clamp(26px, 3.2vw, 38px)",
-            fontWeight: 700, color: C.text, lineHeight: 1.3,
-            letterSpacing: "0.02em", marginBottom: 12,
+            fontFamily: F.heading,
+            fontSize: "clamp(40px, 6.5vw, 88px)",
+            fontWeight: 700, color: C.text, lineHeight: 0.95,
+            letterSpacing: "-0.01em", textTransform: "uppercase",
+            marginBottom: 16,
           }}>
-            {work.nameJa}
-            <br />
-            <span style={{
-              fontFamily: F.display, fontSize: "0.55em",
-              color: C.textMuted, letterSpacing: "0.08em",
-              textTransform: "uppercase", fontWeight: 500,
-            }}>
-              {work.nameEn}
-            </span>
+            {work.nameEn}
           </h3>
         </Reveal>
-
-        {work.location && work.location !== "—" && (
-          <Reveal delay={0.22}>
-            <p style={{
-              fontFamily: F.body, fontSize: 12,
-              color: C.textDim, letterSpacing: "0.04em",
-              marginBottom: 20,
-            }}>
-              ◎ {work.location}
-            </p>
-          </Reveal>
-        )}
-
-        <Reveal delay={0.25}>
+        <Reveal delay={0.08}>
           <p style={{
-            fontFamily: F.body, fontSize: fontSize.body,
-            fontWeight: 500, color: C.text, lineHeight: 1.8,
-            marginBottom: 18, letterSpacing: "0.02em",
+            fontFamily: F.body, fontSize: "clamp(15px, 1.3vw, 18px)",
+            fontWeight: 500, color: C.text, letterSpacing: "0.04em",
+            marginBottom: 48,
           }}>
-            {work.tagline}
+            {work.nameJa}
           </p>
         </Reveal>
 
-        <Reveal delay={0.3}>
-          <p style={{
-            fontFamily: F.body, fontSize: 14,
-            color: C.textMuted, lineHeight: 2.2,
-            marginBottom: 28,
-          }}>
-            {work.description}
-          </p>
-        </Reveal>
-
-        {/* Sub images */}
-        {work.subImages && work.subImages.length > 0 && (
-          <Reveal delay={0.35}>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: `repeat(${work.subImages.length}, 1fr)`,
-              gap: 8, marginBottom: 28,
-            }}>
-              {work.subImages.map((src, i) => (
-                <div key={i} style={{
-                  aspectRatio: "1 / 1", overflow: "hidden",
-                  background: C.surface,
-                  border: `1px solid ${C.border}`,
-                }}>
-                  <img
-                    src={src}
-                    alt=""
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  />
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        )}
-
-        <Reveal delay={0.4}>
+        {/* Hero image — tall cinematic */}
+        <Reveal delay={0.12}>
           <a
             href={work.link}
             target="_blank"
             rel="noopener noreferrer"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
             style={{
-              display: "inline-flex", alignItems: "center", gap: 10,
-              fontFamily: F.label, fontSize: 12, fontWeight: 500,
-              letterSpacing: 3, textTransform: "uppercase",
-              color: C.white,
-              padding: "14px 28px",
-              background: C.accent,
-              transition: `all ${timing.fast}`,
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.transform = "translateY(-2px)";
-              e.currentTarget.style.boxShadow = "0 10px 24px rgba(218,119,86,0.3)";
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "none";
+              display: "block", position: "relative",
+              width: "100%",
+              aspectRatio: "16 / 10",
+              overflow: "hidden",
+              background: C.surface,
+              cursor: "pointer",
+              marginBottom: "clamp(40px, 5vw, 72px)",
             }}
           >
-            {work.linkLabel}
-            <span style={{ fontSize: 14 }}>↗</span>
+            <img
+              src={work.image}
+              alt={work.nameJa}
+              style={{
+                width: "100%", height: "100%", objectFit: "cover",
+                transform: hovered ? "scale(1.06)" : "scale(1)",
+                transition: `transform 1.2s ${timing.easeOut}`,
+              }}
+            />
+            {/* Corner label */}
+            <div style={{
+              position: "absolute", top: 0, left: 0,
+              padding: "20px 24px",
+              display: "flex", alignItems: "center", gap: 10,
+              fontFamily: F.mono, fontSize: 10, fontWeight: 500,
+              letterSpacing: "0.2em", textTransform: "uppercase",
+              color: C.white,
+            }}>
+              <span style={{
+                width: 6, height: 6, borderRadius: "50%",
+                background: C.accent,
+                boxShadow: `0 0 8px ${C.accent}`,
+              }} />
+              {work.location}
+            </div>
+            {/* Hover hint */}
+            <div style={{
+              position: "absolute", bottom: 24, right: 24,
+              display: "inline-flex", alignItems: "center", gap: 10,
+              padding: "14px 20px",
+              background: hovered ? C.accent : "rgba(255,255,255,0.95)",
+              color: hovered ? C.white : C.text,
+              fontFamily: F.label, fontSize: 11, fontWeight: 600,
+              letterSpacing: 3, textTransform: "uppercase",
+              transition: `all ${timing.fast}`,
+              transform: hovered ? "translate(-4px, -4px)" : "none",
+            }}>
+              {work.linkLabel}
+              <span style={{ fontSize: 14 }}>↗</span>
+            </div>
           </a>
         </Reveal>
+
+        {/* Data + narrative row */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 2fr",
+          gap: "clamp(40px, 5vw, 80px)",
+          marginBottom: "clamp(40px, 5vw, 72px)",
+        }} className="grid-2col">
+          {/* Left — data */}
+          <Reveal delay={0.1}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+              {[
+                { k: "Location", v: work.locationJa },
+                { k: "Type", v: work.category },
+                { k: "Completed", v: work.year },
+                { k: "Scope", v: work.scope },
+              ].map(({ k, v }) => (
+                <div key={k} style={{
+                  paddingBottom: 12,
+                  borderBottom: `1px solid ${C.border}`,
+                }}>
+                  <p style={{
+                    fontFamily: F.mono, fontSize: 10, fontWeight: 500,
+                    letterSpacing: "0.24em", textTransform: "uppercase",
+                    color: C.accent, marginBottom: 6,
+                  }}>
+                    / {k}
+                  </p>
+                  <p style={{
+                    fontFamily: F.body, fontSize: 14,
+                    color: C.text, letterSpacing: "0.02em",
+                    lineHeight: 1.6,
+                  }}>
+                    {v}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          {/* Right — narrative */}
+          <div>
+            <Reveal delay={0.15}>
+              <p style={{
+                fontFamily: F.body, fontSize: "clamp(18px, 1.6vw, 24px)",
+                fontWeight: 500, color: C.text, lineHeight: 1.7,
+                letterSpacing: "0.02em", marginBottom: 32,
+              }}>
+                「{work.tagline}」
+              </p>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p style={{
+                fontFamily: F.body, fontSize: 14,
+                color: C.textMuted, lineHeight: 2.2,
+              }}>
+                {work.description}
+              </p>
+            </Reveal>
+          </div>
+        </div>
+
+        {/* Horizontal scrolling gallery */}
+        {work.subImages && work.subImages.length > 0 && (
+          <Reveal delay={0.1}>
+            <div>
+              <div style={{
+                display: "flex", alignItems: "center", gap: 12,
+                marginBottom: 20,
+              }}>
+                <span style={{
+                  fontFamily: F.mono, fontSize: 10, fontWeight: 500,
+                  letterSpacing: "0.24em", textTransform: "uppercase",
+                  color: C.accent,
+                }}>
+                  / Gallery
+                </span>
+                <span style={{ flex: 1, height: 1, background: C.border }} />
+                <span style={{
+                  fontFamily: F.mono, fontSize: 10, fontWeight: 500,
+                  letterSpacing: "0.2em", color: C.textDim,
+                }}>
+                  {String(work.subImages.length).padStart(2, "0")} IMAGES · SCROLL →
+                </span>
+              </div>
+              <div
+                className="works-gallery"
+                style={{
+                  display: "flex", gap: 16, overflowX: "auto",
+                  scrollSnapType: "x mandatory",
+                  paddingBottom: 20,
+                  scrollbarWidth: "thin",
+                }}
+              >
+                {work.subImages.map((src, i) => (
+                  <div key={i} style={{
+                    flex: "0 0 clamp(260px, 32vw, 420px)",
+                    aspectRatio: "3 / 4",
+                    overflow: "hidden",
+                    background: C.surface,
+                    scrollSnapAlign: "start",
+                    position: "relative",
+                  }}>
+                    <img
+                      src={src}
+                      alt=""
+                      loading="lazy"
+                      style={{
+                        width: "100%", height: "100%", objectFit: "cover",
+                        transition: `transform 0.8s ${timing.easeOut}`,
+                      }}
+                      onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.06)"; }}
+                      onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; }}
+                    />
+                    <span style={{
+                      position: "absolute", bottom: 12, left: 12,
+                      fontFamily: F.mono, fontSize: 10, fontWeight: 500,
+                      letterSpacing: "0.2em", color: C.white,
+                      background: "rgba(26,23,20,0.55)", backdropFilter: "blur(6px)",
+                      padding: "3px 8px",
+                    }}>
+                      {num}·{String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        )}
       </div>
-    </div>
+    </article>
   );
 }
 
