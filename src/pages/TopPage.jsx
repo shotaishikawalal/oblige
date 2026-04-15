@@ -467,7 +467,7 @@ function PhilosophySection() {
 
         {/* Expand panel */}
         <div style={{
-          maxHeight: active ? 400 : 0,
+          maxHeight: active ? (isMobile ? 1200 : 400) : 0,
           opacity: active ? 1 : 0,
           overflow: "hidden",
           transition: "max-height 0.5s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease",
