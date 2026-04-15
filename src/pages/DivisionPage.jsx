@@ -67,6 +67,7 @@ export default function DivisionPage() {
     </div>
   );
 
+  const tDiv = t.divisions[div.id] || {};
   const relatedDivs = (div.related || [])
     .map(rid => divisions.find(d => d.id === rid))
     .filter(Boolean);
@@ -112,7 +113,7 @@ export default function DivisionPage() {
             color: "rgba(255,255,255,0.6)",
             background: "rgba(255,255,255,0.08)", backdropFilter: "blur(6px)",
             padding: "6px 20px", borderRadius: 20, marginBottom: 20,
-          }}>{div.nameJa}</span>
+          }}>{tDiv.nameJa || div.nameJa}</span>
 
           {/* English main title */}
           <h1 style={{
@@ -127,7 +128,7 @@ export default function DivisionPage() {
             fontFamily: F.body, fontSize: fontSize.body,
             color: "rgba(255,255,255,0.6)", lineHeight: 1.8,
           }}>
-            {div.tagline}
+            {tDiv.tagline || div.tagline}
           </p>
         </div>
 
@@ -197,7 +198,7 @@ export default function DivisionPage() {
                   fontFamily: F.body, fontSize: fontSize.body,
                   lineHeight: 2.4, color: C.textMuted,
                 }}>
-                  {div.description}
+                  {tDiv.description || div.description}
                 </p>
               </Reveal>
             </div>
@@ -208,7 +209,7 @@ export default function DivisionPage() {
               }}>
                 <img
                   src={overviewPhotos[div.id] || "/251206-003.jpg"}
-                  alt={div.nameJa}
+                  alt={tDiv.nameJa || div.nameJa}
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               </div>
@@ -232,7 +233,7 @@ export default function DivisionPage() {
             gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
             gap: 20,
           }}>
-            {div.strengths.map((s, i) => (
+            {(tDiv.strengths || div.strengths).map((s, i) => (
               <Reveal key={i} delay={i * 0.06}>
                 <div style={{
                   padding: "36px 28px",
@@ -282,10 +283,10 @@ export default function DivisionPage() {
           <SectionHead en={t.division.sections.flow.en} ja={t.division.sections.flow.ja} />
           <div className="flow-grid" style={{
             display: "grid",
-            gridTemplateColumns: `repeat(${Math.min(div.process.length, 5)}, 1fr)`,
+            gridTemplateColumns: `repeat(${Math.min((tDiv.process || div.process).length, 5)}, 1fr)`,
             gap: 0,
           }}>
-            {div.process.map((p, i) => (
+            {(tDiv.process || div.process).map((p, i) => (
               <Reveal key={i} delay={0.06 + i * 0.06}>
                 <div style={{
                   padding: "0 clamp(16px, 2vw, 32px)",
@@ -330,7 +331,7 @@ export default function DivisionPage() {
         <div className="container-narrow">
           <SectionHead en={t.division.sections.faq.en} ja={t.division.sections.faq.ja} />
           <div style={{ display: "flex", flexDirection: "column" }}>
-            {div.faq.map((f, i) => (
+            {(tDiv.faq || div.faq).map((f, i) => (
               <FaqItem key={i} q={f.q} a={f.a} />
             ))}
           </div>
@@ -369,7 +370,7 @@ export default function DivisionPage() {
                       <div style={{ height: 180, overflow: "hidden" }}>
                         <img
                           src={heroPhotos[rd.id] || "/251206-003.jpg"}
-                          alt={rd.nameJa}
+                          alt={t.divisions[rd.id]?.nameJa || rd.nameJa}
                           style={{
                             width: "100%", height: "100%", objectFit: "cover",
                             transition: `transform 0.6s ${timing.easeOut}`,
@@ -388,11 +389,11 @@ export default function DivisionPage() {
                         <h3 style={{
                           fontFamily: F.heading, fontSize: 18, fontWeight: 600,
                           color: C.text, marginBottom: 4,
-                        }}>{rd.nameJa}</h3>
+                        }}>{t.divisions[rd.id]?.nameJa || rd.nameJa}</h3>
                         <p style={{
                           fontFamily: F.body, fontSize: 12, color: C.textMuted,
                           lineHeight: 1.8,
-                        }}>{rd.tagline}</p>
+                        }}>{t.divisions[rd.id]?.tagline || rd.tagline}</p>
                         <div style={{
                           marginTop: 12,
                           fontFamily: F.label, fontSize: fontSize.data,
@@ -413,7 +414,7 @@ export default function DivisionPage() {
       )}
 
       {/* ═══════ CTA — hive-inspired color-shift ═══════ */}
-      <DivisionCTA divName={div.nameJa} t={t} />
+      <DivisionCTA divName={tDiv.nameJa || div.nameJa} t={t} />
     </div>
   );
 }
