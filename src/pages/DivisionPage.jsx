@@ -220,6 +220,9 @@ export default function DivisionPage() {
       {/* ═══════ TAIHO SEIKA — Food & Beverage exclusive launch showcase ═══════ */}
       {div.id === "food-beverage" && <TaihoSeikaShowcase />}
 
+      {/* ═══════ INTERIOR — Featured projects (Club Shuki / Collectons Bar) ═══════ */}
+      {div.id === "interior-design" && <InteriorWorksShowcase />}
+
       {/* ═══════ STRENGTHS (light surface) ═══════ */}
       <section id="sec-strengths" style={{ padding: spacing.sectionPadding + " 0", background: C.bgAlt }}>
         <div className="container">
@@ -702,6 +705,275 @@ function TaihoSeikaShowcase() {
         </div>
       </div>
     </section>
+  );
+}
+
+/* ── INTERIOR WORKS — Featured completed projects ── */
+const INTERIOR_WORKS = [
+  {
+    id: "club-shuki",
+    category: "Lounge Interior",
+    nameJa: "北新地 クラブ朱妃",
+    nameEn: "Club Shuki",
+    location: "大阪・北新地 堂島ビル 1F",
+    tagline: "洗練とラグジュアリーが交差する、ピアノが響く高級クラブ空間。",
+    description:
+      "北新地の中心に構える高級クラブ「朱妃」。シャンパン・ワイン・ウイスキー・焼酎が並ぶメインカウンターと、生ピアノの音色が溶け合う空間を、照明計画・素材選定・動線設計まで一貫してプロデュース。夜の余韻を最大化する、静謐で上質な内装を実現しました。",
+    image: "/251206-003.jpg",
+    subImages: ["/251206-017.jpg", "/251206-051.jpg", "/251206-102.jpg"],
+    link: "https://club-shuki.jp/",
+    linkLabel: "Visit club-shuki.jp",
+  },
+  {
+    id: "collectons-bar",
+    category: "Bar Interior",
+    nameJa: "コレクトンズ バー",
+    nameEn: "Collectons Bar",
+    location: "大阪市中央区南本町 3-1-3 カネセオ第3ビル B1",
+    tagline: "こだわりの一杯と、静かに愉しむ大人の時間。",
+    description:
+      "カウンターに身を預け、静かに会話を愉しむための空間設計。素材感のある壁面と間接照明で、夜の密度を丁寧に整えました。バックバーのディスプレイ、座面の奥行き、カウンターの高さまで、バーテンダーとゲスト双方の所作を考慮した設計を実施しています。",
+    image: "/yamaneya_1642.jpg",
+    subImages: ["/yamaneya_1229.JPG", "/yamaneya_1151.JPG", "/yamaneya_1960.JPG"],
+    link: "https://www.instagram.com/collectons_bar/",
+    linkLabel: "View on Instagram",
+  },
+];
+
+function InteriorWorksShowcase() {
+  return (
+    <section style={{
+      padding: spacing.sectionPadding + " 0",
+      background: C.bg,
+      position: "relative", overflow: "hidden",
+    }}>
+      {/* Top accent line */}
+      <div style={{
+        position: "absolute", top: 0, left: 0, right: 0,
+        height: 2, background: C.accent,
+      }} />
+
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
+        {/* Section head */}
+        <Reveal>
+          <div style={{
+            display: "flex", alignItems: "baseline", gap: 16,
+            marginBottom: 16,
+          }}>
+            <h2 style={{
+              fontFamily: F.heading, fontSize: "clamp(28px, 3.5vw, 44px)",
+              fontWeight: 700, color: C.text, lineHeight: 1,
+              letterSpacing: "0.04em", textTransform: "uppercase",
+            }}>Featured Works</h2>
+            <span style={{
+              fontFamily: F.body, fontSize: "clamp(12px, 1vw, 14px)",
+              color: C.textMuted, letterSpacing: "0.06em",
+            }}>— 施工事例</span>
+          </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p style={{
+            fontFamily: F.body, fontSize: fontSize.body,
+            color: C.textMuted, lineHeight: 2, marginBottom: 72,
+            maxWidth: 640,
+          }}>
+            ナイトタイムシーンに特化したインテリア設計の施工事例。
+            クラブ、ラウンジ、バーそれぞれの業態特性に応じた空間をプロデュースしています。
+          </p>
+        </Reveal>
+
+        {/* Works list */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(80px, 10vw, 140px)" }}>
+          {INTERIOR_WORKS.map((work, i) => (
+            <InteriorWorkCard key={work.id} work={work} reverse={i % 2 === 1} index={i} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function InteriorWorkCard({ work, reverse, index }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div className="grid-2col" style={{
+      display: "grid",
+      gridTemplateColumns: "1.15fr 1fr",
+      gap: "clamp(40px, 5vw, 72px)",
+      alignItems: "center",
+      direction: reverse ? "rtl" : "ltr",
+    }}>
+      {/* Main image */}
+      <Reveal delay={0.1}>
+        <a
+          href={work.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          style={{
+            display: "block", position: "relative",
+            aspectRatio: "4 / 5",
+            overflow: "hidden",
+            background: C.surface,
+            border: `1px solid ${C.border}`,
+            direction: "ltr",
+            cursor: "pointer",
+          }}
+        >
+          <img
+            src={work.image}
+            alt={work.nameJa}
+            style={{
+              width: "100%", height: "100%", objectFit: "cover",
+              transform: hovered ? "scale(1.04)" : "scale(1)",
+              transition: `transform 0.7s ${timing.easeOut}`,
+            }}
+          />
+          {/* Number watermark */}
+          <div style={{
+            position: "absolute", top: 16, left: 16,
+            fontFamily: F.display, fontSize: 14, fontWeight: 500,
+            letterSpacing: 3, color: C.white,
+            background: "rgba(26,23,20,0.5)", backdropFilter: "blur(6px)",
+            padding: "4px 10px", borderRadius: 4,
+          }}>
+            {String(index + 1).padStart(2, "0")} / {String(INTERIOR_WORKS.length).padStart(2, "0")}
+          </div>
+          {/* Visit hint */}
+          <div style={{
+            position: "absolute", bottom: 16, right: 16,
+            display: "inline-flex", alignItems: "center", gap: 6,
+            fontFamily: F.label, fontSize: 10, fontWeight: 500,
+            letterSpacing: 2, textTransform: "uppercase",
+            color: C.white,
+            background: "rgba(26,23,20,0.75)", backdropFilter: "blur(8px)",
+            padding: "6px 10px", borderRadius: 14,
+            opacity: hovered ? 1 : 0.7,
+            transition: `opacity ${timing.fast}`,
+          }}>
+            View <span>↗</span>
+          </div>
+        </a>
+      </Reveal>
+
+      {/* Content */}
+      <div style={{ direction: "ltr" }}>
+        <Reveal delay={0.15}>
+          <p style={{
+            fontFamily: F.label, fontSize: 11, fontWeight: 500,
+            letterSpacing: 4, textTransform: "uppercase",
+            color: C.accent, marginBottom: 16,
+          }}>
+            {work.category}
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.2}>
+          <h3 style={{
+            fontFamily: F.heading, fontSize: "clamp(26px, 3.2vw, 38px)",
+            fontWeight: 700, color: C.text, lineHeight: 1.3,
+            letterSpacing: "0.02em", marginBottom: 12,
+          }}>
+            {work.nameJa}
+            <br />
+            <span style={{
+              fontFamily: F.display, fontSize: "0.55em",
+              color: C.textMuted, letterSpacing: "0.08em",
+              textTransform: "uppercase", fontWeight: 500,
+            }}>
+              {work.nameEn}
+            </span>
+          </h3>
+        </Reveal>
+
+        {work.location && work.location !== "—" && (
+          <Reveal delay={0.22}>
+            <p style={{
+              fontFamily: F.body, fontSize: 12,
+              color: C.textDim, letterSpacing: "0.04em",
+              marginBottom: 20,
+            }}>
+              ◎ {work.location}
+            </p>
+          </Reveal>
+        )}
+
+        <Reveal delay={0.25}>
+          <p style={{
+            fontFamily: F.body, fontSize: fontSize.body,
+            fontWeight: 500, color: C.text, lineHeight: 1.8,
+            marginBottom: 18, letterSpacing: "0.02em",
+          }}>
+            {work.tagline}
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.3}>
+          <p style={{
+            fontFamily: F.body, fontSize: 14,
+            color: C.textMuted, lineHeight: 2.2,
+            marginBottom: 28,
+          }}>
+            {work.description}
+          </p>
+        </Reveal>
+
+        {/* Sub images */}
+        {work.subImages && work.subImages.length > 0 && (
+          <Reveal delay={0.35}>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: `repeat(${work.subImages.length}, 1fr)`,
+              gap: 8, marginBottom: 28,
+            }}>
+              {work.subImages.map((src, i) => (
+                <div key={i} style={{
+                  aspectRatio: "1 / 1", overflow: "hidden",
+                  background: C.surface,
+                  border: `1px solid ${C.border}`,
+                }}>
+                  <img
+                    src={src}
+                    alt=""
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        )}
+
+        <Reveal delay={0.4}>
+          <a
+            href={work.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 10,
+              fontFamily: F.label, fontSize: 12, fontWeight: 500,
+              letterSpacing: 3, textTransform: "uppercase",
+              color: C.white,
+              padding: "14px 28px",
+              background: C.accent,
+              transition: `all ${timing.fast}`,
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.boxShadow = "0 10px 24px rgba(218,119,86,0.3)";
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "none";
+            }}
+          >
+            {work.linkLabel}
+            <span style={{ fontSize: 14 }}>↗</span>
+          </a>
+        </Reveal>
+      </div>
+    </div>
   );
 }
 
