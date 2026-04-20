@@ -96,7 +96,7 @@ export const translations = {
           { step: "05", title: "リノベ・開業", desc: "内装設計・施工・開業準備まで一貫対応" },
         ],
         faq: [
-          { q: "対応エリアはどこですか?", a: "銀座・北新地を中心に、全国のナイトタイムエリアに対応しています。" },
+          { q: "対応エリアはどこですか?", a: "全国対応しております。ナイトタイム業態に適した物件を全国からリサーチいたします。" },
           { q: "民泊の運用代行もしていますか?", a: "企画・リノベーションから運用サポートまで対応可能です。" },
           { q: "居抜き物件の取り扱いはありますか?", a: "はい、ナイトタイム業態の居抜き物件も多数取り扱っております。" },
         ],
@@ -104,7 +104,7 @@ export const translations = {
       "interior-design": {
         nameJa: "インテリア設計事業",
         tagline: "空間が語る、ブランドの物語",
-        description: "高級クラブ・ラウンジ・バーなど、ナイトタイムシーンに特化した内装設計。ブランディングの観点から空間コンセプトを策定し、設計・素材選定・照明計画まで一貫してプロデュースします。",
+        description: "高級クラブ・ラウンジ・バーなど、ナイトタイムシーンに特化した内装設計。銀座・北新地を中心に、ブランディングの観点から空間コンセプトを策定し、設計・素材選定・照明計画まで一貫してプロデュースします。",
         strengths: [
           { title: "ナイトシーン専門の設計力", desc: "照明・音響・動線を知り尽くした空間設計" },
           { title: "ブランディング起点", desc: "ターゲット分析からコンセプト策定まで戦略的に設計" },
@@ -119,6 +119,7 @@ export const translations = {
           { step: "05", title: "引渡し・アフターフォロー", desc: "完成後も責任を持って対応" },
         ],
         faq: [
+          { q: "対応エリアはどこですか?", a: "銀座・北新地を中心にナイトタイム業態の空間設計を承っております。" },
           { q: "設計のみの依頼は可能ですか?", a: "設計から施工まで一貫でのご依頼を推奨しておりますが、ご相談ください。" },
           { q: "予算はどのくらいですか?", a: "規模やコンセプトにより異なります。まずはお気軽にご相談ください。" },
           { q: "施工事例を見ることはできますか?", a: "はい、打ち合わせ時にこれまでの施工事例をご紹介いたします。" },
@@ -517,7 +518,7 @@ export const translations = {
           { step: "05", title: "Renovation & Opening", desc: "Integrated handling of interior design, construction, and opening prep" },
         ],
         faq: [
-          { q: "Which areas do you cover?", a: "We cover nationwide nighttime districts, with focus on Ginza and Kitashinchi." },
+          { q: "Which areas do you cover?", a: "We cover properties nationwide, sourcing the best locations for nighttime businesses from across Japan." },
           { q: "Do you manage vacation rentals?", a: "Yes — from planning and renovation through operational support." },
           { q: "Do you handle second-generation properties?", a: "Yes, we have a strong inventory of nighttime-business turnkey properties." },
         ],
@@ -525,7 +526,7 @@ export const translations = {
       "interior-design": {
         nameJa: "Interior Design",
         tagline: "Spaces that tell your brand's story",
-        description: "Interior design specialized for high-end clubs, lounges, and bars. Starting from branding, we produce the full space concept — design, materials, and lighting — as one integrated project.",
+        description: "Interior design specialized for high-end clubs, lounges, and bars. Centered on Ginza and Kitashinchi, we start from branding to produce the full space concept — design, materials, and lighting — as one integrated project.",
         strengths: [
           { title: "Night-Scene Specialist", desc: "Spatial design informed by mastery of lighting, acoustics, and flow" },
           { title: "Brand-First Approach", desc: "Strategic design from target analysis through concept definition" },
@@ -540,6 +541,7 @@ export const translations = {
           { step: "05", title: "Handover & Aftercare", desc: "Full responsibility continues after opening" },
         ],
         faq: [
+          { q: "Which areas do you cover?", a: "We focus on Ginza and Kitashinchi for nighttime-business interior design." },
           { q: "Can you do design only?", a: "We recommend integrated design + construction, but please reach out to discuss." },
           { q: "What's the typical budget?", a: "It varies widely by scale and concept — please get in touch first." },
           { q: "Can I see past work?", a: "Yes, we walk you through relevant past projects during the first meeting." },
@@ -928,7 +930,7 @@ export const translations = {
           { step: "05", title: "翻新·开业", desc: "内装设计·施工·开业准备一体化对应" },
         ],
         faq: [
-          { q: "服务区域有哪些？", a: "以银座·北新地为中心，覆盖全国的夜间经济区域。" },
+          { q: "服务区域有哪些？", a: "覆盖全日本。我们从全国范围内为您甄选最适合夜间业态的物件。" },
           { q: "也提供民宿代运营吗？", a: "从企划·翻新到运营支持均可对应。" },
           { q: "是否经手带装修物件？", a: "是的，我们经手大量夜间业态的带装修物件。" },
         ],
@@ -936,7 +938,7 @@ export const translations = {
       "interior-design": {
         nameJa: "室内设计事业",
         tagline: "空间讲述品牌的故事",
-        description: "专注于高级俱乐部、酒廊、酒吧等夜间经济场景的室内设计。从品牌视角确立空间概念，一贯完成设计、素材选择与照明规划。",
+        description: "专注于高级俱乐部、酒廊、酒吧等夜间经济场景的室内设计。以银座·北新地为中心，从品牌视角确立空间概念，一贯完成设计、素材选择与照明规划。",
         strengths: [
           { title: "夜间场景专业设计", desc: "通晓照明·音响·动线的空间设计力" },
           { title: "品牌导向", desc: "从目标分析到概念策略的战略性设计" },
@@ -951,6 +953,7 @@ export const translations = {
           { step: "05", title: "交付·售后", desc: "完成后持续负责任地对应" },
         ],
         faq: [
+          { q: "服务区域有哪些？", a: "以银座·北新地为中心，承接夜间业态的空间设计。" },
           { q: "可以仅委托设计吗？", a: "我们推荐设计与施工一并委托，但欢迎咨询。" },
           { q: "预算大约多少？", a: "依规模与概念而异，欢迎随时咨询。" },
           { q: "能看施工案例吗？", a: "是的，洽谈时我们会为您介绍过往案例。" },
