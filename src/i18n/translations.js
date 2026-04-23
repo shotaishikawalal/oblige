@@ -148,11 +148,12 @@ export const translations = {
       marketing: {
         nameJa: "SNS/WEB広告事業",
         tagline: "夜の集客を、デジタルで加速させる",
-        description: "ナイトタイムビジネスに特化したSNS運用・WEB広告・ウェブサイト制作。業界を知り尽くしたマーケターが、デジタル領域からの集客を最大化します。",
+        description: "ナイトタイムビジネスに特化したSNS運用・WEB広告・ウェブサイト制作、そしてAI活用による運用自動化。業界を知り尽くしたマーケターが、デジタルとAIの両輪で集客を最大化します。",
         strengths: [
           { title: "ナイトタイム特化SNS運用", desc: "業界特有のターゲット・時間帯を熟知した運用" },
           { title: "WEB広告運用", desc: "Google・Meta広告を活用した効率的な集客" },
           { title: "ウェブサイト制作", desc: "ブランドイメージを体現するサイト制作" },
+          { title: "AI自動化・生成AI活用", desc: "LINE公式のAIチャットボット、キャスト動画のAI編集、AI画像生成、レビュー自動返信でナイトタイム運用の工数を削減" },
           { title: "データドリブン", desc: "数値分析に基づく継続的な改善提案" },
         ],
         process: [
@@ -164,6 +165,7 @@ export const translations = {
         faq: [
           { q: "SNS運用だけの依頼もできますか?", a: "はい、SNS運用のみのプランもご用意しています。" },
           { q: "どのSNSに対応していますか?", a: "Instagram・TikTok・X(Twitter)・LINE公式アカウントなど幅広く対応しています。" },
+          { q: "AIを使った集客・運用支援もできますか?", a: "はい。LINE公式のAIチャットボット構築、キャスト動画のAI編集、AI画像生成、Google・食べログのレビュー自動返信など、ナイトタイム特化のAI運用パッケージをご用意しています。" },
           { q: "最低契約期間はありますか?", a: "効果検証のため、3ヶ月以上のご契約を推奨しております。" },
         ],
       },
@@ -570,11 +572,12 @@ export const translations = {
       marketing: {
         nameJa: "Digital Marketing",
         tagline: "Accelerating nightlife traffic through digital",
-        description: "Social media management, web advertising, and website production specialized for nighttime business. Marketers who know the industry drive customer acquisition from the digital side.",
+        description: "Social media management, web advertising, website production, and AI-powered automation specialized for nighttime business. Marketers who know the industry drive customer acquisition through both digital and AI capabilities.",
         strengths: [
           { title: "Night-Focused Social", desc: "Operations tuned to the specific targets and time windows of the industry" },
           { title: "Web Advertising", desc: "Efficient acquisition via Google and Meta ads" },
           { title: "Website Production", desc: "Websites that embody your brand identity" },
+          { title: "AI Automation & Generative AI", desc: "LINE chatbots, AI video editing for cast reels, AI image generation, and automated review replies that cut nighttime ops workload" },
           { title: "Data-Driven", desc: "Continuous improvement grounded in performance data" },
         ],
         process: [
@@ -586,6 +589,7 @@ export const translations = {
         faq: [
           { q: "Can you handle social-media only?", a: "Yes — we offer social-only engagement plans." },
           { q: "Which platforms do you cover?", a: "Instagram, TikTok, X (Twitter), LINE Official Account and more." },
+          { q: "Do you support AI-powered acquisition and operations?", a: "Yes. We offer nightlife-specific AI packages — LINE chatbot setup, AI video editing for cast reels, AI image generation, and automated review replies for Google and Tabelog." },
           { q: "Is there a minimum contract period?", a: "We recommend 3 months or more to properly validate results." },
         ],
       },
@@ -982,11 +986,12 @@ export const translations = {
       marketing: {
         nameJa: "数字营销事业",
         tagline: "以数字化加速夜间集客",
-        description: "专注于夜间经济的SNS运营·网络广告·网站建设。深谙行业的营销专家，从数字领域最大化夜间集客。",
+        description: "专注于夜间经济的SNS运营·网络广告·网站建设，以及AI自动化运营。深谙行业的营销专家，以数字与AI双轮驱动，最大化夜间集客。",
         strengths: [
           { title: "夜间专项SNS运营", desc: "熟悉行业特有目标与时段的运营策略" },
           { title: "网络广告投放", desc: "活用Google·Meta广告进行高效集客" },
           { title: "网站建设", desc: "打造体现品牌形象的网站" },
+          { title: "AI自动化·生成式AI活用", desc: "LINE官方AI聊天机器人、陪侍视频AI剪辑、AI图像生成、点评自动回复，有效降低夜间运营工时" },
           { title: "数据驱动", desc: "基于数据分析的持续改善提案" },
         ],
         process: [
@@ -998,6 +1003,7 @@ export const translations = {
         faq: [
           { q: "只委托SNS运营可以吗？", a: "可以，我们提供仅SNS运营的方案。" },
           { q: "支持哪些SNS？", a: "涵盖Instagram·TikTok·X(Twitter)·LINE官方账号等。" },
+          { q: "是否提供AI驱动的集客与运营支持？", a: "是的。我们提供夜间经济专项的AI运营套餐——LINE官方AI聊天机器人搭建、陪侍视频AI剪辑、AI图像生成、Google与Tabelog点评自动回复等。" },
           { q: "最短合同期限是多久？", a: "为便于效果验证，推荐3个月以上的合同期。" },
         ],
       },
