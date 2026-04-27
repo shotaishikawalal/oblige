@@ -93,115 +93,435 @@ function RedLine({ width = "40px", style: s }) {
 }
 
 /* ── HERO — all CSS transitions, no GSAP ── */
-function HeroSection({ loaded, heroTitle, heroSub }) {
+/* ═══════ HERO — editorial split with pulsing target video ═══════ */
+function HeroSection({ loaded }) {
+  const { t } = useLang();
+  const h = t.hero;
   const [hit, setHit] = useState(false);
 
   useEffect(() => {
     if (!loaded) return;
-    const t = setTimeout(() => setHit(true), 400);
-    return () => clearTimeout(t);
+    const tm = setTimeout(() => setHit(true), 300);
+    return () => clearTimeout(tm);
   }, [loaded]);
 
-  const line = (dir) => ({
-    position: "absolute",
-    ...(dir === "h"
-      ? { top: "50%", left: 0, right: 0, height: 1 }
-      : { left: "50%", top: 0, bottom: 0, width: 1 }),
-    background: C.accent, opacity: 0.5,
-    transformOrigin: "center",
-    transform: dir === "h"
-      ? `scaleX(${loaded ? 1 : 0})`
-      : `scaleY(${loaded ? 1 : 0})`,
-    transition: `transform 0.6s ${timing.easeOut} ${dir === "h" ? "0.1s" : "0.2s"}`,
-  });
+  // Split headline lines so the accent character (e.g. "的") can be colored
+  const renderHeadlineLine = (line, accent) => {
+    if (!accent || !line.includes(accent)) return line;
+    const idx = line.indexOf(accent);
+    return (
+      <>
+        <span style={{ color: C.accent }}>{accent}</span>
+        {line.slice(idx + accent.length)}
+      </>
+    );
+  };
+
+  const renderBubble = (text, accent) => {
+    if (!accent || !text.includes(accent)) return text;
+    const parts = text.split(accent);
+    return (
+      <>
+        {parts[0]}
+        <span style={{ color: C.accent, fontWeight: 700 }}>{accent}</span>
+        {parts.slice(1).join(accent)}
+      </>
+    );
+  };
 
   return (
     <section style={{
-      height: "100vh", minHeight: 600,
-      display: "flex", alignItems: "center", justifyContent: "center",
-      position: "relative", overflow: "hidden",
-      background: C.dark,
+      background: C.bg,
+      paddingTop: "clamp(120px, 14vw, 180px)",
+      paddingBottom: 0,
+      position: "relative",
+      overflow: "hidden",
     }}>
-      {/* Background video */}
-      <video
-        autoPlay muted loop playsInline
-        style={{
-          position: "absolute", inset: 0,
-          width: "100%", height: "100%",
-          objectFit: "cover",
-          filter: "brightness(0.3)",
-        }}
-        src="/hero-video.mp4"
-      />
+      <div className="container">
+        <div className="hero-split">
+          {/* ── LEFT ── */}
+          <div style={{
+            opacity: hit ? 1 : 0,
+            transform: `translateY(${hit ? 0 : 24}px)`,
+            transition: `opacity 0.9s ease 0.1s, transform 0.9s ${timing.easeOut} 0.1s`,
+          }}>
+            {/* Headline */}
+            <h1 style={{
+              fontFamily: F.heading,
+              fontSize: "clamp(48px, 6.5vw, 92px)",
+              fontWeight: 700,
+              color: C.text,
+              lineHeight: 1.05,
+              letterSpacing: "-0.01em",
+              marginBottom: 18,
+            }}>
+              <span style={{ display: "block" }}>
+                {renderHeadlineLine(h.headlineLine1, h.headlineAccent)}
+              </span>
+              <span style={{ display: "block" }}>
+                {h.headlineLine2}
+              </span>
+            </h1>
 
-      {/* Center content */}
-      <div style={{
-        position: "relative", zIndex: 1,
-        display: "flex", flexDirection: "column", alignItems: "center",
-        textAlign: "center",
-      }}>
-        {/* Crosshair + dot */}
-        <div style={{ position: "relative", width: 160, height: 160, marginBottom: 40 }}>
-          <div style={line("h")} />
-          <div style={line("v")} />
-          {/* Center dot */}
-          <div style={{
-            position: "absolute", left: "50%", top: "50%",
-            width: 10, height: 10, marginLeft: -5, marginTop: -5,
-            borderRadius: "50%", background: C.accent,
-            boxShadow: `0 0 16px ${C.accent}`,
-            transform: `scale(${hit ? 1 : 0})`,
-            transition: `transform 0.3s ${timing.easeBounce} 0.5s`,
-          }} />
-          {/* Ripple */}
-          <div style={{
-            position: "absolute", left: "50%", top: "50%",
-            width: 60, height: 60, marginLeft: -30, marginTop: -30,
-            borderRadius: "50%", border: `1.5px solid ${C.accent}`,
-            opacity: hit ? 0 : 0,
-            transform: `scale(${hit ? 3 : 0})`,
-            transition: "transform 0.8s ease-out 0.55s, opacity 0.8s ease-out 0.55s",
-            ...(hit && { opacity: 0 }),
-          }} />
+            {/* Accent rule + Precision tagline */}
+            <div style={{
+              display: "flex", alignItems: "center", gap: 12,
+              marginBottom: 24,
+            }}>
+              <span style={{
+                width: 28, height: 2, background: C.accent, display: "inline-block",
+              }} />
+              <span style={{
+                fontFamily: F.heading,
+                fontSize: "clamp(15px, 1.3vw, 19px)",
+                fontWeight: 500, color: C.text, letterSpacing: "0.04em",
+              }}>
+                <span style={{ color: C.accent, fontWeight: 600 }}>{h.precisionEn}</span>
+                {"  "}{h.precisionTail}
+              </span>
+            </div>
+
+            {/* Description */}
+            <p style={{
+              fontFamily: F.body,
+              fontSize: "clamp(13px, 1vw, 15px)",
+              lineHeight: 2.1,
+              color: C.textMuted,
+              whiteSpace: "pre-line",
+              marginBottom: 40,
+              maxWidth: 480,
+            }}>
+              {h.description}
+            </p>
+
+            {/* Icon cards */}
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: 0,
+              marginBottom: 36,
+              maxWidth: 540,
+            }}>
+              {h.cards.map((card, i) => (
+                <div key={i} style={{
+                  padding: "0 14px 0 0",
+                  borderLeft: i === 0 ? "none" : `1px solid ${C.border}`,
+                  paddingLeft: i === 0 ? 0 : 14,
+                }}>
+                  <div style={{
+                    width: 28, height: 28, marginBottom: 10,
+                    color: C.accent,
+                  }}>
+                    <HeroCardIcon variant={i} />
+                  </div>
+                  <div style={{
+                    fontFamily: F.body, fontSize: 12, fontWeight: 600,
+                    color: C.text, marginBottom: 4,
+                  }}>{card.label}</div>
+                  <div style={{
+                    fontFamily: F.body, fontSize: 10, lineHeight: 1.6,
+                    color: C.textMuted, whiteSpace: "pre-line",
+                  }}>{card.desc}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTAs */}
+            <div style={{ display: "flex", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
+              <Link to="/contact" style={{
+                display: "inline-flex", alignItems: "center", gap: 14,
+                background: C.accent, color: C.white,
+                fontFamily: F.label, fontSize: 12, fontWeight: 500,
+                letterSpacing: 3, textTransform: "uppercase",
+                padding: "16px 28px",
+                transition: `all ${timing.fast} ${timing.easeOut}`,
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background = "#C4654A"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = C.accent; e.currentTarget.style.transform = "translateY(0)"; }}
+              >
+                {h.ctaPrimary}
+                <span style={{ fontSize: 16, lineHeight: 1 }}>→</span>
+              </Link>
+
+              <a href="#business" onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("business")?.scrollIntoView({ behavior: "smooth" });
+              }} style={{
+                display: "inline-flex", alignItems: "center", gap: 12,
+                fontFamily: F.label, fontSize: 12, fontWeight: 500,
+                letterSpacing: 3, textTransform: "uppercase", color: C.text,
+                transition: `color ${timing.fast}`,
+              }}
+              onMouseEnter={e => { e.currentTarget.style.color = C.accent; }}
+              onMouseLeave={e => { e.currentTarget.style.color = C.text; }}
+              >
+                {h.ctaSecondary}
+                <span style={{ fontSize: 16, lineHeight: 1 }}>→</span>
+              </a>
+            </div>
+          </div>
+
+          {/* ── RIGHT — illustration collage ── */}
+          <div className="hero-illustration" style={{
+            position: "relative",
+            aspectRatio: "1 / 1",
+            opacity: hit ? 1 : 0,
+            transform: `scale(${hit ? 1 : 0.96})`,
+            transition: `opacity 1s ease 0.3s, transform 1s ${timing.easeOut} 0.3s`,
+          }}>
+            <HeroIllustration bubble={h.bubble} bubbleAccent={h.bubbleAccent} renderBubble={renderBubble} vertical={h.vertical} />
+          </div>
         </div>
 
-        {/* Main text */}
-        <h1 style={{
-          fontFamily: F.heading, fontSize: "clamp(36px, 6vw, 80px)",
-          fontWeight: 700, letterSpacing: 4,
-          color: C.white, lineHeight: 1.2,
+        {/* ── BOTTOM STATS BAR ── */}
+        <div style={{
+          marginTop: "clamp(40px, 5vw, 64px)",
+          paddingTop: 28, paddingBottom: 28,
+          borderTop: `1px solid ${C.border}`,
+          borderBottom: `1px solid ${C.border}`,
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: "clamp(16px, 3vw, 48px)",
+          alignItems: "center",
           opacity: hit ? 1 : 0,
-          transform: `translateY(${hit ? 0 : 20}px)`,
-          transition: `opacity 0.7s ease 0.7s, transform 0.7s ${timing.easeOut} 0.7s`,
-        }}>
-          {heroTitle}
-        </h1>
-
-        {/* Sub text */}
-        <p style={{
-          fontFamily: F.label, fontSize: "clamp(11px, 1.4vw, 16px)",
-          fontWeight: 400, fontStyle: "italic",
-          letterSpacing: 6, color: "rgba(255,255,255,0.45)",
-          marginTop: 24,
-          opacity: hit ? 1 : 0,
-          transform: `translateY(${hit ? 0 : 12}px)`,
-          transition: `opacity 0.6s ease 0.9s, transform 0.6s ${timing.easeOut} 0.9s`,
-        }}>
-          {heroSub}
-        </p>
-      </div>
-
-      {/* Scroll indicator */}
-      <div style={{
-        position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)",
-        opacity: hit ? 0.4 : 0, transition: "opacity 1s ease 1.5s",
-        display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
-        zIndex: 2,
-      }}>
-        <span style={{ fontFamily: F.label, fontSize: 8, letterSpacing: 3, color: "rgba(255,255,255,0.4)" }}>SCROLL</span>
-        <div style={{ width: 1, height: 28, background: `linear-gradient(180deg, ${C.accent} 0%, transparent 100%)` }} />
+          transform: `translateY(${hit ? 0 : 16}px)`,
+          transition: `opacity 0.9s ease 0.6s, transform 0.9s ${timing.easeOut} 0.6s`,
+        }} className="hero-stats">
+          {h.stats.map((s, i) => (
+            <div key={i} style={{
+              borderRight: i < h.stats.length - 1 ? `1px solid ${C.border}` : "none",
+              paddingRight: i < h.stats.length - 1 ? "clamp(8px, 2vw, 24px)" : 0,
+            }}>
+              <div style={{
+                fontFamily: F.display, fontSize: "clamp(28px, 3.4vw, 44px)",
+                fontWeight: 700, color: C.text, lineHeight: 1,
+                marginBottom: 6,
+              }}>
+                {s.num}<span style={{ color: C.accent, fontSize: "0.6em" }}>{s.suffix}</span>
+              </div>
+              <div style={{
+                fontFamily: F.label, fontSize: 10, fontWeight: 500,
+                letterSpacing: 2, color: C.textMuted, textTransform: "uppercase",
+                marginBottom: 4,
+              }}>{s.label}</div>
+              <div style={{
+                fontFamily: F.body, fontSize: 11, color: C.textMuted, lineHeight: 1.5,
+              }}>{s.subLabel}</div>
+            </div>
+          ))}
+          {/* Final tagline cell */}
+          <div>
+            <div style={{
+              fontFamily: F.heading, fontSize: "clamp(14px, 1.4vw, 18px)",
+              fontWeight: 700, color: C.text, letterSpacing: "0.04em",
+              marginBottom: 6,
+            }}>{h.tagline}</div>
+            <div style={{
+              fontFamily: F.body, fontSize: 12, color: C.textMuted,
+            }}>{h.taglineSub}</div>
+          </div>
+        </div>
       </div>
     </section>
+  );
+}
+
+/* ── HERO ICON CARDS — minimal line icons ── */
+function HeroCardIcon({ variant }) {
+  const stroke = "currentColor";
+  const sw = 1.5;
+  if (variant === 0) return ( // 新規出店 — target with arrow
+    <svg viewBox="0 0 28 28" fill="none" stroke={stroke} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="14" cy="14" r="10" />
+      <circle cx="14" cy="14" r="5" />
+      <line x1="22" y1="6" x2="14" y2="14" />
+      <polygon points="20,4 22,6 24,8" fill={stroke} />
+    </svg>
+  );
+  if (variant === 1) return ( // リニューアル — refresh arrows
+    <svg viewBox="0 0 28 28" fill="none" stroke={stroke} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 14a8 8 0 1 1-3-6.2" />
+      <polyline points="22,4 22,9 17,9" />
+      <path d="M6 14a8 8 0 0 1 3 6.2" transform="rotate(180 14 14)" />
+    </svg>
+  );
+  if (variant === 2) return ( // 多店舗展開 — stacked squares
+    <svg viewBox="0 0 28 28" fill="none" stroke={stroke} strokeWidth={sw} strokeLinejoin="round">
+      <rect x="4" y="4" width="14" height="14" rx="1" />
+      <rect x="10" y="10" width="14" height="14" rx="1" />
+    </svg>
+  );
+  // 許認可対応 — shield with check
+  return (
+    <svg viewBox="0 0 28 28" fill="none" stroke={stroke} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 3 L24 7 V14 C24 19 19.5 23.5 14 25 C8.5 23.5 4 19 4 14 V7 Z" />
+      <polyline points="9,14 13,18 19,11" />
+    </svg>
+  );
+}
+
+/* ── HERO ILLUSTRATION — pulsing target with center video ── */
+function HeroIllustration({ bubble, bubbleAccent, renderBubble, vertical }) {
+  return (
+    <div style={{ position: "relative", width: "100%", height: "100%" }}>
+      {/* Halftone backdrop circle (cream-tinted) */}
+      <div style={{
+        position: "absolute",
+        left: "8%", top: "12%",
+        width: "28%", aspectRatio: "1 / 1",
+        borderRadius: "50%",
+        background: "radial-gradient(circle, #EFE7DC 0%, #F5F3EE 70%)",
+        opacity: 0.7,
+      }} />
+
+      {/* Concentric target rings — pulsing & rotating */}
+      <svg
+        viewBox="0 0 600 600"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%", height: "100%",
+        }}
+      >
+        {/* Outermost ring (slow rotate) */}
+        <g className="hero-ring-rotate" style={{ transformBox: "fill-box", transformOrigin: "300px 300px" }}>
+          <circle cx="300" cy="300" r="270" fill="none" stroke={C.accent} strokeWidth="1.2" strokeDasharray="2 6" opacity="0.45" />
+        </g>
+
+        {/* Outer solid ring (subtle pulse) */}
+        <g className="hero-outer-pulse" style={{ transformBox: "fill-box", transformOrigin: "300px 300px" }}>
+          <circle cx="300" cy="300" r="240" fill="none" stroke={C.accent} strokeWidth="2" opacity="0.85" />
+        </g>
+
+        {/* Mid ring — partial dashed orange arc */}
+        <circle cx="300" cy="300" r="200" fill="none" stroke={C.accent} strokeWidth="40" strokeDasharray="380 600" strokeDashoffset="-50" opacity="0.92" />
+
+        {/* Inner ring */}
+        <circle cx="300" cy="300" r="160" fill="none" stroke="#F5F3EE" strokeWidth="10" />
+        <circle cx="300" cy="300" r="155" fill="none" stroke={C.accent} strokeWidth="2" />
+
+        {/* Sketchy decorative lines */}
+        <path d="M 60 320 Q 40 310 30 290" fill="none" stroke={C.text} strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M 50 340 Q 35 335 28 330" fill="none" stroke={C.text} strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M 540 100 Q 555 95 570 100 M 545 110 Q 560 108 575 113" fill="none" stroke={C.text} strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+
+      {/* Center pulsing video (the bullseye) */}
+      <div style={{
+        position: "absolute",
+        left: "50%", top: "50%",
+        transform: "translate(-50%, -50%)",
+        width: "44%", aspectRatio: "1 / 1",
+        borderRadius: "50%",
+        overflow: "hidden",
+        border: `4px solid ${C.bg}`,
+        boxShadow: `0 0 0 3px ${C.accent}`,
+      }}>
+        <video
+          autoPlay muted loop playsInline
+          className="hero-video-pulse"
+          style={{
+            width: "100%", height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+          src="/hero-video.mp4"
+        />
+        {/* Bullseye center dot */}
+        <div style={{
+          position: "absolute",
+          left: "50%", top: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 18, height: 18, borderRadius: "50%",
+          background: C.accent,
+          boxShadow: `0 0 14px rgba(218,119,86,0.6)`,
+        }} />
+      </div>
+
+      {/* Dart sticking into target */}
+      <svg
+        viewBox="0 0 200 200"
+        style={{
+          position: "absolute",
+          right: "-4%", top: "8%",
+          width: "55%",
+          filter: "drop-shadow(0 6px 16px rgba(0,0,0,0.15))",
+        }}
+      >
+        {/* Shaft */}
+        <line x1="40" y1="160" x2="115" y2="85" stroke="#1A1714" strokeWidth="6" strokeLinecap="round" />
+        {/* Tip */}
+        <polygon points="32,168 42,158 52,160 42,170" fill="#1A1714" />
+        {/* Flights (orange + dark) */}
+        <polygon points="115,85 145,55 155,65 125,95" fill={C.accent} />
+        <polygon points="125,95 155,65 165,75 135,105" fill="#1A1714" />
+        <polygon points="135,105 165,75 175,85 145,115" fill={C.accent} />
+        {/* Label "oblige" on dart */}
+        <text x="148" y="70" fill={C.bg} fontSize="9" fontFamily="Barlow Semi Condensed" fontWeight="700" transform="rotate(-45 148 70)">
+          oblige
+        </text>
+      </svg>
+
+      {/* Speech bubble */}
+      <div style={{
+        position: "absolute",
+        right: "2%", top: "32%",
+        background: C.bg,
+        border: `1.5px solid ${C.text}`,
+        borderRadius: "50% / 60%",
+        padding: "16px 22px",
+        fontFamily: F.body,
+        fontSize: "clamp(11px, 1vw, 14px)",
+        fontWeight: 500,
+        color: C.text,
+        lineHeight: 1.5,
+        whiteSpace: "pre-line",
+        textAlign: "center",
+        boxShadow: "0 4px 12px rgba(0,0,0,0.04)",
+      }}>
+        {renderBubble(bubble, bubbleAccent)}
+        {/* Bubble tail */}
+        <div style={{
+          position: "absolute",
+          left: "-12px", bottom: "30%",
+          width: 0, height: 0,
+          borderTop: "8px solid transparent",
+          borderBottom: "8px solid transparent",
+          borderRight: `12px solid ${C.text}`,
+        }} />
+        <div style={{
+          position: "absolute",
+          left: "-10px", bottom: "30%",
+          width: 0, height: 0,
+          borderTop: "8px solid transparent",
+          borderBottom: "8px solid transparent",
+          borderRight: `12px solid ${C.bg}`,
+        }} />
+      </div>
+
+      {/* Vertical OBLIGE INC. label */}
+      <div style={{
+        position: "absolute",
+        right: "-8px", bottom: "4%",
+        fontFamily: F.label, fontSize: 9,
+        letterSpacing: 4, color: C.textMuted,
+        textTransform: "uppercase",
+        writingMode: "vertical-rl",
+        transform: "rotate(180deg)",
+      }}>{vertical}</div>
+
+      {/* Small accent circles */}
+      <div style={{
+        position: "absolute", right: "12%", bottom: "8%",
+        width: 32, height: 32, borderRadius: "50%",
+        background: C.accent, opacity: 0.85,
+      }} />
+      <div style={{
+        position: "absolute", left: "20%", bottom: "12%",
+        width: 14, height: 14, borderRadius: "50%",
+        background: C.accent, opacity: 0.7,
+      }} />
+    </div>
   );
 }
 
@@ -669,7 +989,7 @@ export default function TopPage() {
       {!introDone && <Intro onComplete={() => setIntroDone(true)} />}
 
       {/* ═══════ HERO ═══════ */}
-      <HeroSection loaded={loaded} heroTitle={t.hero.title} heroSub={t.hero.sub} />
+      <HeroSection loaded={loaded} />
 
       {/* ═══════ MARQUEE TICKER ═══════ */}
       <MarqueeBand />

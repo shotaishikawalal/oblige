@@ -19,6 +19,30 @@ export const translations = {
     hero: {
       title: "的を射る",
       sub: "Creating the Night. Defining the Scene.",
+      headlineLine1: "的を射る、",
+      headlineLine2: "夜の設計。",
+      headlineAccent: "的",
+      precisionEn: "Precision",
+      precisionTail: "creates value.",
+      description: "銀座・北新地で培った経験とネットワークをもとに、\n物件取得から内装、運営、集客までを一気通貫で設計する。\nナイトタイムの事業を、構造から整える。",
+      cards: [
+        { label: "新規出店", desc: "最短2〜4ヶ月で\n開業まで伴走" },
+        { label: "リニューアル", desc: "売上構造から\n再設計" },
+        { label: "多店舗展開", desc: "運営工数を\n最適化" },
+        { label: "許認可対応", desc: "風営法をはじめ\n各種申請をサポート" },
+      ],
+      ctaPrimary: "GET IN TOUCH",
+      ctaSecondary: "VIEW PROJECTS",
+      bubble: "そこじゃない。\nもっと、奥だ。",
+      bubbleAccent: "奥",
+      stats: [
+        { num: "6", suffix: "", label: "BUSINESS", subLabel: "6つの事業領域" },
+        { num: "50", suffix: "+", label: "PROJECTS / YEAR", subLabel: "年間プロデュース案件数" },
+        { num: "20", suffix: "%", label: "COST REDUCTION", subLabel: "運用工数の削減を支援" },
+      ],
+      tagline: "WE DESIGN THE NIGHT.",
+      taglineSub: "夜を、設計する会社。",
+      vertical: "OBLIGE INC.",
     },
 
     // Philosophy
@@ -446,6 +470,30 @@ export const translations = {
     hero: {
       title: "Hit the Mark",
       sub: "Creating the Night. Defining the Scene.",
+      headlineLine1: "Hit the mark.",
+      headlineLine2: "Design the night.",
+      headlineAccent: "Hit",
+      precisionEn: "Precision",
+      precisionTail: "creates value.",
+      description: "Drawing on experience and networks built in Ginza and Kitashinchi, we design the entire arc — from sourcing properties through interior, operations, and customer acquisition — as one continuous flow. Restructuring nighttime business from the ground up.",
+      cards: [
+        { label: "New Openings", desc: "Open in as little as\n2–4 months" },
+        { label: "Renewals", desc: "Redesigned from\nthe revenue model up" },
+        { label: "Multi-Store", desc: "Optimize the cost of\nrunning many stores" },
+        { label: "Permits", desc: "Full support for\nFueiho and other filings" },
+      ],
+      ctaPrimary: "GET IN TOUCH",
+      ctaSecondary: "VIEW PROJECTS",
+      bubble: "Not there.\nGo deeper.",
+      bubbleAccent: "deeper",
+      stats: [
+        { num: "6", suffix: "", label: "BUSINESS", subLabel: "Six business divisions" },
+        { num: "50", suffix: "+", label: "PROJECTS / YEAR", subLabel: "Annual production volume" },
+        { num: "20", suffix: "%", label: "COST REDUCTION", subLabel: "Operational efficiency gains" },
+      ],
+      tagline: "WE DESIGN THE NIGHT.",
+      taglineSub: "The company that designs the night.",
+      vertical: "OBLIGE INC.",
     },
 
     philosophy: {
@@ -860,6 +908,30 @@ export const translations = {
     hero: {
       title: "精准命中",
       sub: "Creating the Night. Defining the Scene.",
+      headlineLine1: "精准命中，",
+      headlineLine2: "夜的设计。",
+      headlineAccent: "精",
+      precisionEn: "Precision",
+      precisionTail: "creates value.",
+      description: "以银座·北新地积累的经验与人脉为基础，\n从物件取得、内装、运营到集客，一气呵成地设计。\n从结构层面重塑夜间事业。",
+      cards: [
+        { label: "新店开业", desc: "最快2〜4个月\n陪伴至开业" },
+        { label: "改造升级", desc: "从收益结构\n重新设计" },
+        { label: "多店扩张", desc: "优化运营\n工时成本" },
+        { label: "许可申报", desc: "风营法等\n各类申请支持" },
+      ],
+      ctaPrimary: "GET IN TOUCH",
+      ctaSecondary: "VIEW PROJECTS",
+      bubble: "不是那里。\n更，深处。",
+      bubbleAccent: "深",
+      stats: [
+        { num: "6", suffix: "", label: "BUSINESS", subLabel: "6大事业领域" },
+        { num: "50", suffix: "+", label: "PROJECTS / YEAR", subLabel: "年度制作案件数" },
+        { num: "20", suffix: "%", label: "COST REDUCTION", subLabel: "助力削减运营工时" },
+      ],
+      tagline: "WE DESIGN THE NIGHT.",
+      taglineSub: "设计夜晚的公司。",
+      vertical: "OBLIGE INC.",
     },
 
     philosophy: {
