@@ -3,44 +3,44 @@
 /* White-first: クリーンでラグジュアリーな白基調 */
 
 export const C = {
-  // Base — warm cream (Claude-inspired)
-  bg:           "#F5F3EE",
-  bgAlt:        "#EDEAE4",
-  surface:      "#E5E1DA",
-  surfaceHover: "#DDD8D0",
+  // Base — warm cream (catalog spec: #F2ECE4)
+  bg:           "#F2ECE4",
+  bgAlt:        "#EAE3D8",
+  surface:      "#E0D8CB",
+  surfaceHover: "#D6CCBC",
 
-  // Dark sections — brown-black (not pure black)
-  dark:         "#1A1714",
-  darkAlt:      "#13110E",
-  darkSurface:  "#221F1B",
+  // Dark sections — near-black (catalog spec: #111111)
+  dark:         "#111111",
+  darkAlt:      "#0A0A0A",
+  darkSurface:  "#1C1C1C",
 
-  // Text — soft black + warm greys
-  text:         "#1A1A1A",
-  textMuted:    "#8A8478",
-  textDim:      "#9A9590",
-  textLight:    "#F0EDED",
+  // Text — true near-black + warm greys
+  text:         "#111111",
+  textMuted:    "#7A746A",
+  textDim:      "#9A958B",
+  textLight:    "#F2ECE4",
 
-  // Brand orange — Claude-inspired muted terracotta
-  accent:       "#DA7756",
-  accentLight:  "#E58B6C",
-  accentDark:   "#C4654A",
-  accentGlow:   "rgba(218,119,86,0.10)",
-  accentSoft:   "rgba(218,119,86,0.05)",
+  // Brand orange — catalog spec: #FF5A00 (vivid orange)
+  accent:       "#FF5A00",
+  accentLight:  "#FF7B33",
+  accentDark:   "#E14F00",
+  accentGlow:   "rgba(255,90,0,0.12)",
+  accentSoft:   "rgba(255,90,0,0.06)",
 
   // Utility
   white:        "#FFFFFF",
   black:        "#000000",
-  border:       "rgba(0,0,0,0.05)",
-  borderActive: "rgba(218,119,86,0.20)",
-  borderDark:   "rgba(255,255,255,0.06)",
+  border:       "rgba(17,17,17,0.08)",
+  borderActive: "rgba(255,90,0,0.25)",
+  borderDark:   "rgba(255,255,255,0.08)",
 };
 
 export const F = {
-  display:  "'Barlow Semi Condensed', sans-serif",         // Hero / impact
-  heading:  "'Barlow Semi Condensed', 'Noto Sans JP', sans-serif",  // Sections
-  body:     "'Noto Sans JP', sans-serif",                  // Body copy
-  mono:     "'Barlow', monospace",                         // HUD / data
-  label:    "'Barlow Semi Condensed', sans-serif",         // Uppercase labels
+  display:  "'Montserrat', 'Noto Sans JP', sans-serif",     // Hero / impact (numbers, titles)
+  heading:  "'Montserrat', 'Noto Sans JP', sans-serif",     // Sections — Noto Sans JP Bold for kana/kanji
+  body:     "'Noto Sans JP', sans-serif",                   // Body copy
+  mono:     "'Barlow', monospace",                          // HUD / data
+  label:    "'Montserrat', sans-serif",                     // Uppercase labels
 };
 
 export const fontSize = {

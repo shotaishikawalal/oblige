@@ -6,9 +6,9 @@
 html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: auto; }
 body {
   font-family: 'Noto Sans JP', sans-serif;
-  color: #1A1A1A;
-  background: #F5F3EE;
-  background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px);
+  color: #111111;
+  background: #F2ECE4;
+  background-image: radial-gradient(circle, rgba(17,17,17,0.05) 1px, transparent 1px);
   background-size: 24px 24px;
   overflow-x: hidden;
   line-height: 1.8;
@@ -20,12 +20,12 @@ ul, ol { list-style: none; }
 
 /* ═══════ SCROLLBAR ═══════ */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #F5F3EE; }
-::-webkit-scrollbar-thumb { background: #DA7756; border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: #E58B6C; }
+::-webkit-scrollbar-track { background: #F2ECE4; }
+::-webkit-scrollbar-thumb { background: #FF5A00; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #FF7B33; }
 
 /* ═══════ SELECTION ═══════ */
-::selection { background: rgba(218, 119, 86, 0.15); color: #1A1A1A; }
+::selection { background: rgba(255, 90, 0, 0.18); color: #111111; }
 
 /* ═══════ UTILITY ═══════ */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 64px); }
@@ -35,7 +35,7 @@ ul, ol { list-style: none; }
 .card-slide-overlay {
   position: absolute;
   inset: 0;
-  background: #DA7756;
+  background: #FF5A00;
   transform: translateY(100%);
   transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
@@ -170,7 +170,7 @@ ul, ol { list-style: none; }
 /* ═══════ WORKS GALLERY — horizontal scroll ═══════ */
 .works-gallery::-webkit-scrollbar { height: 4px; }
 .works-gallery::-webkit-scrollbar-track { background: rgba(0,0,0,0.04); }
-.works-gallery::-webkit-scrollbar-thumb { background: rgba(218,119,86,0.5); border-radius: 2px; }
+.works-gallery::-webkit-scrollbar-thumb { background: rgba(255,90,0,0.5); border-radius: 2px; }
 .works-gallery::-webkit-scrollbar-thumb:hover { background: #DA7756; }
 
 /* ═══════ ANCHOR NAV ARROW BOUNCE ═══════ */

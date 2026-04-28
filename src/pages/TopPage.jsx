@@ -147,9 +147,9 @@ function HeroSection({ loaded }) {
           }}>
             {/* Headline */}
             <h1 style={{
-              fontFamily: F.heading,
-              fontSize: "clamp(48px, 6.5vw, 92px)",
-              fontWeight: 700,
+              fontFamily: "'Noto Sans JP', 'Montserrat', sans-serif",
+              fontSize: "clamp(48px, 6.5vw, 96px)",
+              fontWeight: 900,
               color: C.text,
               lineHeight: 1.05,
               letterSpacing: "-0.01em",
@@ -236,7 +236,7 @@ function HeroSection({ loaded }) {
                 padding: "16px 28px",
                 transition: `all ${timing.fast} ${timing.easeOut}`,
               }}
-              onMouseEnter={e => { e.currentTarget.style.background = "#C4654A"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+              onMouseEnter={e => { e.currentTarget.style.background = C.accentDark; e.currentTarget.style.transform = "translateY(-2px)"; }}
               onMouseLeave={e => { e.currentTarget.style.background = C.accent; e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 {h.ctaPrimary}
@@ -362,7 +362,7 @@ function HeroCardIcon({ variant }) {
 
 /* ── HERO ILLUSTRATION — playful editorial collage with pulsing video ── */
 function HeroIllustration({ bubble, bubbleAccent, renderBubble, vertical }) {
-  const dark = "#1A1714";
+  const dark = C.text;
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
       {/* Soft cream backdrop */}
@@ -371,7 +371,7 @@ function HeroIllustration({ bubble, bubbleAccent, renderBubble, vertical }) {
         left: "6%", top: "10%",
         width: "30%", aspectRatio: "1 / 1",
         borderRadius: "50%",
-        background: "radial-gradient(circle, #EFE7DC 0%, #F5F3EE 70%)",
+        background: `radial-gradient(circle, ${C.bgAlt} 0%, ${C.bg} 70%)`,
         opacity: 0.7,
       }} />
 
@@ -396,7 +396,7 @@ function HeroIllustration({ bubble, bubbleAccent, renderBubble, vertical }) {
         <circle cx="300" cy="300" r="200" fill="none" stroke={C.accent} strokeWidth="40" strokeDasharray="380 600" strokeDashoffset="-50" opacity="0.92" />
 
         {/* Inner ring break + accent rim */}
-        <circle cx="300" cy="300" r="160" fill="none" stroke="#F5F3EE" strokeWidth="10" />
+        <circle cx="300" cy="300" r="160" fill="none" stroke={C.bg} strokeWidth="10" />
         <circle cx="300" cy="300" r="155" fill="none" stroke={C.accent} strokeWidth="2" />
 
         {/* Hand-drawn squiggles, scribbles, doodles around the scene */}
@@ -499,7 +499,7 @@ function HeroIllustration({ bubble, bubbleAccent, renderBubble, vertical }) {
           transform: "translate(-50%, -50%)",
           width: 18, height: 18, borderRadius: "50%",
           background: C.accent,
-          boxShadow: `0 0 14px rgba(218,119,86,0.6)`,
+          boxShadow: `0 0 14px rgba(255,90,0,0.6)`,
         }} />
       </div>
 
@@ -679,7 +679,7 @@ function MarqueeBand() {
 
   return (
     <section style={{
-      background: "#F5F3EE",
+      background: C.bg,
       padding: "clamp(18px, 2.5vw, 32px) 0",
       overflow: "hidden",
       position: "relative",

@@ -64,13 +64,28 @@ export default function Header() {
           display: "flex", alignItems: "center", justifyContent: "space-between",
           height: 72,
         }}>
-          {/* Logo + tagline */}
+          {/* Logo + dart icon + tagline */}
           <Link to="/" style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            <img
-              src="/logo.svg"
-              alt="oblige!"
-              style={{ height: 26 }}
-            />
+            <div style={{ position: "relative", display: "inline-block" }}>
+              <img
+                src="/logo.svg"
+                alt="oblige!"
+                style={{ height: 26, display: "block" }}
+              />
+              {/* Tiny dart hitting the "o" */}
+              <svg
+                width="14" height="14" viewBox="0 0 20 20"
+                style={{
+                  position: "absolute",
+                  left: -3, top: -7,
+                  pointerEvents: "none",
+                }}
+              >
+                <line x1="3" y1="17" x2="13" y2="7" stroke={C.text} strokeWidth="1.6" strokeLinecap="round" />
+                <polygon points="1,19 4,15 7,16 4,18" fill={C.text} />
+                <polygon points="13,7 17,3 19,5 15,9" fill={C.text} />
+              </svg>
+            </div>
             <span className="hide-mobile" style={{
               fontFamily: F.label, fontSize: 9, fontWeight: 500,
               letterSpacing: 2, color: C.textMuted,
