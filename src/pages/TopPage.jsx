@@ -296,7 +296,7 @@ function HeroSection({ loaded }) {
             transform: `scale(${hit ? 1 : 0.96})`,
             transition: `opacity 1s ease 0.3s, transform 1s ${timing.easeOut} 0.3s`,
           }}>
-            <HeroIllustration bubble={h.bubble} bubbleAccent={h.bubbleAccent} renderBubble={renderBubble} vertical={h.vertical} />
+            <HeroIllustration />
           </div>
         </div>
 
@@ -387,196 +387,18 @@ function HeroCardIcon({ variant }) {
   );
 }
 
-/* ── HERO ILLUSTRATION — faithful catalog reproduction ── */
-function HeroIllustration({ bubble, bubbleAccent, renderBubble, vertical }) {
-  const dark = C.text;
+/* ── HERO ILLUSTRATION — single full-composition image from the original mockup ── */
+function HeroIllustration() {
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
-      {/* Soft cream halo backdrop behind telescope character */}
-      <div style={{
-        position: "absolute",
-        left: "10%", top: "8%",
-        width: "16%", aspectRatio: "1 / 1",
-        borderRadius: "50%",
-        background: `radial-gradient(circle, ${C.bgAlt} 0%, ${C.bg} 75%)`,
-        opacity: 0.85,
-      }} />
-
-      {/* ═══ MAIN VISUAL — rings + bar photo + dart, all from catalog ═══ */}
       <img
-        src="/hero-target-composition.png"
-        alt="Target composition"
-        className="hero-video-pulse"
+        src="/hero-full-composition.png"
+        alt="oblige hero composition"
         style={{
-          position: "absolute",
-          left: "22%", top: "6%",
-          width: "72%", height: "auto",
-          filter: "drop-shadow(0 12px 32px rgba(0,0,0,0.12))",
-          zIndex: 2,
+          width: "100%", height: "auto",
+          display: "block",
         }}
       />
-
-      {/* ═══ SCRIBBLES & DECORATIONS (SVG accents around composition) ═══ */}
-      <svg viewBox="0 0 600 600" style={{
-        position: "absolute", inset: 0, width: "100%", height: "100%",
-        pointerEvents: "none", zIndex: 1,
-      }}>
-        {/* Top-right squiggle */}
-        <g className="hero-scribble">
-          <path d="M 510 60 q 14 -8 28 0 q 14 8 28 0" fill="none" stroke={dark} strokeWidth="1.8" strokeLinecap="round" />
-          <path d="M 510 80 q 14 -8 28 0 q 14 8 28 0" fill="none" stroke={dark} strokeWidth="1.8" strokeLinecap="round" />
-        </g>
-
-        {/* Left zigzag (lightning) */}
-        <path d="M 100 290 l 18 30 l -12 4 l 24 36 l -14 5 l 26 34" fill="none" stroke={dark} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-
-        {/* Bottom-left curl scribble */}
-        <path d="M 60 470 q 14 -10 28 -2 q -10 16 2 24 q 18 -2 26 -16" fill="none" stroke={dark} strokeWidth="1.6" strokeLinecap="round" />
-        <path d="M 50 500 q 22 6 32 -8" fill="none" stroke={dark} strokeWidth="1.6" strokeLinecap="round" />
-
-        {/* Sparkle stars near top-right */}
-        <g className="hero-sparkle" style={{ transformBox: "fill-box", transformOrigin: "560px 200px" }}>
-          <path d="M 560 190 L 563 200 L 573 203 L 563 206 L 560 216 L 557 206 L 547 203 L 557 200 Z" fill={C.accent} opacity="0.9" />
-        </g>
-        <g className="hero-sparkle" style={{ transformBox: "fill-box", transformOrigin: "120px 90px", animationDelay: "1s" }}>
-          <polygon points="120,82 128,90 120,98 112,90" fill={C.accent} opacity="0.85" />
-        </g>
-
-        {/* Mini dot cluster bottom-center */}
-        <circle cx="290" cy="560" r="3.2" fill={dark} />
-        <circle cx="305" cy="555" r="2.4" fill={dark} opacity="0.65" />
-        <circle cx="318" cy="568" r="2.8" fill={dark} opacity="0.8" />
-
-        {/* Diamond accent */}
-        <g className="hero-sparkle" style={{ transformBox: "fill-box", transformOrigin: "470px 540px", animationDelay: "0.5s" }}>
-          <polygon points="470,530 478,540 470,550 462,540" fill={C.accent} />
-        </g>
-      </svg>
-
-      {/* ═══ CITY SKYLINE + ORANGE SEMICIRCLE (bottom-right) ═══ */}
-      <img
-        src="/hero-skyline-wide.png"
-        alt=""
-        style={{
-          position: "absolute",
-          right: "0%", bottom: "0%",
-          width: "32%", height: "auto",
-          opacity: 0.95,
-          zIndex: 3,
-        }}
-      />
-
-      {/* ═══ CHARACTER 1 — Person with telescope (top-left, overlapping outer ring) ═══ */}
-      <img
-        src="/hero-char-telescope.png"
-        alt=""
-        className="hero-character"
-        style={{
-          position: "absolute",
-          left: "4%", top: "4%",
-          width: "20%", height: "auto",
-          animationDelay: "0s",
-          filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.08))",
-          zIndex: 4,
-        }}
-      />
-
-      {/* ═══ CHARACTER 2 — Person sitting with wine (bottom-center, in front of target) ═══ */}
-      <img
-        src="/hero-char-wine.png"
-        alt=""
-        className="hero-character"
-        style={{
-          position: "absolute",
-          left: "36%", bottom: "6%",
-          width: "14%", height: "auto",
-          animationDelay: "1.2s",
-          filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.06))",
-          zIndex: 4,
-        }}
-      />
-
-      {/* ═══ CHARACTER 3 — Person on ladder (right of target, above skyline) ═══ */}
-      <img
-        src="/hero-char-ladder.png"
-        alt=""
-        className="hero-character"
-        style={{
-          position: "absolute",
-          right: "12%", bottom: "22%",
-          width: "14%", height: "auto",
-          animationDelay: "0.6s",
-          filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.08))",
-          zIndex: 4,
-        }}
-      />
-
-      {/* ═══ SPEECH BUBBLE (bobbing) ═══ */}
-      <div className="hero-bubble" style={{
-        position: "absolute",
-        right: "8%", top: "32%",
-        background: C.bg,
-        border: `1.8px solid ${C.text}`,
-        borderRadius: "50% / 58%",
-        padding: "16px 22px",
-        fontFamily: F.body,
-        fontSize: "clamp(11px, 1vw, 14px)",
-        fontWeight: 500,
-        color: C.text,
-        lineHeight: 1.5,
-        whiteSpace: "pre-line",
-        textAlign: "center",
-        boxShadow: "0 6px 16px rgba(0,0,0,0.06)",
-        zIndex: 5,
-      }}>
-        {renderBubble(bubble, bubbleAccent)}
-        <div style={{
-          position: "absolute",
-          left: "-13px", bottom: "28%",
-          width: 0, height: 0,
-          borderTop: "9px solid transparent",
-          borderBottom: "9px solid transparent",
-          borderRight: `13px solid ${C.text}`,
-        }} />
-        <div style={{
-          position: "absolute",
-          left: "-10px", bottom: "28%",
-          width: 0, height: 0,
-          borderTop: "9px solid transparent",
-          borderBottom: "9px solid transparent",
-          borderRight: `13px solid ${C.bg}`,
-        }} />
-      </div>
-
-      {/* ═══ Vertical OBLIGE INC. text — placed below the ladder character ═══ */}
-      <div style={{
-        position: "absolute",
-        right: "0px", top: "32%",
-        fontFamily: F.label, fontSize: 10,
-        letterSpacing: 4, color: C.textMuted,
-        textTransform: "uppercase", fontWeight: 500,
-        writingMode: "vertical-rl",
-        transform: "rotate(180deg)",
-        zIndex: 5,
-      }}>{vertical}</div>
-
-      {/* ═══ Floating accent dots ═══ */}
-      <div className="hero-float-2" style={{
-        position: "absolute", left: "32%", bottom: "16%",
-        width: 14, height: 14, borderRadius: "50%",
-        background: C.accent, opacity: 0.85,
-        zIndex: 3,
-      }} />
-      <div className="hero-float-1" style={{
-        position: "absolute", left: "16%", bottom: "26%",
-        width: 8, height: 8, borderRadius: "50%",
-        background: dark, opacity: 0.55,
-        animationDelay: "1.5s",
-        zIndex: 3,
-      }} />
-
-      {/* Subtle grain texture */}
-      <div className="hero-grain" />
     </div>
   );
 }
