@@ -367,167 +367,138 @@ function HeroCardIcon({ variant }) {
   );
 }
 
-/* ── HERO ILLUSTRATION — playful editorial collage with pulsing video ── */
+/* ── HERO ILLUSTRATION — faithful catalog reproduction ── */
 function HeroIllustration({ bubble, bubbleAccent, renderBubble, vertical }) {
   const dark = C.text;
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
-      {/* Soft cream backdrop */}
+      {/* Soft cream halo backdrop behind telescope character */}
       <div style={{
         position: "absolute",
-        left: "6%", top: "10%",
-        width: "30%", aspectRatio: "1 / 1",
+        left: "10%", top: "8%",
+        width: "16%", aspectRatio: "1 / 1",
         borderRadius: "50%",
-        background: `radial-gradient(circle, ${C.bgAlt} 0%, ${C.bg} 70%)`,
-        opacity: 0.7,
+        background: `radial-gradient(circle, ${C.bgAlt} 0%, ${C.bg} 75%)`,
+        opacity: 0.85,
       }} />
 
-      {/* ═══ TARGET RINGS ═══ */}
-      <svg viewBox="0 0 600 600" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
-        {/* Outermost dashed ring (slow rotate) */}
-        <g className="hero-ring-rotate" style={{ transformBox: "fill-box", transformOrigin: "300px 300px" }}>
-          <circle cx="300" cy="300" r="278" fill="none" stroke={C.accent} strokeWidth="1.2" strokeDasharray="2 6" opacity="0.4" />
-        </g>
+      {/* ═══ MAIN VISUAL — rings + bar photo + dart, all from catalog ═══ */}
+      <img
+        src="/hero-target-composition.png"
+        alt="Target composition"
+        className="hero-video-pulse"
+        style={{
+          position: "absolute",
+          left: "20%", top: "8%",
+          width: "70%", height: "auto",
+          filter: "drop-shadow(0 12px 32px rgba(0,0,0,0.12))",
+          zIndex: 2,
+        }}
+      />
 
-        {/* Counter-rotating sparkle path */}
-        <g className="hero-ring-rotate-rev" style={{ transformBox: "fill-box", transformOrigin: "300px 300px" }}>
-          <circle cx="300" cy="300" r="262" fill="none" stroke={C.accent} strokeWidth="0.8" strokeDasharray="0.5 14" opacity="0.5" />
-        </g>
-
-        {/* Outer solid ring (pulse) */}
-        <g className="hero-outer-pulse" style={{ transformBox: "fill-box", transformOrigin: "300px 300px" }}>
-          <circle cx="300" cy="300" r="240" fill="none" stroke={C.accent} strokeWidth="2" opacity="0.85" />
-        </g>
-
-        {/* Mid solid orange arc (the chunky one from mockup) */}
-        <circle cx="300" cy="300" r="200" fill="none" stroke={C.accent} strokeWidth="40" strokeDasharray="380 600" strokeDashoffset="-50" opacity="0.92" />
-
-        {/* Inner ring break + accent rim */}
-        <circle cx="300" cy="300" r="160" fill="none" stroke={C.bg} strokeWidth="10" />
-        <circle cx="300" cy="300" r="155" fill="none" stroke={C.accent} strokeWidth="2" />
-
-        {/* Hand-drawn squiggles, scribbles, doodles around the scene */}
+      {/* ═══ SCRIBBLES & DECORATIONS (SVG accents around composition) ═══ */}
+      <svg viewBox="0 0 600 600" style={{
+        position: "absolute", inset: 0, width: "100%", height: "100%",
+        pointerEvents: "none", zIndex: 1,
+      }}>
+        {/* Top-right squiggle */}
         <g className="hero-scribble">
-          {/* Top-right scribble lines */}
-          <path d="M 540 80 q 12 -6 24 0 q 12 6 24 0" fill="none" stroke={dark} strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M 540 100 q 12 -6 24 0 q 12 6 24 0" fill="none" stroke={dark} strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 510 60 q 14 -8 28 0 q 14 8 28 0" fill="none" stroke={dark} strokeWidth="1.8" strokeLinecap="round" />
+          <path d="M 510 80 q 14 -8 28 0 q 14 8 28 0" fill="none" stroke={dark} strokeWidth="1.8" strokeLinecap="round" />
         </g>
 
-        {/* Left-side zigzag (lightning shape from mockup) */}
-        <path d="M 80 230 l 18 26 l -10 4 l 22 32 l -12 5 l 24 30" fill="none" stroke={dark} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        {/* Left zigzag (lightning) */}
+        <path d="M 100 290 l 18 30 l -12 4 l 24 36 l -14 5 l 26 34" fill="none" stroke={dark} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
 
-        {/* Bottom-left curl */}
-        <path d="M 60 480 q 16 -10 28 -2 q -10 14 0 22 q 18 -2 24 -16" fill="none" stroke={dark} strokeWidth="1.5" strokeLinecap="round" />
+        {/* Bottom-left curl scribble */}
+        <path d="M 60 470 q 14 -10 28 -2 q -10 16 2 24 q 18 -2 26 -16" fill="none" stroke={dark} strokeWidth="1.6" strokeLinecap="round" />
+        <path d="M 50 500 q 22 6 32 -8" fill="none" stroke={dark} strokeWidth="1.6" strokeLinecap="round" />
 
-        {/* Diamond accents */}
-        <g className="hero-sparkle" style={{ transformBox: "fill-box", transformOrigin: "490px 540px" }}>
-          <polygon points="490,530 498,540 490,550 482,540" fill={C.accent} />
+        {/* Sparkle stars near top-right */}
+        <g className="hero-sparkle" style={{ transformBox: "fill-box", transformOrigin: "560px 200px" }}>
+          <path d="M 560 190 L 563 200 L 573 203 L 563 206 L 560 216 L 557 206 L 547 203 L 557 200 Z" fill={C.accent} opacity="0.9" />
         </g>
-        <g className="hero-sparkle" style={{ transformBox: "fill-box", transformOrigin: "120px 100px", animationDelay: "1s" }}>
-          <polygon points="120,93 127,100 120,107 113,100" fill={C.accent} opacity="0.85" />
+        <g className="hero-sparkle" style={{ transformBox: "fill-box", transformOrigin: "120px 90px", animationDelay: "1s" }}>
+          <polygon points="120,82 128,90 120,98 112,90" fill={C.accent} opacity="0.85" />
         </g>
 
         {/* Mini dot cluster bottom-center */}
-        <circle cx="280" cy="560" r="3" fill={dark} />
-        <circle cx="295" cy="555" r="2.2" fill={dark} opacity="0.6" />
-        <circle cx="305" cy="568" r="2.6" fill={dark} opacity="0.8" />
+        <circle cx="290" cy="560" r="3.2" fill={dark} />
+        <circle cx="305" cy="555" r="2.4" fill={dark} opacity="0.65" />
+        <circle cx="318" cy="568" r="2.8" fill={dark} opacity="0.8" />
 
-        {/* Sparkle stars */}
-        <g className="hero-sparkle" style={{ transformBox: "fill-box", transformOrigin: "560px 280px", animationDelay: "0.5s" }}>
-          <path d="M 560 270 L 562 278 L 570 280 L 562 282 L 560 290 L 558 282 L 550 280 L 558 278 Z" fill={C.accent} opacity="0.9" />
-        </g>
-
-        {/* Halftone-style city silhouette (bottom right) */}
-        <g opacity="0.88">
-          <defs>
-            <pattern id="halftone" patternUnits="userSpaceOnUse" width="6" height="6">
-              <circle cx="3" cy="3" r="0.9" fill={dark} />
-            </pattern>
-          </defs>
-          <path d="M 420 580
-                   L 420 540 L 438 540 L 438 520 L 458 520 L 458 500 L 472 500 L 472 470 L 490 470 L 490 510 L 510 510 L 510 490 L 525 490 L 525 470 L 542 470 L 542 460 L 555 460 L 555 510 L 568 510 L 568 540 L 580 540 L 580 580 Z"
-                fill="url(#halftone)" />
-          {/* Small sun behind city */}
-          <circle cx="540" cy="500" r="34" fill={C.accent} opacity="0.85" />
-          <path d="M 420 580
-                   L 420 540 L 438 540 L 438 520 L 458 520 L 458 500 L 472 500 L 472 470 L 490 470 L 490 510 L 510 510 L 510 490 L 525 490 L 525 470 L 542 470 L 542 460 L 555 460 L 555 510 L 568 510 L 568 540 L 580 540 L 580 580 Z"
-                fill="url(#halftone)" />
+        {/* Diamond accent */}
+        <g className="hero-sparkle" style={{ transformBox: "fill-box", transformOrigin: "470px 540px", animationDelay: "0.5s" }}>
+          <polygon points="470,530 478,540 470,550 462,540" fill={C.accent} />
         </g>
       </svg>
 
-      {/* ═══ CHARACTER 1 — Person with telescope (top-left, looking in) ═══ */}
+      {/* ═══ CITY SKYLINE + ORANGE SEMICIRCLE (bottom-right) ═══ */}
+      <img
+        src="/hero-skyline-wide.png"
+        alt=""
+        style={{
+          position: "absolute",
+          right: "0%", bottom: "0%",
+          width: "32%", height: "auto",
+          opacity: 0.95,
+          zIndex: 3,
+        }}
+      />
+
+      {/* ═══ CHARACTER 1 — Person with telescope (top-left) ═══ */}
       <img
         src="/hero-char-telescope.png"
         alt=""
         className="hero-character"
         style={{
-          position: "absolute", left: "2%", top: "12%",
-          width: "26%", height: "auto",
+          position: "absolute",
+          left: "8%", top: "10%",
+          width: "22%", height: "auto",
           animationDelay: "0s",
           filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.06))",
+          zIndex: 4,
         }}
       />
 
-      {/* ═══ CENTER — pulsing video bullseye ═══ */}
-      <div style={{
-        position: "absolute",
-        left: "50%", top: "50%",
-        transform: "translate(-50%, -50%)",
-        width: "44%", aspectRatio: "1 / 1",
-        borderRadius: "50%",
-        overflow: "hidden",
-        border: `4px solid ${C.bg}`,
-        boxShadow: `0 0 0 3px ${C.accent}, 0 12px 40px rgba(0,0,0,0.18)`,
-      }}>
-        <video
-          autoPlay muted loop playsInline
-          className="hero-video-pulse"
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-          src="/hero-video.mp4"
-        />
-        <div style={{
-          position: "absolute", left: "50%", top: "50%",
-          transform: "translate(-50%, -50%)",
-          width: 18, height: 18, borderRadius: "50%",
-          background: C.accent,
-          boxShadow: `0 0 14px rgba(255,90,0,0.6)`,
-        }} />
-      </div>
-
-      {/* ═══ DART (real catalog illustration, wobbling) ═══ */}
+      {/* ═══ CHARACTER 2 — Person sitting with wine (bottom-center, in front of target) ═══ */}
       <img
-        src="/hero-dart.png"
+        src="/hero-char-wine.png"
         alt=""
-        className="hero-dart"
+        className="hero-character"
         style={{
           position: "absolute",
-          right: "-2%", top: "-4%",
-          width: "38%", height: "auto",
-          transform: "rotate(35deg)",
-          transformOrigin: "70% 30%",
-          filter: "drop-shadow(0 8px 20px rgba(0,0,0,0.22))",
-          zIndex: 3,
+          left: "36%", bottom: "6%",
+          width: "14%", height: "auto",
+          animationDelay: "1.2s",
+          filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.06))",
+          zIndex: 4,
         }}
       />
-      {/* Impact lines where the dart hits */}
-      <svg viewBox="0 0 100 100" style={{
-        position: "absolute",
-        left: "44%", top: "44%",
-        width: "12%",
-        pointerEvents: "none",
-        zIndex: 4,
-      }}>
-        <path d="M 30 50 l -8 -2 M 40 60 l -8 2 M 50 50 l -2 -8 M 50 40 l 2 -8" fill="none" stroke={C.accent} strokeWidth="2" strokeLinecap="round" />
-      </svg>
+
+      {/* ═══ CHARACTER 3 — Person on ladder (right of target) ═══ */}
+      <img
+        src="/hero-char-ladder.png"
+        alt=""
+        className="hero-character"
+        style={{
+          position: "absolute",
+          right: "8%", bottom: "12%",
+          width: "16%", height: "auto",
+          animationDelay: "0.6s",
+          filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.06))",
+          zIndex: 4,
+        }}
+      />
 
       {/* ═══ SPEECH BUBBLE (bobbing) ═══ */}
       <div className="hero-bubble" style={{
         position: "absolute",
-        right: "0%", top: "30%",
+        right: "8%", top: "32%",
         background: C.bg,
         border: `1.8px solid ${C.text}`,
         borderRadius: "50% / 58%",
-        padding: "18px 22px",
+        padding: "16px 22px",
         fontFamily: F.body,
         fontSize: "clamp(11px, 1vw, 14px)",
         fontWeight: 500,
@@ -536,7 +507,7 @@ function HeroIllustration({ bubble, bubbleAccent, renderBubble, vertical }) {
         whiteSpace: "pre-line",
         textAlign: "center",
         boxShadow: "0 6px 16px rgba(0,0,0,0.06)",
-        zIndex: 4,
+        zIndex: 5,
       }}>
         {renderBubble(bubble, bubbleAccent)}
         <div style={{
@@ -557,73 +528,34 @@ function HeroIllustration({ bubble, bubbleAccent, renderBubble, vertical }) {
         }} />
       </div>
 
-      {/* ═══ CHARACTER 2 — Person sitting with wine (bottom-center) ═══ */}
-      <img
-        src="/hero-char-wine.png"
-        alt=""
-        className="hero-character"
-        style={{
-          position: "absolute", left: "32%", bottom: "4%",
-          width: "18%", height: "auto",
-          animationDelay: "1.2s",
-          filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.06))",
-        }}
-      />
-
-      {/* ═══ CHARACTER 3 — Person on ladder pointing (right) ═══ */}
-      <img
-        src="/hero-char-ladder.png"
-        alt=""
-        className="hero-character"
-        style={{
-          position: "absolute", right: "4%", bottom: "8%",
-          width: "20%", height: "auto",
-          animationDelay: "0.6s",
-          filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.06))",
-        }}
-      />
-
-      {/* ═══ Vertical OBLIGE INC. ═══ */}
+      {/* ═══ Vertical OBLIGE INC. text ═══ */}
       <div style={{
         position: "absolute",
-        right: "-6px", bottom: "4%",
-        fontFamily: F.label, fontSize: 9,
+        right: "-2px", bottom: "8%",
+        fontFamily: F.label, fontSize: 10,
         letterSpacing: 4, color: C.textMuted,
-        textTransform: "uppercase",
+        textTransform: "uppercase", fontWeight: 500,
         writingMode: "vertical-rl",
         transform: "rotate(180deg)",
+        zIndex: 5,
       }}>{vertical}</div>
 
-      {/* ═══ Floating accent circles ═══ */}
-      <div className="hero-float-1" style={{
-        position: "absolute", right: "20%", bottom: "32%",
-        width: 28, height: 28, borderRadius: "50%",
-        background: C.accent, opacity: 0.85,
-      }} />
+      {/* ═══ Floating accent dots ═══ */}
       <div className="hero-float-2" style={{
-        position: "absolute", left: "30%", bottom: "20%",
-        width: 12, height: 12, borderRadius: "50%",
-        background: C.accent, opacity: 0.7,
+        position: "absolute", left: "32%", bottom: "16%",
+        width: 14, height: 14, borderRadius: "50%",
+        background: C.accent, opacity: 0.85,
+        zIndex: 3,
       }} />
       <div className="hero-float-1" style={{
-        position: "absolute", left: "12%", bottom: "30%",
+        position: "absolute", left: "16%", bottom: "26%",
         width: 8, height: 8, borderRadius: "50%",
         background: dark, opacity: 0.55,
         animationDelay: "1.5s",
+        zIndex: 3,
       }} />
 
-      {/* Hand-drawn arrow scribble pointing at the dart */}
-      <svg style={{
-        position: "absolute",
-        right: "30%", top: "10%",
-        width: "12%",
-        pointerEvents: "none",
-      }} viewBox="0 0 80 50">
-        <path d="M 8 40 Q 30 8 60 18" fill="none" stroke={C.text} strokeWidth="1.5" strokeLinecap="round" />
-        <polygon points="60,18 56,12 54,22" fill={C.text} />
-      </svg>
-
-      {/* Grain noise texture */}
+      {/* Subtle grain texture */}
       <div className="hero-grain" />
     </div>
   );
