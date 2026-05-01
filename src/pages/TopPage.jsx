@@ -132,13 +132,17 @@ function HeroSection({ loaded }) {
   return (
     <section style={{
       background: C.bg,
-      paddingTop: "clamp(120px, 14vw, 180px)",
+      paddingTop: "clamp(110px, 12vw, 160px)",
       paddingBottom: 0,
       position: "relative",
       overflow: "hidden",
     }}>
-      <div className="container">
-        <div className="hero-split">
+      <div style={{
+        maxWidth: 1680,
+        margin: "0 auto",
+        padding: "0 clamp(24px, 3vw, 48px)",
+      }}>
+        <div className="hero-split" style={{ gridTemplateColumns: "minmax(420px, 5fr) minmax(420px, 6fr)" }}>
           {/* ── LEFT ── */}
           <div style={{
             opacity: hit ? 1 : 0,
@@ -148,12 +152,12 @@ function HeroSection({ loaded }) {
             {/* Headline */}
             <h1 style={{
               fontFamily: "'Noto Sans JP', 'Montserrat', sans-serif",
-              fontSize: "clamp(48px, 6.5vw, 96px)",
+              fontSize: "clamp(54px, 7.5vw, 120px)",
               fontWeight: 900,
               color: C.text,
-              lineHeight: 1.05,
-              letterSpacing: "-0.01em",
-              marginBottom: 18,
+              lineHeight: 1.02,
+              letterSpacing: "-0.02em",
+              marginBottom: 22,
             }}>
               <span style={{ display: "block" }}>
                 {renderHeadlineLine(h.headlineLine1, h.headlineAccent)}
@@ -265,6 +269,9 @@ function HeroSection({ loaded }) {
           <div className="hero-illustration" style={{
             position: "relative",
             aspectRatio: "1 / 1",
+            width: "100%",
+            maxWidth: 760,
+            justifySelf: "end",
             opacity: hit ? 1 : 0,
             transform: `scale(${hit ? 1 : 0.96})`,
             transition: `opacity 1s ease 0.3s, transform 1s ${timing.easeOut} 0.3s`,
@@ -487,23 +494,30 @@ function HeroIllustration({ bubble, bubbleAccent, renderBubble, vertical }) {
         }} />
       </div>
 
-      {/* ═══ DART (wobbling) ═══ */}
-      <svg viewBox="0 0 200 200" className="hero-dart" style={{
+      {/* ═══ DART (real catalog illustration, wobbling) ═══ */}
+      <img
+        src="/hero-dart.png"
+        alt=""
+        className="hero-dart"
+        style={{
+          position: "absolute",
+          right: "-2%", top: "-4%",
+          width: "38%", height: "auto",
+          transform: "rotate(35deg)",
+          transformOrigin: "70% 30%",
+          filter: "drop-shadow(0 8px 20px rgba(0,0,0,0.22))",
+          zIndex: 3,
+        }}
+      />
+      {/* Impact lines where the dart hits */}
+      <svg viewBox="0 0 100 100" style={{
         position: "absolute",
-        right: "-4%", top: "6%",
-        width: "55%",
-        filter: "drop-shadow(0 6px 16px rgba(0,0,0,0.18))",
+        left: "44%", top: "44%",
+        width: "12%",
+        pointerEvents: "none",
+        zIndex: 4,
       }}>
-        <line x1="40" y1="160" x2="115" y2="85" stroke={dark} strokeWidth="6" strokeLinecap="round" />
-        <polygon points="32,168 42,158 52,160 42,170" fill={dark} />
-        <polygon points="115,85 145,55 155,65 125,95" fill={C.accent} />
-        <polygon points="125,95 155,65 165,75 135,105" fill={dark} />
-        <polygon points="135,105 165,75 175,85 145,115" fill={C.accent} />
-        <text x="148" y="70" fill={C.bg} fontSize="9" fontFamily="Barlow Semi Condensed" fontWeight="700" transform="rotate(-45 148 70)">
-          oblige
-        </text>
-        {/* Tiny impact lines */}
-        <path d="M 50 155 l 8 -8 M 60 162 l 6 -6 M 36 152 l -8 -8" fill="none" stroke={C.accent} strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M 30 50 l -8 -2 M 40 60 l -8 2 M 50 50 l -2 -8 M 50 40 l 2 -8" fill="none" stroke={C.accent} strokeWidth="2" strokeLinecap="round" />
       </svg>
 
       {/* ═══ SPEECH BUBBLE (bobbing) ═══ */}
