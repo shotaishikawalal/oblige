@@ -21,35 +21,55 @@ const divisionPhotos = {
   branding:         "/251206-098.jpg",
 };
 
-/* ── INTRO (session-once) ── */
+/* ── INTRO (session-once, with safety fallback) ── */
 function Intro({ onComplete }) {
   const ref = useRef(null);
   const logoRef = useRef(null);
 
   useEffect(() => {
-    if (sessionStorage.getItem("oblige-intro")) { onComplete(); return; }
+    if (sessionStorage.getItem("oblige-intro")) {
+      document.body.style.overflow = "";
+      onComplete();
+      return;
+    }
     document.body.style.overflow = "hidden";
 
-    const tl = gsap.timeline({
-      onComplete: () => {
-        sessionStorage.setItem("oblige-intro", "1");
-        document.body.style.overflow = "";
-        onComplete();
-      },
-    });
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      try { sessionStorage.setItem("oblige-intro", "1"); } catch (e) {}
+      document.body.style.overflow = "";
+      onComplete();
+    };
 
-    gsap.set(logoRef.current, { scale: 0.8, opacity: 0 });
-    tl.to(logoRef.current, { scale: 1, opacity: 1, duration: 0.8, ease: "power2.out" }, 0.3);
-    tl.to({}, { duration: 0.6 });
-    tl.to(ref.current, { yPercent: -100, duration: 0.7, ease: "power3.inOut" });
+    // Safety net — guarantee finish after 3.5s no matter what GSAP does
+    const safety = setTimeout(finish, 3500);
 
-    return () => tl.kill();
+    let tl;
+    try {
+      tl = gsap.timeline({ onComplete: finish });
+      gsap.set(logoRef.current, { scale: 0.8, opacity: 0 });
+      tl.to(logoRef.current, { scale: 1, opacity: 1, duration: 0.8, ease: "power2.out" }, 0.3);
+      tl.to({}, { duration: 0.6 });
+      tl.to(ref.current, { yPercent: -100, duration: 0.7, ease: "power3.inOut" });
+    } catch (e) {
+      // GSAP failed to load or run — finish immediately
+      finish();
+    }
+
+    return () => {
+      clearTimeout(safety);
+      if (tl) tl.kill();
+      // Always restore overflow on unmount, even if mid-animation
+      document.body.style.overflow = "";
+    };
   }, []);
 
   return (
     <div ref={ref} style={{
       position: "fixed", inset: 0, zIndex: 9999,
-      background: C.white,
+      background: C.bg,
       display: "flex", alignItems: "center", justifyContent: "center",
     }}>
       <div ref={logoRef} style={{ opacity: 0, textAlign: "center" }}>
@@ -389,8 +409,8 @@ function HeroIllustration({ bubble, bubbleAccent, renderBubble, vertical }) {
         className="hero-video-pulse"
         style={{
           position: "absolute",
-          left: "20%", top: "8%",
-          width: "70%", height: "auto",
+          left: "22%", top: "6%",
+          width: "72%", height: "auto",
           filter: "drop-shadow(0 12px 32px rgba(0,0,0,0.12))",
           zIndex: 2,
         }}
@@ -446,17 +466,17 @@ function HeroIllustration({ bubble, bubbleAccent, renderBubble, vertical }) {
         }}
       />
 
-      {/* ═══ CHARACTER 1 — Person with telescope (top-left) ═══ */}
+      {/* ═══ CHARACTER 1 — Person with telescope (top-left, overlapping outer ring) ═══ */}
       <img
         src="/hero-char-telescope.png"
         alt=""
         className="hero-character"
         style={{
           position: "absolute",
-          left: "8%", top: "10%",
-          width: "22%", height: "auto",
+          left: "4%", top: "4%",
+          width: "20%", height: "auto",
           animationDelay: "0s",
-          filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.06))",
+          filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.08))",
           zIndex: 4,
         }}
       />
@@ -476,17 +496,17 @@ function HeroIllustration({ bubble, bubbleAccent, renderBubble, vertical }) {
         }}
       />
 
-      {/* ═══ CHARACTER 3 — Person on ladder (right of target) ═══ */}
+      {/* ═══ CHARACTER 3 — Person on ladder (right of target, above skyline) ═══ */}
       <img
         src="/hero-char-ladder.png"
         alt=""
         className="hero-character"
         style={{
           position: "absolute",
-          right: "8%", bottom: "12%",
-          width: "16%", height: "auto",
+          right: "12%", bottom: "22%",
+          width: "14%", height: "auto",
           animationDelay: "0.6s",
-          filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.06))",
+          filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.08))",
           zIndex: 4,
         }}
       />
@@ -528,10 +548,10 @@ function HeroIllustration({ bubble, bubbleAccent, renderBubble, vertical }) {
         }} />
       </div>
 
-      {/* ═══ Vertical OBLIGE INC. text ═══ */}
+      {/* ═══ Vertical OBLIGE INC. text — placed below the ladder character ═══ */}
       <div style={{
         position: "absolute",
-        right: "-2px", bottom: "8%",
+        right: "0px", top: "32%",
         fontFamily: F.label, fontSize: 10,
         letterSpacing: 4, color: C.textMuted,
         textTransform: "uppercase", fontWeight: 500,
