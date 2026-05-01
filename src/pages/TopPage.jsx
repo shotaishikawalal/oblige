@@ -449,33 +449,17 @@ function HeroIllustration({ bubble, bubbleAccent, renderBubble, vertical }) {
       </svg>
 
       {/* ═══ CHARACTER 1 — Person with telescope (top-left, looking in) ═══ */}
-      <div className="hero-character" style={{
-        position: "absolute", left: "4%", top: "16%",
-        width: "22%",
-        animationDelay: "0s",
-      }}>
-        <svg viewBox="0 0 120 120" style={{ width: "100%", height: "auto" }}>
-          {/* Body — leaning forward */}
-          <ellipse cx="55" cy="78" rx="8" ry="14" fill={C.bg} stroke={dark} strokeWidth="1.8" transform="rotate(20 55 78)" />
-          {/* Head */}
-          <circle cx="42" cy="46" r="9" fill={C.bg} stroke={dark} strokeWidth="1.8" />
-          {/* Hair bun */}
-          <circle cx="36" cy="40" r="4" fill={dark} />
-          {/* Telescope */}
-          <line x1="50" y1="48" x2="92" y2="32" stroke={dark} strokeWidth="3" strokeLinecap="round" />
-          <circle cx="92" cy="32" r="4" fill={C.accent} stroke={dark} strokeWidth="1.5" />
-          <line x1="48" y1="49" x2="52" y2="46" stroke={dark} strokeWidth="2" strokeLinecap="round" />
-          {/* Arm holding telescope */}
-          <path d="M 50 60 Q 60 55 70 50" fill="none" stroke={dark} strokeWidth="2" strokeLinecap="round" />
-          {/* Trail of view */}
-          <path d="M 96 30 q 8 -4 18 -2" fill="none" stroke={C.accent} strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2 3" />
-          {/* Legs (kicked back) */}
-          <path d="M 60 88 Q 70 96 60 104" fill="none" stroke={dark} strokeWidth="2.4" strokeLinecap="round" />
-          <path d="M 56 90 Q 50 100 42 102" fill="none" stroke={dark} strokeWidth="2.4" strokeLinecap="round" />
-          <ellipse cx="40" cy="103" rx="3" ry="2" fill={dark} />
-          <ellipse cx="60" cy="105" rx="3" ry="2" fill={dark} />
-        </svg>
-      </div>
+      <img
+        src="/hero-char-telescope.png"
+        alt=""
+        className="hero-character"
+        style={{
+          position: "absolute", left: "2%", top: "12%",
+          width: "26%", height: "auto",
+          animationDelay: "0s",
+          filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.06))",
+        }}
+      />
 
       {/* ═══ CENTER — pulsing video bullseye ═══ */}
       <div style={{
@@ -560,57 +544,30 @@ function HeroIllustration({ bubble, bubbleAccent, renderBubble, vertical }) {
       </div>
 
       {/* ═══ CHARACTER 2 — Person sitting with wine (bottom-center) ═══ */}
-      <div className="hero-character" style={{
-        position: "absolute", left: "30%", bottom: "8%",
-        width: "16%",
-        animationDelay: "1.2s",
-      }}>
-        <svg viewBox="0 0 100 110" style={{ width: "100%", height: "auto" }}>
-          {/* Chair */}
-          <line x1="20" y1="80" x2="20" y2="105" stroke={dark} strokeWidth="2" strokeLinecap="round" />
-          <line x1="50" y1="80" x2="50" y2="105" stroke={dark} strokeWidth="2" strokeLinecap="round" />
-          <line x1="20" y1="80" x2="50" y2="80" stroke={dark} strokeWidth="2" strokeLinecap="round" />
-          {/* Body */}
-          <path d="M 28 50 Q 36 56 44 56 L 50 80 L 22 80 Z" fill={C.bg} stroke={dark} strokeWidth="1.8" />
-          {/* Head */}
-          <circle cx="36" cy="34" r="8" fill={C.bg} stroke={dark} strokeWidth="1.8" />
-          {/* Wine glass */}
-          <path d="M 60 30 L 70 30 L 67 40 Q 65 45 65 50 L 65 60 L 60 60" fill="none" stroke={dark} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M 60 30 L 70 30 L 67 40 Q 65 45 65 47 L 60 47 Z" fill={C.accent} opacity="0.85" />
-          {/* Arm holding glass */}
-          <path d="M 44 56 Q 56 50 62 42" fill="none" stroke={dark} strokeWidth="2" strokeLinecap="round" />
-          {/* Legs crossed */}
-          <path d="M 28 80 Q 24 92 30 100" fill="none" stroke={dark} strokeWidth="2.4" strokeLinecap="round" />
-          <path d="M 42 80 Q 56 88 62 95" fill="none" stroke={dark} strokeWidth="2.4" strokeLinecap="round" />
-        </svg>
-      </div>
+      <img
+        src="/hero-char-wine.png"
+        alt=""
+        className="hero-character"
+        style={{
+          position: "absolute", left: "32%", bottom: "4%",
+          width: "18%", height: "auto",
+          animationDelay: "1.2s",
+          filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.06))",
+        }}
+      />
 
       {/* ═══ CHARACTER 3 — Person on ladder pointing (right) ═══ */}
-      <div className="hero-character" style={{
-        position: "absolute", right: "8%", bottom: "20%",
-        width: "16%",
-        animationDelay: "0.6s",
-      }}>
-        <svg viewBox="0 0 100 130" style={{ width: "100%", height: "auto" }}>
-          {/* Ladder */}
-          <line x1="34" y1="20" x2="38" y2="120" stroke={dark} strokeWidth="2" strokeLinecap="round" />
-          <line x1="58" y1="20" x2="62" y2="120" stroke={dark} strokeWidth="2" strokeLinecap="round" />
-          <line x1="36" y1="40" x2="60" y2="40" stroke={dark} strokeWidth="1.8" strokeLinecap="round" />
-          <line x1="36" y1="60" x2="60" y2="60" stroke={dark} strokeWidth="1.8" strokeLinecap="round" />
-          <line x1="37" y1="80" x2="61" y2="80" stroke={dark} strokeWidth="1.8" strokeLinecap="round" />
-          <line x1="37" y1="100" x2="61" y2="100" stroke={dark} strokeWidth="1.8" strokeLinecap="round" />
-          {/* Body */}
-          <path d="M 40 38 Q 50 36 54 42 L 56 60 L 40 60 Z" fill={C.bg} stroke={dark} strokeWidth="1.8" />
-          {/* Head */}
-          <circle cx="46" cy="26" r="7" fill={C.bg} stroke={dark} strokeWidth="1.8" />
-          {/* Pointing arm */}
-          <line x1="50" y1="42" x2="20" y2="34" stroke={dark} strokeWidth="2.2" strokeLinecap="round" />
-          <circle cx="20" cy="34" r="2.5" fill={dark} />
-          {/* Legs on rung */}
-          <line x1="44" y1="60" x2="42" y2="78" stroke={dark} strokeWidth="2.2" strokeLinecap="round" />
-          <line x1="50" y1="60" x2="52" y2="78" stroke={dark} strokeWidth="2.2" strokeLinecap="round" />
-        </svg>
-      </div>
+      <img
+        src="/hero-char-ladder.png"
+        alt=""
+        className="hero-character"
+        style={{
+          position: "absolute", right: "4%", bottom: "8%",
+          width: "20%", height: "auto",
+          animationDelay: "0.6s",
+          filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.06))",
+        }}
+      />
 
       {/* ═══ Vertical OBLIGE INC. ═══ */}
       <div style={{
