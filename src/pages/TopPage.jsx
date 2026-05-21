@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { C, F, fontSize, spacing, timing } from "../styles/design-tokens";
 import { divisions } from "../data/divisions";
 import { Reveal } from "../components/ui/Reveal";
+import { Wordmark } from "../components/ui/Wordmark";
 import { useLang } from "../i18n/LanguageContext";
 
 /* ═══════════════════════════════════════════════════════
@@ -16,7 +17,7 @@ const divisionPhotos = {
   construction:     "/251206-029.jpg",
   "real-estate":    "/251206-051.jpg",
   "interior-design":"/251206-003.jpg",
-  "food-beverage":  "/yamaneya_1642.jpg",
+  "food-beverage":  "/taiho-seika-package.png",
   marketing:        "/yamaneya_1229.JPG",
   branding:         "/251206-098.jpg",
 };
@@ -38,7 +39,11 @@ function Intro({ onComplete }) {
     const finish = () => {
       if (finished) return;
       finished = true;
-      try { sessionStorage.setItem("oblige-intro", "1"); } catch (e) {}
+      try {
+        sessionStorage.setItem("oblige-intro", "1");
+      } catch {
+        // Some privacy modes can block sessionStorage.
+      }
       document.body.style.overflow = "";
       onComplete();
     };
@@ -53,7 +58,7 @@ function Intro({ onComplete }) {
       tl.to(logoRef.current, { scale: 1, opacity: 1, duration: 0.8, ease: "power2.out" }, 0.3);
       tl.to({}, { duration: 0.6 });
       tl.to(ref.current, { yPercent: -100, duration: 0.7, ease: "power3.inOut" });
-    } catch (e) {
+    } catch {
       // GSAP failed to load or run — finish immediately
       finish();
     }
@@ -64,7 +69,7 @@ function Intro({ onComplete }) {
       // Always restore overflow on unmount, even if mid-animation
       document.body.style.overflow = "";
     };
-  }, []);
+  }, [onComplete]);
 
   return (
     <div ref={ref} style={{
@@ -73,7 +78,7 @@ function Intro({ onComplete }) {
       display: "flex", alignItems: "center", justifyContent: "center",
     }}>
       <div ref={logoRef} style={{ opacity: 0, textAlign: "center" }}>
-        <img src="/logo.svg" alt="oblige!" style={{ height: 48 }} />
+        <Wordmark size={76} />
       </div>
     </div>
   );
@@ -112,8 +117,7 @@ function RedLine({ width = "40px", style: s }) {
   );
 }
 
-/* ── HERO — all CSS transitions, no GSAP ── */
-/* ═══════ HERO — editorial split with pulsing target video ═══════ */
+/* ── HERO — editorial visual first view ── */
 function HeroSection({ loaded }) {
   const { t } = useLang();
   const h = t.hero;
@@ -125,227 +129,225 @@ function HeroSection({ loaded }) {
     return () => clearTimeout(tm);
   }, [loaded]);
 
-  // Split headline lines so the accent character (e.g. "的") can be colored
+  // Split headline lines so a key phrase can be colored.
   const renderHeadlineLine = (line, accent) => {
     if (!accent || !line.includes(accent)) return line;
     const idx = line.indexOf(accent);
     return (
       <>
+        {line.slice(0, idx)}
         <span style={{ color: C.accent }}>{accent}</span>
         {line.slice(idx + accent.length)}
       </>
     );
   };
 
-  const renderBubble = (text, accent) => {
-    if (!accent || !text.includes(accent)) return text;
-    const parts = text.split(accent);
-    return (
-      <>
-        {parts[0]}
-        <span style={{ color: C.accent, fontWeight: 700 }}>{accent}</span>
-        {parts.slice(1).join(accent)}
-      </>
-    );
-  };
-
   return (
-    <section style={{
+    <section className="home-hero" style={{
+      minHeight: "100svh",
       background: C.bg,
-      paddingTop: "clamp(110px, 12vw, 160px)",
-      paddingBottom: 0,
       position: "relative",
       overflow: "hidden",
+      display: "flex",
+      flexDirection: "column",
+      color: C.text,
     }}>
-      <div style={{
-        maxWidth: 1680,
+      <div className="hero-grain" aria-hidden="true" />
+
+      <div className="home-hero-inner" style={{
+        position: "relative",
+        zIndex: 1,
+        width: "100%",
+        maxWidth: 1720,
         margin: "0 auto",
-        padding: "0 clamp(24px, 3vw, 48px)",
+        padding: "clamp(92px, 8vw, 118px) clamp(24px, 3.5vw, 56px) 24px",
+        flex: 1,
+        display: "grid",
+        gridTemplateColumns: "minmax(0, 0.88fr) minmax(520px, 0.95fr)",
+        gap: "clamp(28px, 5vw, 82px)",
+        alignItems: "center",
       }}>
-        <div className="hero-split" style={{ gridTemplateColumns: "minmax(420px, 5fr) minmax(420px, 6fr)" }}>
-          {/* ── LEFT ── */}
-          <div style={{
-            opacity: hit ? 1 : 0,
-            transform: `translateY(${hit ? 0 : 24}px)`,
-            transition: `opacity 0.9s ease 0.1s, transform 0.9s ${timing.easeOut} 0.1s`,
+        <div style={{
+          position: "relative",
+          zIndex: 1,
+          maxWidth: 820,
+          opacity: hit ? 1 : 0,
+          transform: `translateY(${hit ? 0 : 28}px)`,
+          transition: `opacity 0.9s ease 0.1s, transform 0.9s ${timing.easeOut} 0.1s`,
+        }}>
+          <p style={{
+            fontFamily: F.label,
+            fontSize: 11,
+            fontWeight: 700,
+            letterSpacing: 5,
+            color: C.accent,
+            textTransform: "uppercase",
+            marginBottom: 22,
           }}>
-            {/* Headline */}
-            <h1 style={{
-              fontFamily: "'Noto Sans JP', 'Montserrat', sans-serif",
-              fontSize: "clamp(54px, 7.5vw, 120px)",
-              fontWeight: 900,
+            {h.title}
+          </p>
+
+          <h1 style={{
+            fontFamily: "'Hiragino Mincho ProN', 'Yu Mincho', 'YuMincho', 'Noto Serif JP', serif",
+            fontSize: "clamp(43px, 5.8vw, 88px)",
+            fontWeight: 700,
+            color: C.text,
+            lineHeight: 1.15,
+            letterSpacing: 0,
+            fontFeatureSettings: '"palt" 1',
+            marginBottom: 20,
+          }}>
+            <span style={{ display: "block" }}>
+              {renderHeadlineLine(h.headlineLine1, h.headlineAccent)}
+            </span>
+            <span style={{ display: "block" }}>
+              {renderHeadlineLine(h.headlineLine2, h.headlineAccent)}
+            </span>
+          </h1>
+
+          <p style={{
+            fontFamily: F.heading,
+            fontSize: "clamp(13px, 1.3vw, 18px)",
+            fontWeight: 600,
+            letterSpacing: "0.12em",
+            color: C.text,
+            textTransform: "uppercase",
+            marginBottom: 18,
+          }}>
+            {h.sub}
+          </p>
+
+          <p style={{
+            fontFamily: F.body,
+            fontSize: "clamp(13px, 1.15vw, 16px)",
+            lineHeight: 2,
+            color: C.textMuted,
+            whiteSpace: "pre-line",
+            marginBottom: 28,
+            maxWidth: 640,
+          }}>
+            {h.description}
+          </p>
+
+          <div style={{ display: "flex", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
+            <Link to="/contact" style={{
+              display: "inline-flex", alignItems: "center", gap: 14,
+              background: C.accent, color: C.white,
+              fontFamily: F.label, fontSize: 12, fontWeight: 600,
+              letterSpacing: 3, textTransform: "uppercase",
+              padding: "16px 28px",
+              transition: `all ${timing.fast} ${timing.easeOut}`,
+            }}
+            onMouseEnter={e => { e.currentTarget.style.background = C.accentDark; e.currentTarget.style.transform = "translateY(-2px)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = C.accent; e.currentTarget.style.transform = "translateY(0)"; }}
+            >
+              {h.ctaPrimary}
+              <span style={{ fontSize: 16, lineHeight: 1 }}>→</span>
+            </Link>
+
+            <a href="#business" onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("business")?.scrollIntoView({ behavior: "smooth" });
+            }} style={{
+              display: "inline-flex", alignItems: "center", gap: 12,
+              fontFamily: F.label, fontSize: 12, fontWeight: 600,
+              letterSpacing: 3, textTransform: "uppercase",
               color: C.text,
-              lineHeight: 1.02,
-              letterSpacing: "-0.02em",
-              marginBottom: 22,
-            }}>
-              <span style={{ display: "block" }}>
-                {renderHeadlineLine(h.headlineLine1, h.headlineAccent)}
-              </span>
-              <span style={{ display: "block" }}>
-                {h.headlineLine2}
-              </span>
-            </h1>
-
-            {/* Accent rule + Precision tagline */}
-            <div style={{
-              display: "flex", alignItems: "center", gap: 12,
-              marginBottom: 24,
-            }}>
-              <span style={{
-                width: 28, height: 2, background: C.accent, display: "inline-block",
-              }} />
-              <span style={{
-                fontFamily: F.heading,
-                fontSize: "clamp(15px, 1.3vw, 19px)",
-                fontWeight: 500, color: C.text, letterSpacing: "0.04em",
-              }}>
-                <span style={{ color: C.accent, fontWeight: 600 }}>{h.precisionEn}</span>
-                {"  "}{h.precisionTail}
-              </span>
-            </div>
-
-            {/* Description */}
-            <p style={{
-              fontFamily: F.body,
-              fontSize: "clamp(13px, 1vw, 15px)",
-              lineHeight: 2.1,
-              color: C.textMuted,
-              whiteSpace: "pre-line",
-              marginBottom: 40,
-              maxWidth: 480,
-            }}>
-              {h.description}
-            </p>
-
-            {/* Icon cards */}
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: 0,
-              marginBottom: 36,
-              maxWidth: 540,
-            }}>
-              {h.cards.map((card, i) => (
-                <div key={i} style={{
-                  padding: "0 14px 0 0",
-                  borderLeft: i === 0 ? "none" : `1px solid ${C.border}`,
-                  paddingLeft: i === 0 ? 0 : 14,
-                }}>
-                  <div style={{
-                    width: 28, height: 28, marginBottom: 10,
-                    color: C.accent,
-                  }}>
-                    <HeroCardIcon variant={i} />
-                  </div>
-                  <div style={{
-                    fontFamily: F.body, fontSize: 12, fontWeight: 600,
-                    color: C.text, marginBottom: 4,
-                  }}>{card.label}</div>
-                  <div style={{
-                    fontFamily: F.body, fontSize: 10, lineHeight: 1.6,
-                    color: C.textMuted, whiteSpace: "pre-line",
-                  }}>{card.desc}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* CTAs */}
-            <div style={{ display: "flex", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
-              <Link to="/contact" style={{
-                display: "inline-flex", alignItems: "center", gap: 14,
-                background: C.accent, color: C.white,
-                fontFamily: F.label, fontSize: 12, fontWeight: 500,
-                letterSpacing: 3, textTransform: "uppercase",
-                padding: "16px 28px",
-                transition: `all ${timing.fast} ${timing.easeOut}`,
-              }}
-              onMouseEnter={e => { e.currentTarget.style.background = C.accentDark; e.currentTarget.style.transform = "translateY(-2px)"; }}
-              onMouseLeave={e => { e.currentTarget.style.background = C.accent; e.currentTarget.style.transform = "translateY(0)"; }}
-              >
-                {h.ctaPrimary}
-                <span style={{ fontSize: 16, lineHeight: 1 }}>→</span>
-              </Link>
-
-              <a href="#business" onClick={(e) => {
-                e.preventDefault();
-                document.getElementById("business")?.scrollIntoView({ behavior: "smooth" });
-              }} style={{
-                display: "inline-flex", alignItems: "center", gap: 12,
-                fontFamily: F.label, fontSize: 12, fontWeight: 500,
-                letterSpacing: 3, textTransform: "uppercase", color: C.text,
-                transition: `color ${timing.fast}`,
-              }}
-              onMouseEnter={e => { e.currentTarget.style.color = C.accent; }}
-              onMouseLeave={e => { e.currentTarget.style.color = C.text; }}
-              >
-                {h.ctaSecondary}
-                <span style={{ fontSize: 16, lineHeight: 1 }}>→</span>
-              </a>
-            </div>
-          </div>
-
-          {/* ── RIGHT — illustration collage ── */}
-          <div className="hero-illustration" style={{
-            position: "relative",
-            aspectRatio: "1 / 1",
-            width: "100%",
-            maxWidth: 760,
-            justifySelf: "end",
-            opacity: hit ? 1 : 0,
-            transform: `scale(${hit ? 1 : 0.96})`,
-            transition: `opacity 1s ease 0.3s, transform 1s ${timing.easeOut} 0.3s`,
-          }}>
-            <HeroIllustration />
+              borderBottom: `1px solid ${C.border}`,
+              paddingBottom: 4,
+              transition: `all ${timing.fast}`,
+            }}
+            onMouseEnter={e => { e.currentTarget.style.color = C.accent; e.currentTarget.style.borderColor = C.accent; }}
+            onMouseLeave={e => { e.currentTarget.style.color = C.text; e.currentTarget.style.borderColor = C.border; }}
+            >
+              {h.ctaSecondary}
+              <span style={{ fontSize: 16, lineHeight: 1 }}>→</span>
+            </a>
           </div>
         </div>
 
-        {/* ── BOTTOM STATS BAR ── */}
+        <HeroEditorialVisual hit={hit} />
+      </div>
+
+      <div className="home-hero-business" style={{
+        position: "relative",
+        zIndex: 2,
+        borderTop: `1px solid ${C.border}`,
+        background: "rgba(255,255,255,0.66)",
+        backdropFilter: "blur(14px)",
+        WebkitBackdropFilter: "blur(14px)",
+      }}>
         <div style={{
-          marginTop: "clamp(40px, 5vw, 64px)",
-          paddingTop: 28, paddingBottom: 28,
-          borderTop: `1px solid ${C.border}`,
-          borderBottom: `1px solid ${C.border}`,
+          maxWidth: 1720,
+          margin: "0 auto",
+          padding: "0 clamp(24px, 3.5vw, 56px)",
           display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: "clamp(16px, 3vw, 48px)",
-          alignItems: "center",
-          opacity: hit ? 1 : 0,
-          transform: `translateY(${hit ? 0 : 16}px)`,
-          transition: `opacity 0.9s ease 0.6s, transform 0.9s ${timing.easeOut} 0.6s`,
-        }} className="hero-stats">
-          {h.stats.map((s, i) => (
-            <div key={i} style={{
-              borderRight: i < h.stats.length - 1 ? `1px solid ${C.border}` : "none",
-              paddingRight: i < h.stats.length - 1 ? "clamp(8px, 2vw, 24px)" : 0,
-            }}>
-              <div style={{
-                fontFamily: F.display, fontSize: "clamp(28px, 3.4vw, 44px)",
-                fontWeight: 700, color: C.text, lineHeight: 1,
-                marginBottom: 6,
-              }}>
-                {s.num}<span style={{ color: C.accent, fontSize: "0.6em" }}>{s.suffix}</span>
-              </div>
-              <div style={{
-                fontFamily: F.label, fontSize: 10, fontWeight: 500,
-                letterSpacing: 2, color: C.textMuted, textTransform: "uppercase",
-                marginBottom: 4,
-              }}>{s.label}</div>
-              <div style={{
-                fontFamily: F.body, fontSize: 11, color: C.textMuted, lineHeight: 1.5,
-              }}>{s.subLabel}</div>
-            </div>
-          ))}
-          {/* Final tagline cell */}
-          <div>
-            <div style={{
-              fontFamily: F.heading, fontSize: "clamp(14px, 1.4vw, 18px)",
-              fontWeight: 700, color: C.text, letterSpacing: "0.04em",
+          gridTemplateColumns: "minmax(240px, 360px) 1fr",
+        }} className="home-hero-business-inner">
+          <div style={{
+            padding: "22px 28px 22px 0",
+            borderRight: `1px solid ${C.border}`,
+          }}>
+            <p style={{
+              fontFamily: F.heading,
+              fontSize: "clamp(13px, 1.2vw, 16px)",
+              fontWeight: 700,
+              color: C.text,
+              letterSpacing: "0.06em",
               marginBottom: 6,
-            }}>{h.tagline}</div>
-            <div style={{
-              fontFamily: F.body, fontSize: 12, color: C.textMuted,
-            }}>{h.taglineSub}</div>
+            }}>{h.tagline}</p>
+            <p style={{
+              fontFamily: F.body,
+              fontSize: 11,
+              color: C.textMuted,
+              lineHeight: 1.7,
+            }}>{h.taglineSub}</p>
+          </div>
+
+          <div className="home-hero-business-links" style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(6, 1fr)",
+          }}>
+            {divisions.map((div, i) => (
+              <Link
+                key={div.id}
+                to={div.path}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  gap: 4,
+                  minHeight: 96,
+                  padding: "18px clamp(12px, 1.6vw, 22px)",
+                  borderRight: i === divisions.length - 1 ? "none" : `1px solid ${C.border}`,
+                  transition: `background ${timing.fast}, color ${timing.fast}`,
+                }}
+                onMouseEnter={e => { e.currentTarget.style.background = C.accentSoft; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}
+              >
+                <span style={{
+                  fontFamily: F.mono,
+                  fontSize: 10,
+                  color: C.accent,
+                  letterSpacing: "0.18em",
+                }}>0{i + 1}</span>
+                <span style={{
+                  fontFamily: F.heading,
+                  fontSize: "clamp(10px, 0.85vw, 12px)",
+                  fontWeight: 700,
+                  color: C.text,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  lineHeight: 1.3,
+                }}>{div.nameEn}</span>
+                <span style={{
+                  fontFamily: F.body,
+                  fontSize: 10,
+                  color: C.textMuted,
+                  lineHeight: 1.3,
+                }}>{t.divisions[div.id]?.nameJa || div.nameJa}</span>
+              </Link>
+            ))}
           </div>
         </div>
       </div>
@@ -353,52 +355,29 @@ function HeroSection({ loaded }) {
   );
 }
 
-/* ── HERO ICON CARDS — minimal line icons ── */
-function HeroCardIcon({ variant }) {
-  const stroke = "currentColor";
-  const sw = 1.5;
-  if (variant === 0) return ( // 新規出店 — target with arrow
-    <svg viewBox="0 0 28 28" fill="none" stroke={stroke} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="14" cy="14" r="10" />
-      <circle cx="14" cy="14" r="5" />
-      <line x1="22" y1="6" x2="14" y2="14" />
-      <polygon points="20,4 22,6 24,8" fill={stroke} />
-    </svg>
-  );
-  if (variant === 1) return ( // リニューアル — refresh arrows
-    <svg viewBox="0 0 28 28" fill="none" stroke={stroke} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M22 14a8 8 0 1 1-3-6.2" />
-      <polyline points="22,4 22,9 17,9" />
-      <path d="M6 14a8 8 0 0 1 3 6.2" transform="rotate(180 14 14)" />
-    </svg>
-  );
-  if (variant === 2) return ( // 多店舗展開 — stacked squares
-    <svg viewBox="0 0 28 28" fill="none" stroke={stroke} strokeWidth={sw} strokeLinejoin="round">
-      <rect x="4" y="4" width="14" height="14" rx="1" />
-      <rect x="10" y="10" width="14" height="14" rx="1" />
-    </svg>
-  );
-  // 許認可対応 — shield with check
+function HeroEditorialVisual({ hit }) {
   return (
-    <svg viewBox="0 0 28 28" fill="none" stroke={stroke} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14 3 L24 7 V14 C24 19 19.5 23.5 14 25 C8.5 23.5 4 19 4 14 V7 Z" />
-      <polyline points="9,14 13,18 19,11" />
-    </svg>
-  );
-}
-
-/* ── HERO ILLUSTRATION — single full-composition image from the original mockup ── */
-function HeroIllustration() {
-  return (
-    <div style={{ position: "relative", width: "100%", height: "100%" }}>
-      <img
-        src="/hero-full-composition.png"
-        alt="oblige hero composition"
-        style={{
-          width: "100%", height: "auto",
-          display: "block",
-        }}
-      />
+    <div className="home-hero-visual home-hero-editorial-visual" style={{
+      position: "relative",
+      alignSelf: "center",
+      justifySelf: "end",
+      width: "min(53vw, 780px)",
+      minHeight: "clamp(520px, 43vw, 690px)",
+      opacity: hit ? 1 : 0,
+      transform: `translateY(${hit ? 0 : 20}px) scale(${hit ? 1 : 0.96})`,
+      transition: `opacity 0.9s ease 0.45s, transform 1s ${timing.easeOut} 0.45s`,
+    }}>
+      <div className="hero-editorial-frame" aria-hidden="true">
+        <img
+          className="hero-editorial-image"
+          src="/hero-oblige-editorial-aim-crop.png"
+          alt=""
+          loading="eager"
+          decoding="async"
+        />
+        <span className="hero-editorial-scan hero-editorial-scan-a" />
+        <span className="hero-editorial-scan hero-editorial-scan-b" />
+      </div>
     </div>
   );
 }
@@ -578,7 +557,7 @@ function PhilosophyIcon({ id, label, sub, desc, active, onClick, onHoverEnter, o
           touchedRef.current = false;
         }
       }}
-      onClick={(e) => {
+      onClick={() => {
         if (!touchedRef.current) { onClick && onClick(); }
       }}
     >
@@ -646,7 +625,7 @@ function PhilosophySection() {
         <div className="philosophy-grid" style={{
           display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
           gap: "clamp(16px, 2vw, 32px)",
-          maxWidth: 900, margin: "0 auto",
+          maxWidth: 1120, margin: "0 auto",
           overflow: "visible",
         }}>
           {items.map((v, i) => (
@@ -669,7 +648,7 @@ function PhilosophySection() {
           opacity: active ? 1 : 0,
           overflow: "hidden",
           transition: "max-height 0.5s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease",
-          maxWidth: 900, margin: "0 auto",
+          maxWidth: 1120, margin: "0 auto",
         }}>
           {active && (
             <div className="grid-2col" style={{
@@ -856,12 +835,6 @@ export default function TopPage() {
     if (introDone) setTimeout(() => setLoaded(true), 100);
   }, [introDone]);
 
-  const fadeIn = (delay = 0) => ({
-    opacity: loaded ? 1 : 0,
-    transform: loaded ? "translateY(0)" : "translateY(24px)",
-    transition: `all 1s ${timing.easeOut} ${delay}s`,
-  });
-
   return (
     <div>
       {!introDone && <Intro onComplete={() => setIntroDone(true)} />}
@@ -877,41 +850,11 @@ export default function TopPage() {
 
       {/* ═══════ BUSINESS — bento grid ═══════ */}
       <section id="business" style={{ padding: spacing.sectionPadding + " 0" }}>
-        <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 clamp(24px, 4vw, 64px)" }}>
+        <div style={{ maxWidth: 1560, margin: "0 auto", padding: "0 clamp(24px, 3vw, 48px)" }}>
           <SectionHead en={t.business.sectionEn} ja={t.business.sectionJa} mb={20} />
 
           {(() => {
             const d = divisions;
-            /* shared hover helper — capsule color change only */
-            const hoverCapsule = {
-              onMouseEnter: e => {
-                const cap = e.currentTarget.querySelector('.capsule');
-                if (cap) { cap.style.background = C.accent; cap.style.color = C.white; cap.style.borderColor = C.accent; }
-                const img = e.currentTarget.querySelector('.bi');
-                if (img) img.style.transform = "scale(1.04)";
-              },
-              onMouseLeave: e => {
-                const cap = e.currentTarget.querySelector('.capsule');
-                if (cap) { cap.style.background = ""; cap.style.color = ""; cap.style.borderColor = ""; }
-                const img = e.currentTarget.querySelector('.bi');
-                if (img) img.style.transform = "scale(1)";
-              },
-            };
-            /* capsule on dark overlay */
-            const hoverCapsuleDark = {
-              onMouseEnter: e => {
-                const cap = e.currentTarget.querySelector('.capsule');
-                if (cap) { cap.style.background = C.accent; cap.style.color = C.white; cap.style.borderColor = C.accent; }
-                const img = e.currentTarget.querySelector('.bi');
-                if (img) img.style.transform = "scale(1.04)";
-              },
-              onMouseLeave: e => {
-                const cap = e.currentTarget.querySelector('.capsule');
-                if (cap) { cap.style.background = "rgba(255,255,255,0.08)"; cap.style.color = "rgba(255,255,255,0.6)"; cap.style.borderColor = "transparent"; }
-                const img = e.currentTarget.querySelector('.bi');
-                if (img) img.style.transform = "scale(1)";
-              },
-            };
 
             return (
               <div className="bento-grid" style={{
@@ -1084,7 +1027,7 @@ export default function TopPage() {
                   </Link>
                 </Reveal>
 
-                {/* ── D: 飲食 — padded card ── */}
+                {/* ── D: 飲食 — TAIHO SEIKA launch card ── */}
                 <Reveal delay={0.13} style={{ gridColumn: "10 / 13", gridRow: "2 / 3" }}>
                   <Link to={d[3].path} style={{ display: "block", height: "100%", textDecoration: "none" }}>
                     <div className="card-hover" style={{
@@ -1096,21 +1039,52 @@ export default function TopPage() {
                       <div className="card-slide-overlay" />
                       <div style={{ flex: 1, overflow: "hidden", position: "relative", zIndex: 2 }}>
                         <img className="card-photo" src={divisionPhotos[d[3].id]} alt="" style={{
-                          width: "100%", height: "100%", objectFit: "cover",
+                          width: "100%", height: "100%", objectFit: "contain",
+                          background: "#F7F2EA",
+                          padding: "clamp(8px, 1vw, 16px)",
                         }} />
+                        <span style={{
+                          position: "absolute",
+                          left: 10,
+                          top: 10,
+                          fontFamily: F.mono,
+                          fontSize: 9,
+                          fontWeight: 600,
+                          letterSpacing: "0.16em",
+                          color: "#245D38",
+                          background: "rgba(247,242,234,0.86)",
+                          padding: "4px 8px",
+                        }}>
+                          1968 GREEN
+                        </span>
                         <div className="card-illust" style={{
                           position: "absolute", inset: 0, overflow: "hidden",
                           pointerEvents: "none", background: C.accent,
                           display: "flex", alignItems: "center", justifyContent: "center",
                         }}>
-                          <svg width="70" height="70" viewBox="0 0 200 200" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M50 50 L80 100 L80 160" /><path d="M110 50 L80 100" />
-                            <line x1="65" y1="160" x2="95" y2="160" /><line x1="45" y1="50" x2="115" y2="50" />
-                            <circle cx="95" cy="75" r="6" />
-                            <ellipse cx="150" cy="145" rx="35" ry="10" />
-                            <line x1="135" y1="80" x2="135" y2="130" /><line x1="130" y1="80" x2="130" y2="100" /><line x1="140" y1="80" x2="140" y2="100" />
-                            <path d="M130 100 Q135 108 140 100" />
-                          </svg>
+                          <div style={{
+                            textAlign: "center",
+                            color: C.white,
+                            fontFamily: F.heading,
+                            fontWeight: 700,
+                            letterSpacing: "0.08em",
+                            lineHeight: 1.15,
+                          }}>
+                            <div style={{ fontSize: 18 }}>TAIHO</div>
+                            <div style={{ fontSize: 18 }}>SEIKA</div>
+                            <div style={{
+                              width: 34,
+                              height: 1,
+                              background: "rgba(255,255,255,0.65)",
+                              margin: "10px auto",
+                            }} />
+                            <div style={{
+                              fontFamily: F.body,
+                              fontSize: 10,
+                              fontWeight: 500,
+                              letterSpacing: "0.16em",
+                            }}>GREEN SMOOTHIE</div>
+                          </div>
                         </div>
                       </div>
                       <div style={{ position: "relative", zIndex: 2 }}>

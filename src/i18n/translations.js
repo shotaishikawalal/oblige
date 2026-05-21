@@ -17,31 +17,35 @@ export const translations = {
 
     // Hero (TopPage)
     hero: {
-      title: "的を射る",
-      sub: "Creating the Night. Defining the Scene.",
-      headlineLine1: "的を射る、",
-      headlineLine2: "夜の設計。",
-      headlineAccent: "的",
+      title: "oblige",
+      sub: "NIGHT TIME ECONOMY / TOTAL PRODUCE",
+      headlineLine1: "夜を、ちゃんと",
+      headlineLine2: "ねらえ。",
+      headlineAccent: "。",
       precisionEn: "Precision",
       precisionTail: "creates value.",
-      description: "銀座・北新地で培った経験とネットワークをもとに、\n物件取得から内装、運営、集客までを一気通貫で設計する。\nナイトタイムの事業を、構造から整える。",
+      description: "obligeは、ナイトタイムエコノミーの企画・演出・運営を、上品に、でも少しおもしろく設計します。\n立地・客層・導線・収益構造まで見立てて、ちゃんと刺さる夜をつくります。",
       cards: [
-        { label: "新規出店", desc: "最短2〜4ヶ月で\n開業まで伴走" },
-        { label: "リニューアル", desc: "売上構造から\n再設計" },
-        { label: "多店舗展開", desc: "運営工数を\n最適化" },
-        { label: "許認可対応", desc: "風営法をはじめ\n各種申請をサポート" },
+        { label: "物件取得", desc: "立地・条件・法規を\n事業目線で整理" },
+        { label: "空間設計", desc: "内装・照明・動線を\nブランドから設計" },
+        { label: "開業準備", desc: "施工・許認可・導入を\nまとめて推進" },
+        { label: "集客運用", desc: "SNS・広告・AI活用で\n開業後も伴走" },
       ],
       ctaPrimary: "GET IN TOUCH",
-      ctaSecondary: "VIEW PROJECTS",
+      ctaSecondary: "VIEW BUSINESS",
       bubble: "そこじゃない。\nもっと、奥だ。",
       bubbleAccent: "奥",
+      missNote: "そこかな?",
+      hitNote: "ここね。",
+      proofEyebrow: "Hit the Mark",
+      proofTitle: "矢は一本。見立ては濃いめ。",
       stats: [
-        { num: "6", suffix: "", label: "BUSINESS", subLabel: "6つの事業領域" },
-        { num: "50", suffix: "+", label: "PROJECTS / YEAR", subLabel: "年間プロデュース案件数" },
-        { num: "20", suffix: "%", label: "COST REDUCTION", subLabel: "運用工数の削減を支援" },
+        { num: "探す", suffix: "", label: "Find", subLabel: "まず、的そのものを疑う" },
+        { num: "狙う", suffix: "", label: "Aim", subLabel: "刺さる一手に絞る" },
+        { num: "当てる", suffix: "", label: "Hit", subLabel: "言いっぱなしにせず形にする" },
       ],
-      tagline: "WE DESIGN THE NIGHT.",
-      taglineSub: "夜を、設計する会社。",
+      tagline: "SEE MORE / AIM BETTER.",
+      taglineSub: "ちゃんと見立ててから、夜の事業を動かす。",
       vertical: "OBLIGE INC.",
     },
 
@@ -52,14 +56,14 @@ export const translations = {
       target: {
         label: "的を射る",
         sub: "Precision",
-        desc: "確実にニーズを捉え、\n的確なソリューションを",
-        detail: "ナイトタイムビジネスに必要なのは、表面的なトレンドではなく、本質を見抜く目。市場調査・ターゲット分析・競合リサーチを徹底し、的確なポジショニングと戦略を導き出します。6つの事業で培った知見を活かし、「なんとなく」ではない、根拠ある提案を。",
+        desc: "矢を放つ前に、\n的そのものを見立てる。",
+        detail: "夜の事業の本当の的は、競合の真似でも流行でもない。立地の癖、客層の動き、法規の隙間、収益の構造。そこまで見立てて、ようやく最初の一矢を放つ。",
       },
       surprise: {
-        label: "驚きを与える",
-        sub: "Surprise",
-        desc: "期待を超える提案で、\n新たな価値を創造する",
-        detail: "「ここまでやるのか」——その驚きこそが、私たちの仕事の証です。空間設計からブランディング、マーケティングまで一貫してプロデュースすることで、お客様の想像を超えた体験価値を生み出します。常識にとらわれない発想で、夜の街に新しい驚きを。",
+        label: "狙いを変える",
+        sub: "Reframe",
+        desc: "見立てを変え、\n新しい狙いをつくる",
+        detail: "最初に見えている正解だけが、正解とは限らない。空間設計、ブランディング、マーケティングまで一貫して見直すことで、夜の事業にまだない狙いをつくる。",
       },
       loop: {
         label: "義務を果たす",
@@ -67,7 +71,7 @@ export const translations = {
         desc: "最後まで責任を持ち、\n信頼に応え続ける",
         detail: "obligeの語源は「義務を負う」。プロジェクトの完了は、私たちにとってゴールではなくスタートです。オープン後のフォローアップ、運営改善の提案、SNS運用のサポートまで、責任を持って伴走し続けます。その姿勢が、次のご依頼につながっています。",
       },
-      tagline: "的を射る提案で、夜の街に驚き!を。",
+      tagline: "的を、決める。夜を、動かす。",
       taglineSub: "obligeとは「義務を負う」「恩義を施す」「喜ぶことをする」。\nナイトタイムエコノミーに特化した総合プロデュース。",
     },
 
@@ -81,8 +85,8 @@ export const translations = {
     divisions: {
       construction: {
         nameJa: "建設事業",
-        tagline: "確かな技術で、夜の街を築く",
-        description: "ナイトタイムシーンに特化した建築・施工。許認可対応から工程管理まで、夜の街を支える確かな技術を提供します。",
+        tagline: "狙った夜は、ミリで決まる。",
+        description: "営業時間が始まる瞬間から逆算する建築・施工。許認可対応から工程管理まで、狙った品質をミリ単位で実装します。",
         strengths: [
           { title: "許認可対応", desc: "深夜営業に必要な建設業許可・各種届出をワンストップで対応" },
           { title: "工程管理", desc: "営業スケジュールに合わせた柔軟な施工計画を策定" },
@@ -104,8 +108,8 @@ export const translations = {
       },
       "real-estate": {
         nameJa: "不動産事業",
-        tagline: "最適な物件を、最適な形で",
-        description: "ナイトタイムビジネスに最適な店舗物件の紹介から、民泊・リノベーション物件の企画・運用まで。不動産の目利きでビジネスの土台を支えます。",
+        tagline: "当たる物件は、見つけ方が違う。",
+        description: "入る人の動線から、物件を選ぶ。立地・条件・法規・収益性を見立て、事業の的に合う土台を探します。",
         strengths: [
           { title: "物件の目利き", desc: "ナイトタイム業態に適した立地・条件を見極める専門知識" },
           { title: "リノベーション提案", desc: "既存物件のポテンシャルを最大限に引き出すリノベ企画" },
@@ -127,8 +131,8 @@ export const translations = {
       },
       "interior-design": {
         nameJa: "インテリア設計事業",
-        tagline: "空間が語る、ブランドの物語",
-        description: "高級クラブ・ラウンジ・バーなど、ナイトタイムシーンに特化した内装設計。銀座・北新地を中心に、ブランディングの観点から空間コンセプトを策定し、設計・素材選定・照明計画まで一貫してプロデュースします。",
+        tagline: "空間に、ブランドの的を仕込む。",
+        description: "ブランドの輪郭が、空間の輪郭になる。銀座・北新地を中心に、照明・素材・動線まで一貫して設計します。",
         strengths: [
           { title: "ナイトシーン専門の設計力", desc: "照明・音響・動線を知り尽くした空間設計" },
           { title: "ブランディング起点", desc: "ターゲット分析からコンセプト策定まで戦略的に設計" },
@@ -151,8 +155,8 @@ export const translations = {
       },
       "food-beverage": {
         nameJa: "飲食事業",
-        tagline: "夜の食を、もっと自由に",
-        description: "キッチンカーを活用したグリーンスムージー販売を中心に、ナイトタイムシーンに新しい食の選択肢を提供。イベント出店やコラボレーションも展開しています。",
+        tagline: "小さな一杯から、夜の的を射る。",
+        description: "キッチンカーを活用したグリーンスムージー販売を中心に、夜の過ごし方に新しい狙いをつくります。イベント出店やコラボレーションも展開しています。",
         strengths: [
           { title: "キッチンカー運営", desc: "機動力を活かした柔軟な出店・営業" },
           { title: "グリーンスムージー", desc: "健康志向のオリジナルブランドを展開" },
@@ -171,8 +175,8 @@ export const translations = {
       },
       marketing: {
         nameJa: "SNS/WEB広告事業",
-        tagline: "夜の集客を、デジタルで加速させる",
-        description: "ナイトタイムビジネスに特化したSNS運用・WEB広告・ウェブサイト制作、そしてAI活用による運用自動化。業界を知り尽くしたマーケターが、デジタルとAIの両輪で集客を最大化します。",
+        tagline: "集客の的は、AIで動く。",
+        description: "SNS運用・WEB広告・ウェブサイト制作、そしてAI活用による運用自動化。業界を知り尽くしたマーケターが、人とAIの両輪で集客の的を狙います。",
         strengths: [
           { title: "ナイトタイム特化SNS運用", desc: "業界特有のターゲット・時間帯を熟知した運用" },
           { title: "WEB広告運用", desc: "Google・Meta広告を活用した効率的な集客" },
@@ -195,8 +199,8 @@ export const translations = {
       },
       branding: {
         nameJa: "ブランディング戦略",
-        tagline: "戦略から生まれる、唯一無二のブランド",
-        description: "ナイトタイムビジネスのブランドアイデンティティを構築。コンセプト策定・CI/VI設計・ポジショニング戦略まで、ブランドの根幹を設計します。",
+        tagline: "的を決める仕事から、始める。",
+        description: "ブランドの的を見立てるところから、事業は始まる。コンセプト策定・CI/VI設計・ポジショニング戦略まで、ブランドの根幹を設計します。",
         strengths: [
           { title: "ブランドコンセプト策定", desc: "ターゲット・競合分析から唯一無二のコンセプトを導出" },
           { title: "CI/VI設計", desc: "ロゴ・カラー・タイポグラフィなどビジュアルアイデンティティを構築" },
@@ -225,18 +229,18 @@ export const translations = {
       items: [
         {
           num: "01",
-          title: "ワンストップソリューション",
-          desc: "建設・不動産・内装設計・飲食・マーケティング・ブランディングの6事業が連携。企画段階から運営まで一貫したプロデュースを実現。",
+          title: "一本の矢で、6方向に当てる",
+          desc: "建設・不動産・内装設計・飲食・マーケティング・ブランディングの6事業が連携。企画段階から運営まで一貫して見立てます。",
         },
         {
           num: "02",
-          title: "ナイトタイム特化の専門性",
-          desc: "ナイトタイムエコノミーに特化した業界知識と人脈。深夜営業ならではの法規制、集客、空間設計のノウハウ。",
+          title: "夜の癖を、深く見立てる",
+          desc: "夜の経済圏に特化した業界知識と人脈。深夜営業ならではの法規制、集客、空間設計の癖まで読み解きます。",
         },
         {
           num: "03",
-          title: "的を射るブランディング",
-          desc: "見た目だけでなく、ブランド戦略から空間を設計。ターゲット分析・競合調査を経て、的確な提案で唯一無二のブランド体験を。",
+          title: "ブランドの的から、設計する",
+          desc: "見た目だけでなく、ブランドの狙いから空間を設計。見立てた的に向けて、唯一無二のブランド体験を組み立てます。",
         },
       ],
     },
@@ -257,14 +261,14 @@ export const translations = {
 
     // Contact CTA
     contact: {
-      heading: "Get in touch",
-      desc: "事業に関するご相談・お見積りは無料です。\nお気軽にお問い合わせください。",
+      heading: "Find Your Mark.",
+      desc: "あなたの事業の的を、まず一緒に見立てます。\n相談・見積りは無料です。",
       email: "info@oblige.jp",
     },
 
     // About page
     about: {
-      heroTitle: "夜の街に、確かな価値を。",
+      heroTitle: "夜の街の、見立て屋。",
       message: {
         sectionEn: "Message",
         sectionJa: "代表挨拶",
@@ -280,8 +284,8 @@ export const translations = {
       },
       philosophy: {
         sectionEn: "Philosophy",
-        tagline: "的を射る提案で、\n夜の街に驚き!を。",
-        desc: "確実にニーズを捉える「的を射る」力と、期待を超える「驚き」の提案。\nそして最後まで「義務を果たす」責任感。\nこの3つの信念で、ナイトタイムビジネスの成功を支えます。",
+        tagline: "夜を、見立てる。",
+        desc: "矢を放つ前に、まず夜の癖を読む。\n人の流れ、空間の温度、収益の形まで見立てて、ちゃんと刺さる事業へ伴走します。",
       },
       company: {
         sectionEn: "Company",
@@ -304,8 +308,8 @@ export const translations = {
     // Contact page
     contactPage: {
       eyebrow: "Contact",
-      heading: "Get in touch",
-      desc: "事業に関するご相談・お見積りは無料です。\nお気軽にお問い合わせください。",
+      heading: "Find Your Mark.",
+      desc: "あなたの事業の的を、まず一緒に見立てます。\n相談・見積りは無料です。",
       labels: {
         company: "Company",
         name: "Name",
@@ -440,7 +444,7 @@ export const translations = {
       },
       cta: {
         heading: (nameJa) => `${nameJa}についてのご相談`,
-        desc: "お気軽にお問い合わせください。ご相談・お見積りは無料です。",
+        desc: "事業の的を、まず一緒に見立てます。相談・見積りは無料です。",
         contactBtn: "Contact",
         allBusinessBtn: "All Business",
       },
@@ -468,31 +472,35 @@ export const translations = {
     },
 
     hero: {
-      title: "Hit the Mark",
-      sub: "Creating the Night. Defining the Scene.",
-      headlineLine1: "Hit the mark.",
-      headlineLine2: "Design the night.",
-      headlineAccent: "Hit",
+      title: "oblige",
+      sub: "NIGHT TIME ECONOMY / TOTAL PRODUCE",
+      headlineLine1: "Aim at the night,",
+      headlineLine2: "properly.",
+      headlineAccent: ".",
       precisionEn: "Precision",
       precisionTail: "creates value.",
-      description: "Drawing on experience and networks built in Ginza and Kitashinchi, we design the entire arc — from sourcing properties through interior, operations, and customer acquisition — as one continuous flow. Restructuring nighttime business from the ground up.",
+      description: "Oblige designs planning, staging, and operations for the nighttime economy with polish and a little wit. We read the location, audience flow, and revenue structure before creating a night that lands properly.",
       cards: [
-        { label: "New Openings", desc: "Open in as little as\n2–4 months" },
-        { label: "Renewals", desc: "Redesigned from\nthe revenue model up" },
-        { label: "Multi-Store", desc: "Optimize the cost of\nrunning many stores" },
-        { label: "Permits", desc: "Full support for\nFueiho and other filings" },
+        { label: "Property", desc: "Location, terms, and\nlegal fit reviewed" },
+        { label: "Space Design", desc: "Interior, lighting, and\nflow from the brand" },
+        { label: "Opening Prep", desc: "Build, permits, and\nsetup moved together" },
+        { label: "Growth Ops", desc: "SNS, ads, and AI\nsupport after launch" },
       ],
       ctaPrimary: "GET IN TOUCH",
-      ctaSecondary: "VIEW PROJECTS",
+      ctaSecondary: "VIEW BUSINESS",
       bubble: "Not there.\nGo deeper.",
       bubbleAccent: "deeper",
+      missNote: "Maybe there?",
+      hitNote: "Right here.",
+      proofEyebrow: "Hit the Mark",
+      proofTitle: "One arrow. A pleasantly excessive amount of thinking.",
       stats: [
-        { num: "6", suffix: "", label: "BUSINESS", subLabel: "Six business divisions" },
-        { num: "50", suffix: "+", label: "PROJECTS / YEAR", subLabel: "Annual production volume" },
-        { num: "20", suffix: "%", label: "COST REDUCTION", subLabel: "Operational efficiency gains" },
+        { num: "Find", suffix: "", label: "Mark", subLabel: "Question where the target really is" },
+        { num: "Aim", suffix: "", label: "Focus", subLabel: "Narrow the move that will land" },
+        { num: "Hit", suffix: "", label: "Build", subLabel: "Turn the proposal into reality" },
       ],
-      tagline: "WE DESIGN THE NIGHT.",
-      taglineSub: "The company that designs the night.",
+      tagline: "SEE MORE / AIM BETTER.",
+      taglineSub: "We read the mark properly before moving the night business.",
       vertical: "OBLIGE INC.",
     },
 
@@ -502,14 +510,14 @@ export const translations = {
       target: {
         label: "Hit the Mark",
         sub: "Precision",
-        desc: "Precisely capture needs,\ndeliver targeted solutions",
-        detail: "What nighttime business needs is not superficial trends, but the eye to see the essence. Through thorough market research, target analysis, and competitive research, we derive precise positioning and strategies. Leveraging insights from our 6 business divisions, we deliver proposals grounded in evidence, not guesswork.",
+        desc: "Before the arrow flies,\nwe define the target itself.",
+        detail: "The true target of a nighttime business is not a trend or a copy of a competitor. It lives in the quirks of the location, the movement of guests, the gaps in regulation, and the revenue structure. Only after reading that far do we release the first arrow.",
       },
       surprise: {
-        label: "Exceed Expectations",
-        sub: "Surprise",
-        desc: "Create new value with\nproposals that surpass expectations",
-        detail: "\"They go that far?\" -- That surprise is proof of our work. By consistently producing everything from spatial design to branding and marketing, we create experiential value that exceeds our clients' imagination. With ideas unconstrained by convention, we bring new surprises to the night.",
+        label: "Reframe the Aim",
+        sub: "Reframe",
+        desc: "Change the reading,\ncreate a new aim",
+        detail: "The first visible answer is not always the right one. By reviewing space design, branding, and marketing as one system, we create a new aim for the nighttime business.",
       },
       loop: {
         label: "Fulfill Our Duty",
@@ -517,7 +525,7 @@ export const translations = {
         desc: "Take responsibility to the end,\ncontinuing to earn trust",
         detail: "The origin of 'oblige' is 'to be obligated.' Project completion is not the goal for us -- it's the starting point. From post-opening follow-up to operational improvement proposals and SNS management support, we continue to walk alongside our clients with responsibility. This commitment leads to the next engagement.",
       },
-      tagline: "Precision proposals that bring surprise! to the night.",
+      tagline: "Define the mark. Move the night.",
       taglineSub: "'Oblige' means to be obligated, to do a favor, to please.\nTotal production specialized in the nighttime economy.",
     },
 
@@ -529,8 +537,8 @@ export const translations = {
     divisions: {
       construction: {
         nameJa: "Construction",
-        tagline: "Building the night with proven expertise",
-        description: "Architecture and construction specialized for the nighttime scene. From permits and licensing to project management, we deliver the solid craftsmanship that supports the night economy.",
+        tagline: "The aimed night is decided by millimeters.",
+        description: "Construction planned backward from the moment business begins. From permits to project management, we build the intended quality down to the millimeter.",
         strengths: [
           { title: "Permits & Licensing", desc: "One-stop handling of construction licenses and filings required for late-night operations" },
           { title: "Project Management", desc: "Flexible construction schedules aligned with your business timeline" },
@@ -552,8 +560,8 @@ export const translations = {
       },
       "real-estate": {
         nameJa: "Real Estate",
-        tagline: "The right property, in the right form",
-        description: "From sourcing store locations ideal for nighttime business, to planning and operating vacation rentals and renovation properties. Our real-estate instincts form the foundation of your venture.",
+        tagline: "Properties that land are found differently.",
+        description: "We choose properties from the movement of the people who will enter them. Location, terms, regulations, and revenue are read together to find the ground that fits the business target.",
         strengths: [
           { title: "Property Expertise", desc: "Specialized knowledge to identify the right location and terms for nighttime businesses" },
           { title: "Renovation Planning", desc: "Proposals that unlock the full potential of existing properties" },
@@ -575,8 +583,8 @@ export const translations = {
       },
       "interior-design": {
         nameJa: "Interior Design",
-        tagline: "Spaces that tell your brand's story",
-        description: "Interior design specialized for high-end clubs, lounges, and bars. Centered on Ginza and Kitashinchi, we start from branding to produce the full space concept — design, materials, and lighting — as one integrated project.",
+        tagline: "Build the brand's mark into the space.",
+        description: "The outline of the brand becomes the outline of the space. Centered on Ginza and Kitashinchi, we design lighting, materials, and flow as one integrated project.",
         strengths: [
           { title: "Night-Scene Specialist", desc: "Spatial design informed by mastery of lighting, acoustics, and flow" },
           { title: "Brand-First Approach", desc: "Strategic design from target analysis through concept definition" },
@@ -599,8 +607,8 @@ export const translations = {
       },
       "food-beverage": {
         nameJa: "Food & Beverage",
-        tagline: "Redefining nighttime dining, freely",
-        description: "Centered on a food-truck green-smoothie business, we bring new food options to the nighttime scene. We also operate at events and develop brand collaborations.",
+        tagline: "A small glass can hit the night.",
+        description: "Centered on a food-truck green-smoothie business, we create a new aim for how people spend the night. We also operate at events and develop brand collaborations.",
         strengths: [
           { title: "Food Truck Operations", desc: "Flexible deployments that take advantage of mobile infrastructure" },
           { title: "Green Smoothies", desc: "A health-conscious original brand line" },
@@ -619,8 +627,8 @@ export const translations = {
       },
       marketing: {
         nameJa: "Digital Marketing",
-        tagline: "Accelerating nightlife traffic through digital",
-        description: "Social media management, web advertising, website production, and AI-powered automation specialized for nighttime business. Marketers who know the industry drive customer acquisition through both digital and AI capabilities.",
+        tagline: "The target of acquisition moves with AI.",
+        description: "Social media management, web advertising, website production, and AI-powered automation. Marketers who know the industry aim at acquisition through both human insight and AI capability.",
         strengths: [
           { title: "Night-Focused Social", desc: "Operations tuned to the specific targets and time windows of the industry" },
           { title: "Web Advertising", desc: "Efficient acquisition via Google and Meta ads" },
@@ -643,8 +651,8 @@ export const translations = {
       },
       branding: {
         nameJa: "Branding Strategy",
-        tagline: "One-of-a-kind brands born from strategy",
-        description: "We build brand identities for nighttime businesses — concept, CI/VI design, and positioning strategy that form the core of the brand.",
+        tagline: "Start by deciding the mark.",
+        description: "A business begins by reading the brand's true target. We design the core of the brand through concept, CI/VI, and positioning strategy.",
         strengths: [
           { title: "Brand Concepting", desc: "One-of-a-kind concepts drawn from target and competitive analysis" },
           { title: "CI/VI Design", desc: "Logo, color, typography, and other visual-identity elements" },
@@ -672,18 +680,18 @@ export const translations = {
       items: [
         {
           num: "01",
-          title: "One-Stop Solution",
-          desc: "Six integrated divisions -- construction, real estate, interior design, food & beverage, marketing, and branding -- deliver seamless production from concept to operation.",
+          title: "One arrow. Six directions.",
+          desc: "Six integrated divisions -- construction, real estate, interior design, food & beverage, marketing, and branding -- read and produce your venture from concept to operation.",
         },
         {
           num: "02",
-          title: "Nighttime Specialization",
-          desc: "Deep industry knowledge and networks focused on the nighttime economy. Expertise in late-night regulations, customer acquisition, and spatial design.",
+          title: "Reading the habits of the night",
+          desc: "Deep industry knowledge and networks focused on the nighttime economy. We read the quirks of late-night regulations, acquisition, and spatial design.",
         },
         {
           num: "03",
-          title: "Precision Branding",
-          desc: "We design spaces from brand strategy, not just aesthetics. Through target analysis and competitive research, we deliver proposals that create unique brand experiences.",
+          title: "Design from the brand's mark",
+          desc: "We design spaces from the aim of the brand, not just appearances. Every brand experience is built toward the mark we define.",
         },
       ],
     },
@@ -702,13 +710,13 @@ export const translations = {
     },
 
     contact: {
-      heading: "Get in touch",
-      desc: "Consultations and estimates are free.\nFeel free to reach out.",
+      heading: "Find Your Mark.",
+      desc: "We start by reading the target of your business together.\nConsultations and estimates are free.",
       email: "info@oblige.jp",
     },
 
     about: {
-      heroTitle: "Delivering real value to the night.",
+      heroTitle: "Reading the night, properly.",
       message: {
         sectionEn: "Message",
         sectionJa: "CEO Message",
@@ -724,8 +732,8 @@ export const translations = {
       },
       philosophy: {
         sectionEn: "Philosophy",
-        tagline: "Precision proposals that bring\nsurprise! to the night.",
-        desc: "The precision of hitting the mark, proposals that exceed expectations,\nand the commitment to fulfill our duty.\nThese three beliefs drive the success of nighttime business.",
+        tagline: "Read the night.",
+        desc: "Before releasing the arrow, we read the habits of the night.\nFlow, atmosphere, and revenue structure are all part of the mark. Then we accompany the business until it lands properly.",
       },
       company: {
         sectionEn: "Company",
@@ -746,8 +754,8 @@ export const translations = {
 
     contactPage: {
       eyebrow: "Contact",
-      heading: "Get in touch",
-      desc: "Consultations and estimates are free.\nFeel free to reach out.",
+      heading: "Find Your Mark.",
+      desc: "We start by reading the target of your business together.\nConsultations and estimates are free.",
       labels: {
         company: "Company",
         name: "Name",
@@ -879,7 +887,7 @@ export const translations = {
       },
       cta: {
         heading: (nameJa) => `Inquiries about ${nameJa}`,
-        desc: "Feel free to contact us. Consultations and estimates are free.",
+        desc: "We start by reading the target of your business together. Consultations and estimates are free.",
         contactBtn: "Contact",
         allBusinessBtn: "All Business",
       },
@@ -906,31 +914,35 @@ export const translations = {
     },
 
     hero: {
-      title: "精准命中",
-      sub: "Creating the Night. Defining the Scene.",
-      headlineLine1: "精准命中，",
-      headlineLine2: "夜的设计。",
-      headlineAccent: "精",
+      title: "oblige",
+      sub: "NIGHT TIME ECONOMY / TOTAL PRODUCE",
+      headlineLine1: "认真瞄准，",
+      headlineLine2: "这一个夜晚。",
+      headlineAccent: "。",
       precisionEn: "Precision",
       precisionTail: "creates value.",
-      description: "以银座·北新地积累的经验与人脉为基础，\n从物件取得、内装、运营到集客，一气呵成地设计。\n从结构层面重塑夜间事业。",
+      description: "oblige以优雅、也带一点趣味的方式，设计夜间经济的企划、演出与运营。\n我们研判地段、客群动线与收益结构，打造真正命中的夜晚。",
       cards: [
-        { label: "新店开业", desc: "最快2〜4个月\n陪伴至开业" },
-        { label: "改造升级", desc: "从收益结构\n重新设计" },
-        { label: "多店扩张", desc: "优化运营\n工时成本" },
-        { label: "许可申报", desc: "风营法等\n各类申请支持" },
+        { label: "物件取得", desc: "以事业视角整理\n地段・条件・法规" },
+        { label: "空间设计", desc: "以内装・照明・动线\n塑造品牌体验" },
+        { label: "开业准备", desc: "施工・许可・导入\n统一推进" },
+        { label: "集客运营", desc: "以SNS・广告・AI\n持续陪伴" },
       ],
       ctaPrimary: "GET IN TOUCH",
-      ctaSecondary: "VIEW PROJECTS",
+      ctaSecondary: "VIEW BUSINESS",
       bubble: "不是那里。\n更，深处。",
       bubbleAccent: "深",
+      missNote: "是那里吗?",
+      hitNote: "就是这里。",
+      proofEyebrow: "Hit the Mark",
+      proofTitle: "箭只有一支。思考可以多一点。",
       stats: [
-        { num: "6", suffix: "", label: "BUSINESS", subLabel: "6大事业领域" },
-        { num: "50", suffix: "+", label: "PROJECTS / YEAR", subLabel: "年度制作案件数" },
-        { num: "20", suffix: "%", label: "COST REDUCTION", subLabel: "助力削减运营工时" },
+        { num: "寻找", suffix: "", label: "Find", subLabel: "先判断靶心到底在哪里" },
+        { num: "瞄准", suffix: "", label: "Aim", subLabel: "聚焦真正会命中的一手" },
+        { num: "命中", suffix: "", label: "Hit", subLabel: "不止提案，也负责落地" },
       ],
-      tagline: "WE DESIGN THE NIGHT.",
-      taglineSub: "设计夜晚的公司。",
+      tagline: "SEE MORE / AIM BETTER.",
+      taglineSub: "先认真判断，再推动夜间事业。",
       vertical: "OBLIGE INC.",
     },
 
@@ -940,14 +952,14 @@ export const translations = {
       target: {
         label: "精准命中",
         sub: "Precision",
-        desc: "准确把握需求，\n提供精准的解决方案",
-        detail: "夜间经济所需要的，不是表面的趋势，而是洞察本质的眼光。通过深入的市场调研、目标分析和竞争研究，得出精确的定位与战略。借助六大事业的经验积累，提供有据可依的专业提案。",
+        desc: "放箭之前，\n先判断靶心本身。",
+        detail: "夜间事业真正的靶心，不是流行，也不是模仿竞争对手。它藏在地段的特性、客群的流动、法规的缝隙与收益结构之中。看清这些之后，才放出第一支箭。",
       },
       surprise: {
-        label: "超越期待",
-        sub: "Surprise",
-        desc: "以超越期待的提案，\n创造全新价值",
-        detail: "\"竟然做到了这种程度\"——这份惊喜正是我们工作的证明。从空间设计到品牌塑造、营销推广，全方位一体化制作，创造出超越客户想象的体验价值。以不受常规束缚的创意，为夜之街带来全新惊喜。",
+        label: "改变瞄准",
+        sub: "Reframe",
+        desc: "改变判断，\n创造新的目标",
+        detail: "最初看见的答案，未必是真正的答案。我们将空间设计、品牌塑造与营销推广作为一个整体重新判断，为夜间事业创造新的目标。",
       },
       loop: {
         label: "履行义务",
@@ -955,7 +967,7 @@ export const translations = {
         desc: "承担责任到最后，\n持续赢得信赖",
         detail: "oblige的语源是「承担义务」。项目完成对我们而言不是终点，而是起点。从开业后的跟进到运营改善建议、SNS运营支持，我们始终以负责任的态度持续陪伴。这份态度，促成了下一次的合作。",
       },
-      tagline: "以精准的提案，为夜之街带来惊喜!",
+      tagline: "确定靶心，推动夜晚。",
       taglineSub: "oblige意为「承担义务」「施予恩义」「使人欢喜」。\n专注于夜间经济的综合制作。",
     },
 
@@ -967,8 +979,8 @@ export const translations = {
     divisions: {
       construction: {
         nameJa: "建设事业",
-        tagline: "以可靠的技术，构筑夜之街",
-        description: "专注于夜间经济场景的建筑与施工。从许可申报到工程管理，以可靠的技术支撑夜之街的每一处细节。",
+        tagline: "瞄准的夜晚，由毫米决定。",
+        description: "从营业开始的瞬间倒推建筑与施工。从许可申报到工程管理，以毫米级精度落实目标品质。",
         strengths: [
           { title: "许可办理", desc: "一站式办理深夜营业所需的建设业许可及各类申报" },
           { title: "工程管理", desc: "根据营业时间灵活制定施工计划" },
@@ -990,8 +1002,8 @@ export const translations = {
       },
       "real-estate": {
         nameJa: "房地产事业",
-        tagline: "最优的物件，最优的形式",
-        description: "从适合夜间经济的店铺物件介绍，到民宿·翻新物件的企划与运营。以专业的不动产眼光，夯实您事业的根基。",
+        tagline: "会命中的物件，找法不同。",
+        description: "从进入者的动线开始选择物件。综合判断地段、条件、法规与收益性，寻找符合事业靶心的基础。",
         strengths: [
           { title: "物件眼光", desc: "判断夜间业态最佳地段与条件的专业知识" },
           { title: "翻新提案", desc: "最大化挖掘现有物件潜能的翻新企划" },
@@ -1013,8 +1025,8 @@ export const translations = {
       },
       "interior-design": {
         nameJa: "室内设计事业",
-        tagline: "空间讲述品牌的故事",
-        description: "专注于高级俱乐部、酒廊、酒吧等夜间经济场景的室内设计。以银座·北新地为中心，从品牌视角确立空间概念，一贯完成设计、素材选择与照明规划。",
+        tagline: "把品牌的靶心，藏进空间。",
+        description: "品牌的轮廓，会成为空间的轮廓。以银座·北新地为中心，一体化设计照明、素材与动线。",
         strengths: [
           { title: "夜间场景专业设计", desc: "通晓照明·音响·动线的空间设计力" },
           { title: "品牌导向", desc: "从目标分析到概念策略的战略性设计" },
@@ -1037,8 +1049,8 @@ export const translations = {
       },
       "food-beverage": {
         nameJa: "餐饮事业",
-        tagline: "让夜间餐饮更加自由",
-        description: "以餐车销售的绿色蔬果昔为核心，为夜间经济场景提供全新的餐饮选择。也开展活动出店与品牌联名。",
+        tagline: "从一小杯开始，命中夜晚。",
+        description: "以餐车销售的绿色蔬果昔为核心，为夜晚的度过方式创造新的目标。也开展活动出店与品牌联名。",
         strengths: [
           { title: "餐车运营", desc: "发挥机动性，灵活出店与营业" },
           { title: "绿色蔬果昔", desc: "展开面向健康需求的原创品牌" },
@@ -1057,8 +1069,8 @@ export const translations = {
       },
       marketing: {
         nameJa: "数字营销事业",
-        tagline: "以数字化加速夜间集客",
-        description: "专注于夜间经济的SNS运营·网络广告·网站建设，以及AI自动化运营。深谙行业的营销专家，以数字与AI双轮驱动，最大化夜间集客。",
+        tagline: "集客的靶心，由AI推动。",
+        description: "SNS运营、网络广告、网站建设，以及AI自动化运营。深谙行业的营销专家，以人的洞察与AI能力共同瞄准集客。",
         strengths: [
           { title: "夜间专项SNS运营", desc: "熟悉行业特有目标与时段的运营策略" },
           { title: "网络广告投放", desc: "活用Google·Meta广告进行高效集客" },
@@ -1081,8 +1093,8 @@ export const translations = {
       },
       branding: {
         nameJa: "品牌战略",
-        tagline: "从战略中诞生独一无二的品牌",
-        description: "构建夜间经济事业的品牌识别。从概念制定、CI/VI设计到定位战略，设计品牌的根基。",
+        tagline: "从确定靶心开始。",
+        description: "事业从判断品牌真正的靶心开始。从概念制定、CI/VI设计到定位战略，设计品牌的根基。",
         strengths: [
           { title: "品牌概念制定", desc: "通过目标·竞争分析导出独一无二的概念" },
           { title: "CI/VI设计", desc: "构建logo·色彩·字体等视觉识别" },
@@ -1110,18 +1122,18 @@ export const translations = {
       items: [
         {
           num: "01",
-          title: "一站式解决方案",
-          desc: "建设、房地产、室内设计、餐饮、营销、品牌六大事业联动。从策划到运营实现一体化制作。",
+          title: "一支箭，命中六个方向",
+          desc: "建设、房地产、室内设计、餐饮、营销、品牌六大事业联动。从策划到运营一体化判断与制作。",
         },
         {
           num: "02",
-          title: "夜间经济专业化",
-          desc: "专注于夜间经济的行业知识与人脉网络。深谙深夜营业特有的法规、集客及空间设计经验。",
+          title: "深读夜晚的习性",
+          desc: "专注于夜间经济的行业知识与人脉网络。读懂深夜营业特有的法规、集客与空间设计的细节。",
         },
         {
           num: "03",
-          title: "精准品牌塑造",
-          desc: "不仅注重外观，更从品牌战略出发设计空间。通过目标分析与竞争调研，以精准提案打造独一无二的品牌体验。",
+          title: "从品牌靶心开始设计",
+          desc: "不只注重外观，而是从品牌目标开始设计空间。围绕确定的靶心，打造独一无二的品牌体验。",
         },
       ],
     },
@@ -1140,13 +1152,13 @@ export const translations = {
     },
 
     contact: {
-      heading: "Get in touch",
-      desc: "关于事业的咨询与报价均为免费。\n欢迎随时联系我们。",
+      heading: "Find Your Mark.",
+      desc: "我们先一起判断您事业的靶心。\n咨询与报价均为免费。",
       email: "info@oblige.jp",
     },
 
     about: {
-      heroTitle: "为夜之街，创造真正的价值。",
+      heroTitle: "认真读懂夜晚的公司。",
       message: {
         sectionEn: "Message",
         sectionJa: "代表致辞",
@@ -1162,8 +1174,8 @@ export const translations = {
       },
       philosophy: {
         sectionEn: "Philosophy",
-        tagline: "以精准的提案，\n为夜之街带来惊喜!",
-        desc: "准确把握需求的「精准命中」之力，超越期待的「惊喜」提案，\n以及坚持到最后的「履行义务」责任感。\n以这三大信念，支撑夜间事业的成功。",
+        tagline: "读懂夜晚。",
+        desc: "放箭之前，先读懂夜晚的特性。\n人流、空间温度与收益结构，都是我们判断的范围。随后负责陪伴事业真正落地。",
       },
       company: {
         sectionEn: "Company",
@@ -1184,8 +1196,8 @@ export const translations = {
 
     contactPage: {
       eyebrow: "Contact",
-      heading: "Get in touch",
-      desc: "关于事业的咨询与报价均为免费。\n欢迎随时联系我们。",
+      heading: "Find Your Mark.",
+      desc: "我们先一起判断您事业的靶心。\n咨询与报价均为免费。",
       labels: {
         company: "Company",
         name: "Name",
@@ -1317,7 +1329,7 @@ export const translations = {
       },
       cta: {
         heading: (nameJa) => `关于${nameJa}的咨询`,
-        desc: "欢迎随时联系我们。咨询与报价均为免费。",
+        desc: "我们先一起判断事业的靶心。咨询与报价均为免费。",
         contactBtn: "Contact",
         allBusinessBtn: "All Business",
       },

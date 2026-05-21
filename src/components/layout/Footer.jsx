@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { C, F, timing } from "../../styles/design-tokens";
 import { divisions } from "../../data/divisions";
 import { useLang } from "../../i18n/LanguageContext";
+import { Wordmark } from "../ui/Wordmark";
 
 export default function Footer() {
   const { t } = useLang();
@@ -19,11 +20,7 @@ export default function Footer() {
           {/* Logo */}
           <div>
             <div style={{ marginBottom: 20 }}>
-              <img
-                src="/logo.svg"
-                alt="oblige!"
-                style={{ height: 24 }}
-              />
+              <Wordmark size={36} color={C.textLight} />
             </div>
             <p style={{ fontFamily: F.body, fontSize: 11, lineHeight: 2, color: "rgba(255,255,255,0.4)", whiteSpace: "pre-line" }}>
               {t.footer.tagline}

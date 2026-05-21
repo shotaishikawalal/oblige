@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { C, F, timing } from "../../styles/design-tokens";
 import { useLang } from "../../i18n/LanguageContext";
+import { Wordmark } from "../ui/Wordmark";
 
 const navLinkDefs = [
   { key: "business", path: "/#business", subJa: "事業内容" },
@@ -32,7 +33,10 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => { setMenuOpen(false); }, [location]);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setMenuOpen(false));
+    return () => cancelAnimationFrame(id);
+  }, [location]);
 
   const handleNavClick = (e, path) => {
     if (path.startsWith("/#") && isTop) {
@@ -57,35 +61,16 @@ export default function Header() {
         WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
         borderBottom,
         transition: `all ${timing.normal} ease`,
-        padding: "0 clamp(24px, 4vw, 64px)",
+        padding: "0 clamp(24px, 3vw, 48px)",
       }}>
         <div style={{
-          maxWidth: 1200, margin: "0 auto",
+          maxWidth: 1480, margin: "0 auto",
           display: "flex", alignItems: "center", justifyContent: "space-between",
           height: 72,
         }}>
-          {/* Logo + dart icon + tagline */}
-          <Link to="/" style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            <div style={{ position: "relative", display: "inline-block" }}>
-              <img
-                src="/logo.svg"
-                alt="oblige!"
-                style={{ height: 26, display: "block" }}
-              />
-              {/* Tiny dart hitting the "o" */}
-              <svg
-                width="14" height="14" viewBox="0 0 20 20"
-                style={{
-                  position: "absolute",
-                  left: -3, top: -7,
-                  pointerEvents: "none",
-                }}
-              >
-                <line x1="3" y1="17" x2="13" y2="7" stroke={C.text} strokeWidth="1.6" strokeLinecap="round" />
-                <polygon points="1,19 4,15 7,16 4,18" fill={C.text} />
-                <polygon points="13,7 17,3 19,5 15,9" fill={C.text} />
-              </svg>
-            </div>
+          {/* Logo + tagline */}
+          <Link to="/" aria-label="oblige home" style={{ display: "flex", alignItems: "center", gap: 18 }}>
+            <Wordmark size={36} />
             <span className="hide-mobile" style={{
               fontFamily: F.label, fontSize: 9, fontWeight: 500,
               letterSpacing: 2, color: C.textMuted,
