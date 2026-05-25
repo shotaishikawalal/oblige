@@ -8,4 +8,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 export default defineConfig({
   plugins: [react()],
   root: __dirname,
+  server: {
+    allowedHosts: [
+      'invoice-manufacture-namely-soviet.trycloudflare.com',
+    ],
+  },
 })
