@@ -76,7 +76,7 @@ export default function DivisionPage() {
     <div style={{ background: C.bg }}>
 
       {/* ═══════ HERO (Dark with photo) ═══════ */}
-      <section style={{
+      <section className="division-hero" style={{
         height: "70vh", minHeight: 480,
         display: "flex", alignItems: "center", justifyContent: "center",
         position: "relative", overflow: "hidden",
@@ -86,7 +86,14 @@ export default function DivisionPage() {
           position: "absolute", inset: 0,
           backgroundImage: `url(${heroPhotos[div.id] || "/251206-003.jpg"})`,
           backgroundSize: "cover", backgroundPosition: "center",
-          filter: "brightness(0.3)",
+          filter: "brightness(1.02) saturate(0.92)",
+        }} />
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(90deg, rgba(242,236,228,0.9) 0%, rgba(242,236,228,0.7) 45%, rgba(242,236,228,0.32) 100%), linear-gradient(180deg, rgba(242,236,228,0.08) 0%, rgba(242,236,228,0.26) 100%)",
+          zIndex: 1,
+          pointerEvents: "none",
         }} />
 
         {/* Top red accent line */}
@@ -99,26 +106,26 @@ export default function DivisionPage() {
         <span style={{
           position: "absolute", zIndex: 1,
           fontFamily: F.display, fontSize: "clamp(100px, 20vw, 240px)",
-          fontWeight: 700, color: "rgba(255,255,255,0.05)", lineHeight: 1,
+          fontWeight: 700, color: "rgba(17,17,17,0.055)", lineHeight: 1,
           userSelect: "none",
         }}>
           {div.number}
         </span>
 
         {/* Content */}
-        <div style={{ position: "relative", zIndex: 2, textAlign: "center" }}>
+        <div style={{ position: "relative", zIndex: 2, textAlign: "center", textShadow: "0 12px 34px rgba(242,236,228,0.42)" }}>
           {/* Capsule — Japanese name */}
           <span style={{
             display: "inline-block", fontFamily: F.body, fontSize: 12,
-            color: "rgba(255,255,255,0.6)",
-            background: "rgba(255,255,255,0.08)", backdropFilter: "blur(6px)",
+            color: C.textMuted,
+            background: "rgba(255,255,255,0.52)", backdropFilter: "blur(6px)",
             padding: "6px 20px", borderRadius: 20, marginBottom: 20,
           }}>{tDiv.nameJa || div.nameJa}</span>
 
           {/* English main title */}
           <h1 style={{
             fontFamily: F.heading, fontSize: "clamp(36px, 6vw, 72px)",
-            fontWeight: 700, color: C.white, marginBottom: 16,
+            fontWeight: 700, color: C.text, marginBottom: 16,
             letterSpacing: "0.04em", textTransform: "uppercase",
           }}>
             {div.nameEn}
@@ -126,7 +133,7 @@ export default function DivisionPage() {
           <div style={{ width: 32, height: 2, background: C.accent, margin: "0 auto 20px" }} />
           <p style={{
             fontFamily: F.body, fontSize: fontSize.body,
-            color: "rgba(255,255,255,0.6)", lineHeight: 1.8,
+            color: C.textMuted, lineHeight: 1.8,
           }}>
             {tDiv.tagline || div.tagline}
           </p>
@@ -135,7 +142,7 @@ export default function DivisionPage() {
       </section>
 
       {/* ═══════ ANCHOR NAV — hive-inspired ↓ section jump ═══════ */}
-      <nav style={{
+      <nav className="division-anchor-nav" style={{
         padding: "28px 0",
         borderBottom: `1px solid ${C.border}`,
       }}>
@@ -414,14 +421,17 @@ export default function DivisionPage() {
       )}
 
       {/* ═══════ CTA — hive-inspired color-shift ═══════ */}
-      <DivisionCTA divName={tDiv.nameJa || div.nameJa} t={t} />
+      <DivisionCTA t={t} />
     </div>
   );
 }
 
 /* ── CTA — hive-inspired hover color shift ── */
-function DivisionCTA({ divName, t }) {
+function DivisionCTA({ t }) {
   const [hovered, setHovered] = useState(false);
+  const ctaText = hovered ? C.white : C.text;
+  const ctaBody = hovered ? "rgba(255,255,255,0.72)" : C.textMuted;
+  const ctaBorder = hovered ? "rgba(255,255,255,0.38)" : "rgba(17,17,17,0.28)";
 
   return (
     <section
@@ -429,9 +439,11 @@ function DivisionCTA({ divName, t }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         padding: "clamp(100px, 14vw, 180px) 0",
-        background: hovered ? C.accent : C.dark,
+        background: hovered ? C.accent : C.bgAlt,
         position: "relative", overflow: "hidden",
-        transition: "background 0.5s ease",
+        borderTop: `1px solid ${C.border}`,
+        borderBottom: `1px solid ${C.border}`,
+        transition: "background 0.5s ease, border-color 0.5s ease",
         cursor: "pointer",
       }}
     >
@@ -443,7 +455,8 @@ function DivisionCTA({ divName, t }) {
           <Reveal>
             <h2 style={{
               fontFamily: F.heading, fontSize: "clamp(36px, 5vw, 64px)",
-              fontWeight: 700, color: C.white, lineHeight: 1.2, marginBottom: 20,
+              fontWeight: 700, color: ctaText, lineHeight: 1.2, marginBottom: 20,
+              transition: "color 0.5s ease",
             }}>
               {t.contact.heading}
             </h2>
@@ -451,7 +464,8 @@ function DivisionCTA({ divName, t }) {
           <Reveal delay={0.1}>
             <p style={{
               fontFamily: F.body, fontSize: fontSize.body,
-              color: "rgba(255,255,255,0.6)", lineHeight: 2,
+              color: ctaBody, lineHeight: 2,
+              transition: "color 0.5s ease",
             }}>
               {t.division.cta.desc}
             </p>
@@ -461,11 +475,11 @@ function DivisionCTA({ divName, t }) {
               <a href="mailto:info@oblige.jp" style={{
                 fontFamily: F.label, fontSize: 11, fontWeight: 500,
                 letterSpacing: 3, textTransform: "uppercase",
-                color: C.white, borderBottom: "1px solid rgba(255,255,255,0.3)",
+                color: ctaText, borderBottom: `1px solid ${ctaBorder}`,
                 paddingBottom: 4, transition: `border-color ${timing.fast}`,
               }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = C.white; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.3)"; }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = hovered ? C.white : C.accent; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = ctaBorder; }}
               >
                 info@oblige.jp
               </a>
@@ -473,11 +487,11 @@ function DivisionCTA({ divName, t }) {
                 display: "inline-flex", alignItems: "center", gap: 8,
                 fontFamily: F.label, fontSize: 11, fontWeight: 500,
                 letterSpacing: 3, textTransform: "uppercase",
-                color: C.white, borderBottom: "1px solid rgba(255,255,255,0.3)",
+                color: ctaText, borderBottom: `1px solid ${ctaBorder}`,
                 paddingBottom: 4, transition: `border-color ${timing.fast}`,
               }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = C.white; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.3)"; }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = hovered ? C.white : C.accent; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = ctaBorder; }}
               >
                 Instagram
               </a>
@@ -492,7 +506,7 @@ function DivisionCTA({ divName, t }) {
             transform: hovered ? "translate(8px, -8px)" : "none",
             transition: `transform 0.4s ${timing.easeOut}`,
           }}>
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke={C.white} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke={hovered ? C.white : C.accent} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: "stroke 0.5s ease" }}>
               <line x1="8" y1="40" x2="40" y2="8" />
               <polyline points="20,8 40,8 40,28" />
             </svg>

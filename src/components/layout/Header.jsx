@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { C, F, timing } from "../../styles/design-tokens";
 import { useLang } from "../../i18n/LanguageContext";
-import { Wordmark } from "../ui/Wordmark";
 
 const navLinkDefs = [
   { key: "business", path: "/#business", subJa: "事業内容" },
@@ -70,7 +69,15 @@ export default function Header() {
         }}>
           {/* Logo + tagline */}
           <Link to="/" aria-label="oblige home" style={{ display: "flex", alignItems: "center", gap: 18 }}>
-            <Wordmark size={36} />
+            <img
+              src="/logo.svg"
+              alt="oblige!"
+              style={{
+                display: "block",
+                width: 96,
+                height: "auto",
+              }}
+            />
             <span className="hide-mobile" style={{
               fontFamily: F.label, fontSize: 9, fontWeight: 500,
               letterSpacing: 2, color: C.textMuted,

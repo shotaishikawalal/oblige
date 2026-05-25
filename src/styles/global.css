@@ -930,3 +930,193 @@ ul, ol { list-style: none; }
 @media (min-width: 769px) {
   .hide-desktop { display: none !important; }
 }
+
+/* ═══════ UI/UX polish pass — readability and lighter navigation ═══════ */
+.home-hero-copy {
+  position: relative;
+}
+
+.home-hero-business-inner > div:first-child {
+  border-right: none !important;
+}
+
+.home-hero-business-links {
+  gap: 8px;
+  padding: 14px 0 14px 18px;
+}
+
+.home-hero-business-links > a {
+  border-right: none !important;
+  border: 1px solid rgba(17,17,17,0.07);
+  background: rgba(255,255,255,0.36);
+}
+
+.home-hero-business-links > a:hover {
+  background: rgba(255,90,0,0.08) !important;
+}
+
+.philosophy-tagline p {
+  color: #6D655C !important;
+}
+
+.philosophy-tagline p:first-child {
+  color: #5E574E !important;
+}
+
+@media (max-width: 768px) {
+  .home-hero-inner {
+    padding-top: 106px !important;
+    padding-bottom: 36px !important;
+  }
+
+  .home-hero-copy h1 {
+    font-size: 43px !important;
+    line-height: 1.12 !important;
+    margin-bottom: 18px !important;
+  }
+
+  .home-hero-description {
+    max-width: 315px !important;
+    color: #4F473D !important;
+    line-height: 1.95 !important;
+    margin-bottom: 24px !important;
+  }
+
+  .home-hero-editorial-visual {
+    right: -220px !important;
+    top: 96px !important;
+    width: 560px !important;
+    min-height: 430px !important;
+    opacity: 0.15 !important;
+  }
+
+  .hero-editorial-frame::before {
+    background:
+      linear-gradient(90deg, #F2ECE4 0%, rgba(242,236,228,0.92) 34%, rgba(242,236,228,0.38) 62%, transparent 82%),
+      radial-gradient(circle at 58% 36%, rgba(255,90,0,0.08), transparent 0 18%, transparent 42%) !important;
+  }
+
+  .home-hero-business {
+    background: rgba(250,247,241,0.9) !important;
+  }
+
+  .home-hero-business-inner > div:first-child {
+    padding: 20px 0 14px !important;
+    border-bottom: none !important;
+  }
+
+  .home-hero-business-links {
+    gap: 8px !important;
+    padding: 0 0 20px !important;
+  }
+
+  .home-hero-business-links > a,
+  .home-hero-business-links > a:nth-child(3n),
+  .home-hero-business-links > a:nth-child(even) {
+    border-right: none !important;
+  }
+
+  .marquee-band {
+    padding: 8px 0 !important;
+    opacity: 0.58;
+  }
+
+  .marquee-track span {
+    font-size: 34px !important;
+    color: rgba(122,116,106,0.38) !important;
+  }
+
+  .philosophy-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    max-width: 360px !important;
+  }
+
+  .philosophy-card {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    column-gap: 14px;
+    align-items: center;
+    text-align: left !important;
+    padding: 16px 14px !important;
+    border: 1px solid rgba(17,17,17,0.08);
+    background: rgba(255,255,255,0.34);
+  }
+
+  .philosophy-card .philosophy-icon {
+    grid-row: 1 / 4;
+    margin: 0 !important;
+  }
+
+  .philosophy-card svg {
+    width: 56px;
+    height: 56px;
+  }
+
+  .philosophy-card > div:nth-of-type(2),
+  .philosophy-card > div:nth-of-type(3),
+  .philosophy-card > p {
+    grid-column: 2;
+  }
+
+  .philosophy-card > div:nth-of-type(2) {
+    margin-bottom: 2px !important;
+  }
+
+  .philosophy-card > div:nth-of-type(3) {
+    margin-bottom: 8px !important;
+  }
+
+  .philosophy-grid p {
+    font-size: 12px !important;
+    line-height: 1.8 !important;
+  }
+
+  .philosophy-tagline {
+    margin-top: 36px !important;
+  }
+
+  .philosophy-tagline p:first-child {
+    font-size: 20px !important;
+    line-height: 1.6 !important;
+  }
+
+  .division-hero {
+    height: 62vh !important;
+    min-height: 430px !important;
+  }
+
+  .division-anchor-nav {
+    padding: 16px 0 !important;
+    background: rgba(250,247,241,0.88);
+  }
+
+  .anchor-nav {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    overflow: visible !important;
+    flex-wrap: wrap !important;
+  }
+
+  .anchor-arrow {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 8px !important;
+    padding: 10px !important;
+    border: 1px solid rgba(17,17,17,0.08);
+    background: rgba(255,255,255,0.42);
+    min-height: 48px;
+  }
+
+  .anchor-arrow .arrow-circle {
+    width: 24px !important;
+    height: 24px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .home-hero-copy h1 {
+    font-size: 38px !important;
+  }
+}

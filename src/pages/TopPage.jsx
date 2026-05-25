@@ -4,7 +4,6 @@ import gsap from "gsap";
 import { C, F, fontSize, spacing, timing } from "../styles/design-tokens";
 import { divisions } from "../data/divisions";
 import { Reveal } from "../components/ui/Reveal";
-import { Wordmark } from "../components/ui/Wordmark";
 import { useLang } from "../i18n/LanguageContext";
 
 /* ═══════════════════════════════════════════════════════
@@ -78,7 +77,7 @@ function Intro({ onComplete }) {
       display: "flex", alignItems: "center", justifyContent: "center",
     }}>
       <div ref={logoRef} style={{ opacity: 0, textAlign: "center" }}>
-        <Wordmark size={76} />
+        <img src="/logo.svg" alt="oblige!" style={{ width: 168, height: "auto" }} />
       </div>
     </div>
   );
@@ -167,7 +166,7 @@ function HeroSection({ loaded }) {
         gap: "clamp(28px, 5vw, 82px)",
         alignItems: "center",
       }}>
-        <div style={{
+        <div className="home-hero-copy" style={{
           position: "relative",
           zIndex: 1,
           maxWidth: 820,
@@ -175,7 +174,7 @@ function HeroSection({ loaded }) {
           transform: `translateY(${hit ? 0 : 28}px)`,
           transition: `opacity 0.9s ease 0.1s, transform 0.9s ${timing.easeOut} 0.1s`,
         }}>
-          <p style={{
+          <p className="home-hero-description" style={{
             fontFamily: F.label,
             fontSize: 11,
             fontWeight: 700,
@@ -402,7 +401,7 @@ function MarqueeBand() {
   };
 
   return (
-    <section style={{
+    <section className="marquee-band" style={{
       background: C.bg,
       padding: "clamp(18px, 2.5vw, 32px) 0",
       overflow: "hidden",
@@ -539,6 +538,7 @@ function PhilosophyIcon({ id, label, sub, desc, active, onClick, onHoverEnter, o
 
   return (
     <div
+      className="philosophy-card"
       style={{
         textAlign: "center", cursor: "pointer",
         padding: "24px 16px",
@@ -695,7 +695,7 @@ function PhilosophySection() {
         </div>
 
         {/* Tagline — sub */}
-        <div style={{ marginTop: active ? 32 : 48, transition: "margin 0.4s ease" }}>
+        <div className="philosophy-tagline" style={{ marginTop: active ? 32 : 48, transition: "margin 0.4s ease" }}>
           <Reveal delay={0.4}>
             <p style={{
               fontFamily: F.heading, fontSize: "clamp(18px, 2.2vw, 28px)",
@@ -733,6 +733,9 @@ function PhilosophySection() {
 function ContactCTA() {
   const { t } = useLang();
   const [hovered, setHovered] = useState(false);
+  const ctaText = hovered ? C.white : C.text;
+  const ctaBody = hovered ? "rgba(255,255,255,0.72)" : C.textMuted;
+  const ctaBorder = hovered ? "rgba(255,255,255,0.38)" : "rgba(17,17,17,0.28)";
 
   return (
     <Link to="/contact" style={{ display: "block", textDecoration: "none" }}>
@@ -742,9 +745,11 @@ function ContactCTA() {
       onMouseLeave={() => setHovered(false)}
       style={{
         padding: "clamp(100px, 14vw, 180px) 0",
-        background: hovered ? C.accent : C.dark,
+        background: hovered ? C.accent : C.bgAlt,
         position: "relative", overflow: "hidden",
-        transition: "background 0.5s ease",
+        borderTop: `1px solid ${C.border}`,
+        borderBottom: `1px solid ${C.border}`,
+        transition: "background 0.5s ease, border-color 0.5s ease",
         cursor: "pointer",
       }}
     >
@@ -757,7 +762,8 @@ function ContactCTA() {
           <Reveal>
             <h2 style={{
               fontFamily: F.heading, fontSize: "clamp(36px, 5vw, 64px)",
-              fontWeight: 700, color: C.white, lineHeight: 1.2, marginBottom: 20,
+              fontWeight: 700, color: ctaText, lineHeight: 1.2, marginBottom: 20,
+              transition: "color 0.5s ease",
             }}>
               {t.contact.heading}
             </h2>
@@ -765,8 +771,9 @@ function ContactCTA() {
           <Reveal delay={0.1}>
             <p style={{
               fontFamily: F.body, fontSize: fontSize.body,
-              color: "rgba(255,255,255,0.6)", lineHeight: 2,
+              color: ctaBody, lineHeight: 2,
               whiteSpace: "pre-line",
+              transition: "color 0.5s ease",
             }}>
               {t.contact.desc}
             </p>
@@ -776,11 +783,11 @@ function ContactCTA() {
               <a href="mailto:info@oblige.jp" style={{
                 fontFamily: F.label, fontSize: 11, fontWeight: 500,
                 letterSpacing: 3, textTransform: "uppercase",
-                color: C.white, borderBottom: "1px solid rgba(255,255,255,0.3)",
+                color: ctaText, borderBottom: `1px solid ${ctaBorder}`,
                 paddingBottom: 4, transition: `border-color ${timing.fast}`,
               }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = C.white; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.3)"; }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = hovered ? C.white : C.accent; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = ctaBorder; }}
               >
                 info@oblige.jp
               </a>
@@ -788,11 +795,11 @@ function ContactCTA() {
                 display: "inline-flex", alignItems: "center", gap: 8,
                 fontFamily: F.label, fontSize: 11, fontWeight: 500,
                 letterSpacing: 3, textTransform: "uppercase",
-                color: C.white, borderBottom: "1px solid rgba(255,255,255,0.3)",
+                color: ctaText, borderBottom: `1px solid ${ctaBorder}`,
                 paddingBottom: 4, transition: `border-color ${timing.fast}`,
               }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = C.white; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.3)"; }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = hovered ? C.white : C.accent; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = ctaBorder; }}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="2" y="2" width="20" height="20" rx="5" />
@@ -813,7 +820,7 @@ function ContactCTA() {
             transform: hovered ? "translate(8px, -8px)" : "none",
             transition: `transform 0.4s ${timing.easeOut}`,
           }}>
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke={C.white} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke={hovered ? C.white : C.accent} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: "stroke 0.5s ease" }}>
               <line x1="8" y1="40" x2="40" y2="8" />
               <polyline points="20,8 40,8 40,28" />
             </svg>

@@ -36,7 +36,6 @@ export const C = {
 };
 
 export const F = {
-  wordmark: "'Cormorant Garamond', 'Times New Roman', Georgia, serif",
   display:  "'Montserrat', 'Noto Sans JP', sans-serif",     // Hero / impact (numbers, titles)
   heading:  "'Montserrat', 'Noto Sans JP', sans-serif",     // Sections — Noto Sans JP Bold for kana/kanji
   body:     "'Noto Sans JP', sans-serif",                   // Body copy
