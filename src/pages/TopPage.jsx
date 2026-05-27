@@ -192,8 +192,8 @@ function HeroSection({ loaded }) {
             fontWeight: 700,
             color: C.text,
             lineHeight: 1.15,
-            letterSpacing: 0,
-            fontFeatureSettings: '"palt" 1',
+            letterSpacing: "0.04em",
+            fontFeatureSettings: '"palt" 0',
             marginBottom: 20,
           }}>
             <span style={{ display: "block" }}>
@@ -229,7 +229,10 @@ function HeroSection({ loaded }) {
           </p>
 
           <div style={{ display: "flex", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
-            <Link to="/contact" style={{
+            <a href="#business" onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("business")?.scrollIntoView({ behavior: "smooth" });
+            }} style={{
               display: "inline-flex", alignItems: "center", gap: 14,
               background: C.accent, color: C.white,
               fontFamily: F.label, fontSize: 12, fontWeight: 600,
@@ -242,12 +245,9 @@ function HeroSection({ loaded }) {
             >
               {h.ctaPrimary}
               <span style={{ fontSize: 16, lineHeight: 1 }}>→</span>
-            </Link>
+            </a>
 
-            <a href="#business" onClick={(e) => {
-              e.preventDefault();
-              document.getElementById("business")?.scrollIntoView({ behavior: "smooth" });
-            }} style={{
+            <Link to="/contact" style={{
               display: "inline-flex", alignItems: "center", gap: 12,
               fontFamily: F.label, fontSize: 12, fontWeight: 600,
               letterSpacing: 3, textTransform: "uppercase",
@@ -261,7 +261,7 @@ function HeroSection({ loaded }) {
             >
               {h.ctaSecondary}
               <span style={{ fontSize: 16, lineHeight: 1 }}>→</span>
-            </a>
+            </Link>
           </div>
         </div>
 
