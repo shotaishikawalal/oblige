@@ -1120,3 +1120,19 @@ ul, ol { list-style: none; }
     font-size: 38px !important;
   }
 }
+
+/* ═══════ HERO — Case A (GUNZE-style) ═══════ */
+@keyframes gunzeOrbitRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.hero-gunze-orbit {
+  animation: gunzeOrbitRotate 90s linear infinite;
+  transform-origin: center;
+}
+
+@media (max-width: 768px) {
+  .hero-gunze-orbit text {
+    font-size: 26px !important;
+  }
+}

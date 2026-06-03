@@ -354,6 +354,281 @@ function HeroSection({ loaded }) {
   );
 }
 
+/* ═══════════════════════════════════════════════════════
+   HERO — GUNZE-style (Case A) — radial editorial poster
+   Activated via ?style=gunze
+   ═══════════════════════════════════════════════════════ */
+function HeroSectionGunze({ loaded }) {
+  const { t } = useLang();
+  const h = t.hero;
+  const [hit, setHit] = useState(false);
+
+  useEffect(() => {
+    if (!loaded) return;
+    const tm = setTimeout(() => setHit(true), 300);
+    return () => clearTimeout(tm);
+  }, [loaded]);
+
+  // Orbit text — repeated tile so circle path fills evenly
+  const tile = "OBLIGE · NIGHT TIME PRODUCTION · 夜を、ねらえ · ";
+  const orbitText = tile.repeat(4);
+
+  // 6 business mini-chips scattered around the central headline
+  const biz = [
+    { num: "01", en: "BUILD",  ja: "建設",   emoji: "🏗" },
+    { num: "02", en: "FIND",   ja: "不動産", emoji: "🔑" },
+    { num: "03", en: "DESIGN", ja: "内装",   emoji: "🛋" },
+    { num: "04", en: "SERVE",  ja: "飲食",   emoji: "🍴" },
+    { num: "05", en: "REACH",  ja: "マーケ", emoji: "📱" },
+    { num: "06", en: "SHAPE",  ja: "ブランド", emoji: "🎨" },
+  ];
+
+  // angles (deg from top, clockwise) for the 6 business chips on inner ring
+  const bizPositions = [
+    { top: "18%", left: "30%" },
+    { top: "20%", left: "62%" },
+    { top: "44%", left: "78%" },
+    { top: "70%", left: "68%" },
+    { top: "72%", left: "26%" },
+    { top: "46%", left: "14%" },
+  ];
+
+  return (
+    <section className="home-hero-gunze" style={{
+      minHeight: "100svh",
+      background: C.bg,
+      position: "relative",
+      overflow: "hidden",
+      display: "flex",
+      flexDirection: "column",
+      color: C.text,
+    }}>
+      <div className="hero-grain" aria-hidden="true" />
+
+      {/* ── Top-left "6" badge ── */}
+      <div style={{
+        position: "absolute", top: "clamp(20px, 2vw, 32px)", left: "clamp(20px, 2vw, 32px)",
+        width: 56, height: 56, borderRadius: "50%",
+        border: `2px solid ${C.text}`,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        flexDirection: "column", lineHeight: 1,
+        zIndex: 10,
+        opacity: hit ? 1 : 0,
+        transition: `opacity 0.6s ease 0.4s`,
+      }}>
+        <span style={{
+          fontFamily: F.heading, fontSize: 22, fontWeight: 800, color: C.text,
+        }}>6</span>
+        <span style={{
+          fontFamily: F.label, fontSize: 7, fontWeight: 600,
+          letterSpacing: 1.5, color: C.textMuted,
+          textTransform: "uppercase", marginTop: 2,
+        }}>業</span>
+      </div>
+
+      {/* ── Top-right MENU ── */}
+      <div style={{
+        position: "absolute", top: "clamp(20px, 2vw, 32px)", right: "clamp(20px, 2vw, 32px)",
+        width: 64, height: 64, borderRadius: "50%",
+        background: C.text, color: C.bg,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        fontFamily: F.label, fontSize: 11, fontWeight: 700, letterSpacing: 2,
+        zIndex: 10,
+        opacity: hit ? 1 : 0,
+        transition: `opacity 0.6s ease 0.4s`,
+      }}>MENU</div>
+
+      {/* ── Stage (the radial composition) ── */}
+      <div className="hero-gunze-stage" style={{
+        position: "relative",
+        flex: 1,
+        width: "100%",
+        maxWidth: 1720,
+        margin: "0 auto",
+        padding: "clamp(72px, 7vw, 120px) clamp(24px, 4vw, 64px) clamp(80px, 6vw, 120px)",
+      }}>
+
+        {/* ── Circular orbit text (slow rotate) ── */}
+        <div style={{
+          position: "absolute",
+          left: "50%", top: "50%",
+          width: "min(94vmin, 920px)",
+          height: "min(94vmin, 920px)",
+          transform: "translate(-50%, -50%)",
+          pointerEvents: "none",
+          opacity: hit ? 1 : 0,
+          transition: `opacity 1.4s ease 0.2s`,
+        }}>
+          <svg viewBox="0 0 1000 1000" className="hero-gunze-orbit" style={{ width: "100%", height: "100%" }}>
+            <defs>
+              <path id="gunze-circle" d="M 500 500 m -460 0 a 460 460 0 1 1 920 0 a 460 460 0 1 1 -920 0" />
+            </defs>
+            <text fill={C.accent} fontFamily="'Montserrat', 'Noto Sans JP', sans-serif"
+                  fontSize="32" fontWeight="700" letterSpacing="2">
+              <textPath href="#gunze-circle" startOffset="0">{orbitText}</textPath>
+            </text>
+          </svg>
+        </div>
+
+        {/* ── Inner dotted ring for depth ── */}
+        <svg viewBox="0 0 1000 1000" style={{
+          position: "absolute", left: "50%", top: "50%",
+          width: "min(72vmin, 700px)", height: "min(72vmin, 700px)",
+          transform: "translate(-50%, -50%)",
+          pointerEvents: "none",
+          opacity: hit ? 0.6 : 0,
+          transition: `opacity 1.2s ease 0.5s`,
+        }}>
+          <circle cx="500" cy="500" r="490" fill="none" stroke={C.text}
+                  strokeWidth="2" strokeDasharray="1 8" />
+        </svg>
+
+        {/* ── Scattered characters (existing PNGs) ── */}
+        <img src="/hero-char-telescope.png" alt=""
+             style={{
+               position: "absolute", left: "12%", top: "18%",
+               width: "clamp(80px, 11vw, 150px)",
+               filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.08))",
+               opacity: hit ? 1 : 0,
+               transform: `translateY(${hit ? 0 : 16}px)`,
+               transition: `all 0.8s ${timing.easeOut} 0.7s`,
+             }} />
+        <img src="/hero-char-ladder.png" alt=""
+             style={{
+               position: "absolute", right: "8%", top: "12%",
+               width: "clamp(80px, 11vw, 160px)",
+               filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.08))",
+               opacity: hit ? 1 : 0,
+               transform: `translateY(${hit ? 0 : 16}px)`,
+               transition: `all 0.8s ${timing.easeOut} 0.85s`,
+             }} />
+        <img src="/hero-char-wine.png" alt=""
+             style={{
+               position: "absolute", left: "16%", bottom: "14%",
+               width: "clamp(72px, 9vw, 130px)",
+               filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.08))",
+               opacity: hit ? 1 : 0,
+               transform: `translateY(${hit ? 0 : 16}px)`,
+               transition: `all 0.8s ${timing.easeOut} 1s`,
+             }} />
+
+        {/* ── 6 business chips ── */}
+        {biz.map((b, i) => (
+          <div key={b.num} style={{
+            position: "absolute", ...bizPositions[i],
+            width: "clamp(64px, 7vw, 96px)", height: "clamp(64px, 7vw, 96px)",
+            borderRadius: "50%",
+            background: i % 2 === 0 ? C.accent : C.text,
+            color: i % 2 === 0 ? C.white : C.bg,
+            display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+            gap: 2,
+            transform: `translate(-50%, -50%) translateY(${hit ? 0 : 12}px) scale(${hit ? 1 : 0.7})`,
+            opacity: hit ? 1 : 0,
+            transition: `all 0.7s ${timing.easeBounce} ${0.6 + i * 0.08}s`,
+            boxShadow: "0 6px 18px rgba(0,0,0,0.10)",
+            zIndex: 3,
+          }}>
+            <span style={{ fontSize: "clamp(20px, 2.5vw, 32px)", lineHeight: 1 }}>{b.emoji}</span>
+            <span style={{
+              fontFamily: F.label, fontSize: 8, fontWeight: 700,
+              letterSpacing: 1.5, opacity: 0.85,
+            }}>{b.num}</span>
+          </div>
+        ))}
+
+        {/* ── Giant dart (centered, behind headline) ── */}
+        <img src="/hero-dart.png" alt=""
+             style={{
+               position: "absolute", left: "50%", top: "50%",
+               transform: `translate(-50%, -42%) rotate(-12deg) scale(${hit ? 1 : 0.85})`,
+               width: "clamp(120px, 18vw, 260px)",
+               opacity: hit ? 0.95 : 0,
+               transition: `all 1s ${timing.easeOut} 0.5s`,
+               filter: "drop-shadow(0 12px 28px rgba(0,0,0,0.22))",
+               zIndex: 2,
+             }} />
+
+        {/* ── Center headline ── */}
+        <div style={{
+          position: "absolute", left: "50%", top: "50%",
+          transform: "translate(-50%, -50%)",
+          textAlign: "center",
+          zIndex: 5,
+          opacity: hit ? 1 : 0,
+          transition: `opacity 0.9s ease 0.4s, transform 0.9s ${timing.easeOut} 0.4s`,
+        }}>
+          <p style={{
+            fontFamily: F.label, fontSize: "clamp(10px, 1vw, 13px)",
+            fontWeight: 700, letterSpacing: 5,
+            color: C.accent, textTransform: "uppercase",
+            marginBottom: 10,
+          }}>{h.title}</p>
+          <h1 style={{
+            fontFamily: "'Hiragino Mincho ProN', 'Yu Mincho', 'YuMincho', 'Noto Serif JP', serif",
+            fontSize: "clamp(56px, 9vw, 168px)",
+            fontWeight: 900,
+            color: C.text,
+            lineHeight: 1,
+            letterSpacing: "0.04em",
+            fontFeatureSettings: '"palt" 0',
+            textShadow: "0 4px 20px rgba(242,236,228,0.85)",
+          }}>
+            夜を、<span style={{ color: C.accent }}>ねらえ</span>。
+          </h1>
+          <p style={{
+            fontFamily: F.body, fontSize: "clamp(11px, 1.05vw, 14px)",
+            color: C.textMuted, marginTop: 14,
+            letterSpacing: "0.04em",
+          }}>{h.sub}</p>
+        </div>
+
+      </div>
+
+      {/* ── Bottom: FIND / AIM / HIT 3-button strip ── */}
+      <div style={{
+        position: "relative",
+        zIndex: 6,
+        display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(8px, 1.5vw, 24px)",
+        paddingBottom: "clamp(32px, 4vw, 56px)",
+        opacity: hit ? 1 : 0,
+        transform: `translateY(${hit ? 0 : 14}px)`,
+        transition: `all 0.9s ${timing.easeOut} 1.1s`,
+      }}>
+        {(h.stats || []).map((s, i) => (
+          <a key={i} href="#business" onClick={(e) => {
+            e.preventDefault();
+            document.getElementById("business")?.scrollIntoView({ behavior: "smooth" });
+          }} style={{
+            display: "inline-flex", alignItems: "center", gap: 10,
+            padding: "12px 22px",
+            background: i === 1 ? C.accent : "transparent",
+            color: i === 1 ? C.white : C.text,
+            border: `1.5px solid ${i === 1 ? C.accent : C.text}`,
+            borderRadius: 999,
+            fontFamily: F.label, fontSize: 11, fontWeight: 700,
+            letterSpacing: 2.5, textTransform: "uppercase",
+            transition: `all ${timing.fast}`,
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.background = C.accent;
+            e.currentTarget.style.color = C.white;
+            e.currentTarget.style.borderColor = C.accent;
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.background = i === 1 ? C.accent : "transparent";
+            e.currentTarget.style.color = i === 1 ? C.white : C.text;
+            e.currentTarget.style.borderColor = i === 1 ? C.accent : C.text;
+          }}
+          >
+            <span style={{ fontFamily: F.body, fontSize: 10, opacity: 0.7 }}>0{i + 1}</span>
+            {s.label}
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function HeroEditorialVisual({ hit }) {
   return (
     <div className="home-hero-visual home-hero-editorial-visual" style={{
@@ -838,6 +1113,10 @@ export default function TopPage() {
   const [loaded, setLoaded] = useState(false);
   const [introDone, setIntroDone] = useState(() => !!sessionStorage.getItem("oblige-intro"));
 
+  // ?style=gunze で Case A プレビュー
+  const useGunze = typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("style") === "gunze";
+
   useEffect(() => {
     if (introDone) setTimeout(() => setLoaded(true), 100);
   }, [introDone]);
@@ -847,7 +1126,9 @@ export default function TopPage() {
       {!introDone && <Intro onComplete={() => setIntroDone(true)} />}
 
       {/* ═══════ HERO ═══════ */}
-      <HeroSection loaded={loaded} />
+      {useGunze
+        ? <HeroSectionGunze loaded={loaded} />
+        : <HeroSection loaded={loaded} />}
 
       {/* ═══════ MARQUEE TICKER ═══════ */}
       <MarqueeBand />
