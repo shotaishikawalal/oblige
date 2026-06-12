@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { C, F, fontSize, spacing, timing } from "../styles/design-tokens";
 import { divisions } from "../data/divisions";
@@ -369,28 +369,36 @@ function HeroSectionGunze({ loaded }) {
     return () => clearTimeout(tm);
   }, [loaded]);
 
-  // Orbit text — repeated tile so circle path fills evenly
-  const tile = "OBLIGE · NIGHT TIME PRODUCTION · 夜を、ねらえ · ";
+  // Orbit text — repeated tile so circle path fills evenly (localized)
+  const g = h.gunze || {};
+  const tile = g.orbitTile || "OBLIGE · NIGHT TIME PRODUCTION · ";
   const orbitText = tile.repeat(4);
 
-  // 6 business mini-chips scattered around the central headline
-  const biz = [
-    { num: "01", en: "BUILD",  ja: "建設",   emoji: "🏗" },
-    { num: "02", en: "FIND",   ja: "不動産", emoji: "🔑" },
-    { num: "03", en: "DESIGN", ja: "内装",   emoji: "🛋" },
-    { num: "04", en: "SERVE",  ja: "飲食",   emoji: "🍴" },
-    { num: "05", en: "REACH",  ja: "マーケ", emoji: "📱" },
-    { num: "06", en: "SHAPE",  ja: "ブランド", emoji: "🎨" },
+  // The three brand verbs are fixed English (design tokens), destinations differ.
+  const pillNav = [
+    { label: "FIND", dest: "#philosophy" },
+    { label: "AIM",  dest: "#business" },
+    { label: "HIT",  dest: "/contact" },
   ];
 
-  // angles (deg from top, clockwise) for the 6 business chips on inner ring
+  // 6 business mini-characters scattered around the central headline
+  const biz = [
+    { num: "01", key: "build",  en: "BUILD",  ja: "建設",     src: "/hero-char-build.png" },
+    { num: "02", key: "find",   en: "FIND",   ja: "不動産",   src: "/hero-char-find.png" },
+    { num: "03", key: "design", en: "DESIGN", ja: "内装",     src: "/hero-char-design.png" },
+    { num: "04", key: "serve",  en: "SERVE",  ja: "飲食",     src: "/hero-char-serve.png" },
+    { num: "05", key: "reach",  en: "REACH",  ja: "マーケ",   src: "/hero-char-reach.png" },
+    { num: "06", key: "shape",  en: "SHAPE",  ja: "ブランド", src: "/hero-char-shape.png" },
+  ];
+
+  // Desktop and mobile coordinates for the 6 business characters on the inner ring.
   const bizPositions = [
-    { top: "18%", left: "30%" },
-    { top: "20%", left: "62%" },
-    { top: "44%", left: "78%" },
-    { top: "70%", left: "68%" },
-    { top: "72%", left: "26%" },
-    { top: "46%", left: "14%" },
+    { top: "17%", left: "29%", mobileTop: "19%", mobileLeft: "25%" },
+    { top: "18%", left: "63%", mobileTop: "19%", mobileLeft: "75%" },
+    { top: "43%", left: "80%", mobileTop: "43%", mobileLeft: "91%" },
+    { top: "72%", left: "68%", mobileTop: "76%", mobileLeft: "75%" },
+    { top: "73%", left: "27%", mobileTop: "76%", mobileLeft: "25%" },
+    { top: "44%", left: "13%", mobileTop: "43%", mobileLeft: "9%" },
   ];
 
   return (
@@ -404,39 +412,6 @@ function HeroSectionGunze({ loaded }) {
       color: C.text,
     }}>
       <div className="hero-grain" aria-hidden="true" />
-
-      {/* ── Top-left "6" badge ── */}
-      <div style={{
-        position: "absolute", top: "clamp(20px, 2vw, 32px)", left: "clamp(20px, 2vw, 32px)",
-        width: 56, height: 56, borderRadius: "50%",
-        border: `2px solid ${C.text}`,
-        display: "flex", alignItems: "center", justifyContent: "center",
-        flexDirection: "column", lineHeight: 1,
-        zIndex: 10,
-        opacity: hit ? 1 : 0,
-        transition: `opacity 0.6s ease 0.4s`,
-      }}>
-        <span style={{
-          fontFamily: F.heading, fontSize: 22, fontWeight: 800, color: C.text,
-        }}>6</span>
-        <span style={{
-          fontFamily: F.label, fontSize: 7, fontWeight: 600,
-          letterSpacing: 1.5, color: C.textMuted,
-          textTransform: "uppercase", marginTop: 2,
-        }}>業</span>
-      </div>
-
-      {/* ── Top-right MENU ── */}
-      <div style={{
-        position: "absolute", top: "clamp(20px, 2vw, 32px)", right: "clamp(20px, 2vw, 32px)",
-        width: 64, height: 64, borderRadius: "50%",
-        background: C.text, color: C.bg,
-        display: "flex", alignItems: "center", justifyContent: "center",
-        fontFamily: F.label, fontSize: 11, fontWeight: 700, letterSpacing: 2,
-        zIndex: 10,
-        opacity: hit ? 1 : 0,
-        transition: `opacity 0.6s ease 0.4s`,
-      }}>MENU</div>
 
       {/* ── Stage (the radial composition) ── */}
       <div className="hero-gunze-stage" style={{
@@ -456,7 +431,8 @@ function HeroSectionGunze({ loaded }) {
           height: "min(94vmin, 920px)",
           transform: "translate(-50%, -50%)",
           pointerEvents: "none",
-          opacity: hit ? 1 : 0,
+          opacity: hit ? 0.28 : 0,
+          zIndex: 1,
           transition: `opacity 1.4s ease 0.2s`,
         }}>
           <svg viewBox="0 0 1000 1000" className="hero-gunze-orbit" style={{ width: "100%", height: "100%" }}>
@@ -476,84 +452,68 @@ function HeroSectionGunze({ loaded }) {
           width: "min(72vmin, 700px)", height: "min(72vmin, 700px)",
           transform: "translate(-50%, -50%)",
           pointerEvents: "none",
-          opacity: hit ? 0.6 : 0,
+          opacity: hit ? 0.22 : 0,
+          zIndex: 1,
           transition: `opacity 1.2s ease 0.5s`,
         }}>
           <circle cx="500" cy="500" r="490" fill="none" stroke={C.text}
                   strokeWidth="2" strokeDasharray="1 8" />
         </svg>
 
-        {/* ── Scattered characters (existing PNGs) ── */}
-        <img src="/hero-char-telescope.png" alt=""
-             style={{
-               position: "absolute", left: "12%", top: "18%",
-               width: "clamp(80px, 11vw, 150px)",
-               filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.08))",
-               opacity: hit ? 1 : 0,
-               transform: `translateY(${hit ? 0 : 16}px)`,
-               transition: `all 0.8s ${timing.easeOut} 0.7s`,
-             }} />
-        <img src="/hero-char-ladder.png" alt=""
-             style={{
-               position: "absolute", right: "8%", top: "12%",
-               width: "clamp(80px, 11vw, 160px)",
-               filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.08))",
-               opacity: hit ? 1 : 0,
-               transform: `translateY(${hit ? 0 : 16}px)`,
-               transition: `all 0.8s ${timing.easeOut} 0.85s`,
-             }} />
-        <img src="/hero-char-wine.png" alt=""
-             style={{
-               position: "absolute", left: "16%", bottom: "14%",
-               width: "clamp(72px, 9vw, 130px)",
-               filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.08))",
-               opacity: hit ? 1 : 0,
-               transform: `translateY(${hit ? 0 : 16}px)`,
-               transition: `all 0.8s ${timing.easeOut} 1s`,
-             }} />
-
-        {/* ── 6 business chips ── */}
+        {/* ── 6 business characters (decorative) ── */}
         {biz.map((b, i) => (
-          <div key={b.num} style={{
-            position: "absolute", ...bizPositions[i],
-            width: "clamp(64px, 7vw, 96px)", height: "clamp(64px, 7vw, 96px)",
-            borderRadius: "50%",
-            background: i % 2 === 0 ? C.accent : C.text,
-            color: i % 2 === 0 ? C.white : C.bg,
-            display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-            gap: 2,
-            transform: `translate(-50%, -50%) translateY(${hit ? 0 : 12}px) scale(${hit ? 1 : 0.7})`,
-            opacity: hit ? 1 : 0,
-            transition: `all 0.7s ${timing.easeBounce} ${0.6 + i * 0.08}s`,
-            boxShadow: "0 6px 18px rgba(0,0,0,0.10)",
-            zIndex: 3,
-          }}>
-            <span style={{ fontSize: "clamp(20px, 2.5vw, 32px)", lineHeight: 1 }}>{b.emoji}</span>
-            <span style={{
-              fontFamily: F.label, fontSize: 8, fontWeight: 700,
-              letterSpacing: 1.5, opacity: 0.85,
-            }}>{b.num}</span>
+          <div
+            key={b.num}
+            className={`hero-gunze-biz-character hero-gunze-biz-character-${b.key}`}
+            aria-hidden="true"
+            style={{
+              "--hero-char-left": bizPositions[i].left,
+              "--hero-char-top": bizPositions[i].top,
+              "--hero-char-mobile-left": bizPositions[i].mobileLeft,
+              "--hero-char-mobile-top": bizPositions[i].mobileTop,
+              opacity: hit ? 1 : 0,
+              transform: `translate(-50%, -50%) translateY(${hit ? 0 : 14}px) rotate(${i % 2 === 0 ? -4 : 4}deg) scale(${hit ? 1 : 0.76})`,
+              transition: `opacity 0.7s ease ${0.62 + i * 0.08}s, transform 0.8s ${timing.easeBounce} ${0.62 + i * 0.08}s`,
+            }}
+          >
+            <img src={b.src} alt="" loading="eager" decoding="async" />
           </div>
         ))}
 
-        {/* ── Giant dart (centered, behind headline) ── */}
-        <img src="/hero-dart.png" alt=""
-             style={{
-               position: "absolute", left: "50%", top: "50%",
-               transform: `translate(-50%, -42%) rotate(-12deg) scale(${hit ? 1 : 0.85})`,
-               width: "clamp(120px, 18vw, 260px)",
-               opacity: hit ? 0.95 : 0,
-               transition: `all 1s ${timing.easeOut} 0.5s`,
-               filter: "drop-shadow(0 12px 28px rgba(0,0,0,0.22))",
-               zIndex: 2,
-             }} />
+        {/* ── Giant hands (GUNZE-style props) ── */}
+        <img
+          src="/hero-hand-left.png" alt="" aria-hidden="true"
+          className="hero-gunze-hand hero-gunze-hand-left"
+          style={{
+            opacity: hit ? 1 : 0,
+            transition: `opacity 0.9s ease 0.9s, transform 1s ${timing.easeOut} 0.9s`,
+          }}
+        />
+        <img
+          src="/hero-hand-right.png" alt="" aria-hidden="true"
+          className="hero-gunze-hand hero-gunze-hand-right"
+          style={{
+            opacity: hit ? 1 : 0,
+            transition: `opacity 0.9s ease 1.05s, transform 1s ${timing.easeOut} 1.05s`,
+          }}
+        />
+
+        {/* ── Central producer figure (bottom-center, reading the plans) ── */}
+        <img
+          src="/hero-main-producer.png" alt="" aria-hidden="true"
+          className="hero-gunze-producer"
+          style={{
+            opacity: hit ? 1 : 0,
+            transition: `opacity 0.9s ease 0.75s, transform 0.9s ${timing.easeBounce} 0.75s`,
+          }}
+        />
 
         {/* ── Center headline ── */}
         <div style={{
           position: "absolute", left: "50%", top: "50%",
           transform: "translate(-50%, -50%)",
           textAlign: "center",
-          zIndex: 5,
+          zIndex: 7,
           opacity: hit ? 1 : 0,
           transition: `opacity 0.9s ease 0.4s, transform 0.9s ${timing.easeOut} 0.4s`,
         }}>
@@ -565,21 +525,22 @@ function HeroSectionGunze({ loaded }) {
           }}>{h.title}</p>
           <h1 style={{
             fontFamily: "'Hiragino Mincho ProN', 'Yu Mincho', 'YuMincho', 'Noto Serif JP', serif",
-            fontSize: "clamp(56px, 9vw, 168px)",
+            fontSize: "clamp(42px, 8.2vw, 142px)",
             fontWeight: 900,
             color: C.text,
             lineHeight: 1,
-            letterSpacing: "0.04em",
-            fontFeatureSettings: '"palt" 0',
+            letterSpacing: 0,
+            fontFeatureSettings: '"palt" 1',
+            whiteSpace: "nowrap",
             textShadow: "0 4px 20px rgba(242,236,228,0.85)",
           }}>
-            夜を、<span style={{ color: C.accent }}>ねらえ</span>。
+            {g.headlinePre}<span style={{ color: C.accent }}>{g.headlineAccent}</span>{g.headlinePost}
           </h1>
           <p style={{
             fontFamily: F.body, fontSize: "clamp(11px, 1.05vw, 14px)",
             color: C.textMuted, marginTop: 14,
             letterSpacing: "0.04em",
-          }}>{h.sub}</p>
+          }}>{h.taglineSub}</p>
         </div>
 
       </div>
@@ -594,11 +555,9 @@ function HeroSectionGunze({ loaded }) {
         transform: `translateY(${hit ? 0 : 14}px)`,
         transition: `all 0.9s ${timing.easeOut} 1.1s`,
       }}>
-        {(h.stats || []).map((s, i) => (
-          <a key={i} href="#business" onClick={(e) => {
-            e.preventDefault();
-            document.getElementById("business")?.scrollIntoView({ behavior: "smooth" });
-          }} style={{
+        {pillNav.map((p, i) => {
+          const subLabel = h.stats?.[i]?.subLabel || "";
+          const pillStyle = {
             display: "inline-flex", alignItems: "center", gap: 10,
             padding: "12px 22px",
             background: i === 1 ? C.accent : "transparent",
@@ -608,22 +567,37 @@ function HeroSectionGunze({ loaded }) {
             fontFamily: F.label, fontSize: 11, fontWeight: 700,
             letterSpacing: 2.5, textTransform: "uppercase",
             transition: `all ${timing.fast}`,
-          }}
-          onMouseEnter={e => {
+          };
+          const hoverOn = e => {
             e.currentTarget.style.background = C.accent;
             e.currentTarget.style.color = C.white;
             e.currentTarget.style.borderColor = C.accent;
-          }}
-          onMouseLeave={e => {
+          };
+          const hoverOff = e => {
             e.currentTarget.style.background = i === 1 ? C.accent : "transparent";
             e.currentTarget.style.color = i === 1 ? C.white : C.text;
             e.currentTarget.style.borderColor = i === 1 ? C.accent : C.text;
-          }}
-          >
-            <span style={{ fontFamily: F.body, fontSize: 10, opacity: 0.7 }}>0{i + 1}</span>
-            {s.label}
-          </a>
-        ))}
+          };
+          const inner = (
+            <>
+              <span style={{ fontFamily: F.body, fontSize: 10, opacity: 0.7 }}>0{i + 1}</span>
+              {p.label}
+            </>
+          );
+          return p.dest.startsWith("#") ? (
+            <a key={p.label} href={p.dest} title={subLabel} onClick={(e) => {
+              e.preventDefault();
+              document.getElementById(p.dest.slice(1))?.scrollIntoView({ behavior: "smooth" });
+            }} style={pillStyle} onMouseEnter={hoverOn} onMouseLeave={hoverOff}>
+              {inner}
+            </a>
+          ) : (
+            <Link key={p.label} to={p.dest} title={subLabel}
+              style={pillStyle} onMouseEnter={hoverOn} onMouseLeave={hoverOff}>
+              {inner}
+            </Link>
+          );
+        })}
       </div>
     </section>
   );
@@ -892,7 +866,7 @@ function PhilosophySection() {
   }, []);
 
   return (
-    <section style={{ padding: spacing.sectionPadding + " 0" }}>
+    <section id="philosophy" style={{ padding: spacing.sectionPadding + " 0" }}>
       <div className="container" style={{ textAlign: "center" }}>
         <SectionHead en={t.philosophy.sectionEn} ja={t.philosophy.sectionJa} align="center" />
 
@@ -1007,15 +981,25 @@ function PhilosophySection() {
 /* ── CONTACT CTA — hive-inspired hover color shift ── */
 function ContactCTA() {
   const { t } = useLang();
+  const navigate = useNavigate();
   const [hovered, setHovered] = useState(false);
   const ctaText = hovered ? C.white : C.text;
   const ctaBody = hovered ? "rgba(255,255,255,0.72)" : C.textMuted;
   const ctaBorder = hovered ? "rgba(255,255,255,0.38)" : "rgba(17,17,17,0.28)";
 
+  // The whole section acts as a link, but it contains real <a> children
+  // (mailto / Instagram) — nesting <a> in <a> is invalid HTML, so the wrapper
+  // is a div with link semantics instead.
   return (
-    <Link to="/contact" style={{ display: "block", textDecoration: "none" }}>
     <section
       id="contact"
+      role="link"
+      tabIndex={0}
+      aria-label={t.contact.heading}
+      onClick={() => navigate("/contact")}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); navigate("/contact"); }
+      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -1055,7 +1039,7 @@ function ContactCTA() {
           </Reveal>
           <Reveal delay={0.2}>
             <div style={{ display: "flex", gap: 20, marginTop: 32, flexWrap: "wrap" }}>
-              <a href="mailto:info@oblige.jp" style={{
+              <a href="mailto:info@oblige.jp" onClick={e => e.stopPropagation()} style={{
                 fontFamily: F.label, fontSize: 11, fontWeight: 500,
                 letterSpacing: 3, textTransform: "uppercase",
                 color: ctaText, borderBottom: `1px solid ${ctaBorder}`,
@@ -1066,7 +1050,7 @@ function ContactCTA() {
               >
                 info@oblige.jp
               </a>
-              <a href="https://www.instagram.com/oblige.co.ltd/" target="_blank" rel="noopener noreferrer" style={{
+              <a href="https://www.instagram.com/oblige.co.ltd/" target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 fontFamily: F.label, fontSize: 11, fontWeight: 500,
                 letterSpacing: 3, textTransform: "uppercase",
@@ -1103,7 +1087,6 @@ function ContactCTA() {
         </Reveal>
       </div>
     </section>
-    </Link>
   );
 }
 

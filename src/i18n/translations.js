@@ -18,7 +18,7 @@ export const translations = {
     // Hero (TopPage)
     hero: {
       title: "NIGHT TIME PRODUCTION",
-      sub: "NIGHT TIME ECONOMY. TOTAL PRODUCE.",
+      sub: "NIGHT TIME ECONOMY. TOTAL PRODUCTION.",
       headlineLine1: "夜を、ちゃんと",
       headlineLine2: "ねらえ。",
       headlineAccent: "。",
@@ -47,6 +47,12 @@ export const translations = {
       tagline: "6 BUSINESSES. ONE AIM.",
       taglineSub: "まず見立ててから、夜の事業を動かす。",
       vertical: "OBLIGE INC.",
+      gunze: {
+        orbitTile: "OBLIGE · NIGHT TIME PRODUCTION · 夜を、狙え · ",
+        headlinePre: "夜を、",
+        headlineAccent: "狙え",
+        headlinePost: "。",
+      },
     },
 
     // Philosophy
@@ -473,7 +479,7 @@ export const translations = {
 
     hero: {
       title: "NIGHT TIME PRODUCTION",
-      sub: "NIGHT TIME ECONOMY. TOTAL PRODUCE.",
+      sub: "NIGHT TIME ECONOMY. TOTAL PRODUCTION.",
       headlineLine1: "Aim at the night,",
       headlineLine2: "properly.",
       headlineAccent: ".",
@@ -502,6 +508,12 @@ export const translations = {
       tagline: "6 BUSINESSES. ONE AIM.",
       taglineSub: "We read the mark properly before moving the night business.",
       vertical: "OBLIGE INC.",
+      gunze: {
+        orbitTile: "OBLIGE · NIGHT TIME PRODUCTION · AIM THE NIGHT · ",
+        headlinePre: "Aim the ",
+        headlineAccent: "night",
+        headlinePost: ".",
+      },
     },
 
     philosophy: {
@@ -915,7 +927,7 @@ export const translations = {
 
     hero: {
       title: "NIGHT TIME PRODUCTION",
-      sub: "NIGHT TIME ECONOMY. TOTAL PRODUCE.",
+      sub: "NIGHT TIME ECONOMY. TOTAL PRODUCTION.",
       headlineLine1: "认真瞄准，",
       headlineLine2: "这一个夜晚。",
       headlineAccent: "。",
@@ -944,6 +956,12 @@ export const translations = {
       tagline: "6 BUSINESSES. ONE AIM.",
       taglineSub: "先认真判断，再推动夜间事业。",
       vertical: "OBLIGE INC.",
+      gunze: {
+        orbitTile: "OBLIGE · NIGHT TIME PRODUCTION · 瞄准夜晚 · ",
+        headlinePre: "瞄准",
+        headlineAccent: "夜晚",
+        headlinePost: "。",
+      },
     },
 
     philosophy: {

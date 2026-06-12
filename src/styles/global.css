@@ -1130,9 +1130,113 @@ ul, ol { list-style: none; }
   animation: gunzeOrbitRotate 90s linear infinite;
   transform-origin: center;
 }
+.hero-gunze-biz-character {
+  position: absolute;
+  left: var(--hero-char-left);
+  top: var(--hero-char-top);
+  width: clamp(118px, 12vw, 188px);
+  aspect-ratio: 1;
+  z-index: 6;
+  pointer-events: none;
+}
+.hero-gunze-biz-character img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.hero-gunze-biz-character-build,
+.hero-gunze-biz-character-reach {
+  width: clamp(126px, 13vw, 202px);
+}
+.hero-gunze-biz-character-design,
+.hero-gunze-biz-character-shape {
+  width: clamp(122px, 12.5vw, 194px);
+}
 
 @media (max-width: 768px) {
   .hero-gunze-orbit text {
     font-size: 26px !important;
+  }
+  .home-hero-gunze {
+    min-height: 100svh !important;
+  }
+  .home-hero-gunze .hero-gunze-stage {
+    min-height: 100svh;
+    padding: 86px 14px 92px !important;
+  }
+  .hero-gunze-biz-character {
+    left: var(--hero-char-mobile-left);
+    top: var(--hero-char-mobile-top);
+    width: clamp(62px, 19vw, 84px);
+  }
+  .hero-gunze-biz-character-build,
+  .hero-gunze-biz-character-reach,
+  .hero-gunze-biz-character-design,
+  .hero-gunze-biz-character-shape {
+    width: clamp(66px, 20vw, 90px);
+  }
+  .hero-gunze-biz-character-design,
+  .hero-gunze-biz-character-shape {
+    top: calc(var(--hero-char-mobile-top) - 2%);
+  }
+}
+
+/* ── GUNZE hero: giant hands + central producer ── */
+@keyframes gunzeHandFloat {
+  0%, 100% { transform: translateY(0) rotate(var(--hand-rotate, 0deg)); }
+  50%      { transform: translateY(-7px) rotate(var(--hand-rotate, 0deg)); }
+}
+@keyframes gunzeProducerBob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(-5px); }
+}
+.hero-gunze-hand {
+  position: absolute;
+  width: clamp(130px, 15vw, 230px);
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 20px rgba(17,17,17,0.12));
+  animation: gunzeHandFloat 5.5s ease-in-out infinite;
+}
+.hero-gunze-hand-left {
+  left: -1%;
+  bottom: 5%;
+  --hand-rotate: -6deg;
+}
+.hero-gunze-hand-right {
+  right: -1%;
+  top: 5%;
+  --hand-rotate: 5deg;
+  animation-delay: 1.4s;
+}
+.hero-gunze-producer {
+  position: absolute;
+  left: 50%;
+  bottom: -3%;
+  transform: translateX(-50%);
+  width: clamp(170px, 21vw, 300px);
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 24px rgba(17,17,17,0.10));
+  animation: gunzeProducerBob 6s ease-in-out infinite 0.8s;
+}
+
+@media (max-width: 768px) {
+  .hero-gunze-hand { width: clamp(84px, 22vw, 110px); }
+  .hero-gunze-hand-left  { bottom: 9%; }
+  .hero-gunze-hand-right { top: 8%; }
+  .hero-gunze-producer   { width: clamp(120px, 36vw, 160px); bottom: -1%; }
+}
+
+/* ── Respect reduced-motion: stop ambient loops ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-gunze-orbit,
+  .hero-gunze-hand,
+  .hero-gunze-producer,
+  .marquee-track,
+  .philosophy-icon,
+  .target-outer, .target-inner, .target-dot,
+  .loop-path, .loop-arrow {
+    animation: none !important;
   }
 }
