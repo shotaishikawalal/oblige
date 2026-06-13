@@ -49,10 +49,13 @@ export const translations = {
       vertical: "OBLIGE INC.",
       gunze: {
         orbitTile: "OBLIGE · NIGHT TIME PRODUCTION · 夜を、狙え · ",
+        hiddenMessage: "よく見つけましたね",
         headlinePre: "夜を、",
         headlineAccent: "狙え",
         headlinePost: "。",
+        dartNote: "一番近くにあった。",
       },
+      awayTitle: "👀 夜を、見失ってますよ。",
     },
 
     // Philosophy
@@ -510,10 +513,13 @@ export const translations = {
       vertical: "OBLIGE INC.",
       gunze: {
         orbitTile: "OBLIGE · NIGHT TIME PRODUCTION · AIM THE NIGHT · ",
+        hiddenMessage: "You found it.",
         headlinePre: "Aim the ",
         headlineAccent: "night",
         headlinePost: ".",
+        dartNote: "It was right here all along.",
       },
+      awayTitle: "👀 Losing sight of the night?",
     },
 
     philosophy: {
@@ -958,10 +964,13 @@ export const translations = {
       vertical: "OBLIGE INC.",
       gunze: {
         orbitTile: "OBLIGE · NIGHT TIME PRODUCTION · 瞄准夜晚 · ",
+        hiddenMessage: "你找到了",
         headlinePre: "瞄准",
         headlineAccent: "夜晚",
         headlinePost: "。",
+        dartNote: "原来，就在最近的地方。",
       },
+      awayTitle: "👀 夜晚要跟丢了哦。",
     },
 
     philosophy: {

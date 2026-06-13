@@ -362,6 +362,9 @@ function HeroSectionGunze({ loaded }) {
   const { t } = useLang();
   const h = t.hero;
   const [hit, setHit] = useState(false);
+  const [dartHit, setDartHit] = useState(false);
+  const [noteShown, setNoteShown] = useState(false);
+  const dartRef = useRef(null);
 
   useEffect(() => {
     if (!loaded) return;
@@ -372,7 +375,35 @@ function HeroSectionGunze({ loaded }) {
   // Orbit text — repeated tile so circle path fills evenly (localized)
   const g = h.gunze || {};
   const tile = g.orbitTile || "OBLIGE · NIGHT TIME PRODUCTION · ";
-  const orbitText = tile.repeat(4);
+  const hidden = g.hiddenMessage || "You found it.";
+  // Insert hidden message only on 3rd repetition
+  const orbitText = tile.repeat(3) + tile.slice(0, -3) + hidden + " · ";
+
+  // Dart animation: when user hovers/taps the period (。)
+  const handlePeriodHover = (e) => {
+    if (!dartRef.current) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    setDartHit(true);
+    setNoteShown(true);
+    dartRef.current.style.left = rect.left + "px";
+    dartRef.current.style.top = rect.top - 20 + "px";
+    gsap.to(dartRef.current, {
+      left: `${rect.left + 4}px`,
+      top: `${rect.top + 4}px`,
+      opacity: 1,
+      duration: 0.4,
+      ease: "back.out",
+      onComplete: () => {
+        setTimeout(() => {
+          gsap.to(dartRef.current, {
+            opacity: 0,
+            duration: 0.3,
+            onComplete: () => setDartHit(false),
+          });
+        }, 600);
+      },
+    });
+  };
 
   // The three brand verbs are fixed English (design tokens), destinations differ.
   const pillNav = [
@@ -423,25 +454,40 @@ function HeroSectionGunze({ loaded }) {
         padding: "clamp(72px, 7vw, 120px) clamp(24px, 4vw, 64px) clamp(80px, 6vw, 120px)",
       }}>
 
-        {/* ── Circular orbit text (slow rotate) ── */}
+        {/* ── Double circular orbit text (slow rotate) ── */}
         <div style={{
           position: "absolute",
           left: "50%", top: "50%",
-          width: "min(94vmin, 920px)",
-          height: "min(94vmin, 920px)",
+          width: "min(98vmin, 960px)",
+          height: "min(98vmin, 960px)",
           transform: "translate(-50%, -50%)",
           pointerEvents: "none",
-          opacity: hit ? 0.28 : 0,
+          opacity: hit ? 1 : 0,
           zIndex: 1,
           transition: `opacity 1.4s ease 0.2s`,
         }}>
-          <svg viewBox="0 0 1000 1000" className="hero-gunze-orbit" style={{ width: "100%", height: "100%" }}>
+          <svg viewBox="0 0 1000 1000" className="hero-gunze-orbit hero-gunze-orbit-outer" style={{ width: "100%", height: "100%" }}>
             <defs>
-              <path id="gunze-circle" d="M 500 500 m -460 0 a 460 460 0 1 1 920 0 a 460 460 0 1 1 -920 0" />
+              <path id="gunze-circle-outer" d="M 500 500 m -460 0 a 460 460 0 1 1 920 0 a 460 460 0 1 1 -920 0" />
             </defs>
             <text fill={C.accent} fontFamily="'Montserrat', 'Noto Sans JP', sans-serif"
-                  fontSize="32" fontWeight="700" letterSpacing="2">
-              <textPath href="#gunze-circle" startOffset="0">{orbitText}</textPath>
+                  fontSize="32" fontWeight="700" letterSpacing="2" opacity="0.30">
+              <textPath href="#gunze-circle-outer" startOffset="0">{orbitText}</textPath>
+            </text>
+          </svg>
+
+          <svg viewBox="0 0 1000 1000" className="hero-gunze-orbit hero-gunze-orbit-inner" style={{
+            position: "absolute",
+            inset: "12%",
+            width: "76%",
+            height: "76%",
+          }}>
+            <defs>
+              <path id="gunze-circle-inner" d="M 500 500 m -452 0 a 452 452 0 1 1 904 0 a 452 452 0 1 1 -904 0" />
+            </defs>
+            <text fill={C.text} fontFamily="'Montserrat', 'Noto Sans JP', sans-serif"
+                  fontSize="27" fontWeight="700" letterSpacing="2.6" opacity="0.18">
+              <textPath href="#gunze-circle-inner" startOffset="14%">{orbitText}</textPath>
             </text>
           </svg>
         </div>
@@ -452,7 +498,7 @@ function HeroSectionGunze({ loaded }) {
           width: "min(72vmin, 700px)", height: "min(72vmin, 700px)",
           transform: "translate(-50%, -50%)",
           pointerEvents: "none",
-          opacity: hit ? 0.22 : 0,
+          opacity: hit ? 0.14 : 0,
           zIndex: 1,
           transition: `opacity 1.2s ease 0.5s`,
         }}>
@@ -534,7 +580,23 @@ function HeroSectionGunze({ loaded }) {
             whiteSpace: "nowrap",
             textShadow: "0 4px 20px rgba(242,236,228,0.85)",
           }}>
-            {g.headlinePre}<span style={{ color: C.accent }}>{g.headlineAccent}</span>{g.headlinePost}
+            {g.headlinePre}<span style={{ color: C.accent }}>{g.headlineAccent}</span>
+            <span
+              onMouseEnter={handlePeriodHover}
+              onClick={handlePeriodHover}
+              style={{
+                cursor: "pointer",
+                position: "relative",
+                display: "inline-block",
+              }}
+            >
+              {g.headlinePost}
+              {noteShown && (
+                <span className="hero-gunze-period-note" aria-hidden="true">
+                  {g.dartNote}
+                </span>
+              )}
+            </span>
           </h1>
           <p style={{
             fontFamily: F.body, fontSize: "clamp(11px, 1.05vw, 14px)",
@@ -598,6 +660,26 @@ function HeroSectionGunze({ loaded }) {
             </Link>
           );
         })}
+      </div>
+
+      {/* ── Dart SVG (appears on period hover) ── */}
+      <div
+        ref={dartRef}
+        style={{
+          position: "fixed",
+          width: 24,
+          height: 24,
+          opacity: 0,
+          pointerEvents: "none",
+          zIndex: 999,
+        }}
+        aria-hidden="true"
+      >
+        <svg viewBox="0 0 24 24" fill="none">
+          <line x1="12" y1="2" x2="12" y2="16" stroke={C.accent} strokeWidth="2.5" strokeLinecap="round" />
+          <polygon points="12,18 10,13 14,13" fill={C.accent} />
+          <circle cx="12" cy="3" r="1.5" fill={C.accent} opacity="0.6" />
+        </svg>
       </div>
     </section>
   );
@@ -1103,6 +1185,20 @@ export default function TopPage() {
   useEffect(() => {
     if (introDone) setTimeout(() => setLoaded(true), 100);
   }, [introDone]);
+
+  // ③ Tab title changes when user leaves / returns
+  useEffect(() => {
+    const originalTitle = document.title;
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        document.title = "👀 夜を、見失ってますよ。— oblige";
+      } else {
+        document.title = originalTitle;
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, []);
 
   return (
     <div>
