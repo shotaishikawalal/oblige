@@ -1178,27 +1178,15 @@ export default function TopPage() {
   const [loaded, setLoaded] = useState(false);
   const [introDone, setIntroDone] = useState(() => !!sessionStorage.getItem("oblige-intro"));
 
-  // ?style=gunze で Case A プレビュー
-  const useGunze = typeof window !== "undefined" &&
-    new URLSearchParams(window.location.search).get("style") === "gunze";
+  // GUNZE-style radial poster is the default hero.
+  // Fall back to the classic editorial split via ?style=classic.
+  const useClassic = typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("style") === "classic";
+  const useGunze = !useClassic;
 
   useEffect(() => {
     if (introDone) setTimeout(() => setLoaded(true), 100);
   }, [introDone]);
-
-  // ③ Tab title changes when user leaves / returns
-  useEffect(() => {
-    const originalTitle = document.title;
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        document.title = "👀 夜を、見失ってますよ。— oblige";
-      } else {
-        document.title = originalTitle;
-      }
-    };
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
-  }, []);
 
   return (
     <div>
