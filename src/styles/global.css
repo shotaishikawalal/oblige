@@ -1171,9 +1171,12 @@ ul, ol { list-style: none; }
   .home-hero-gunze {
     min-height: 100svh !important;
   }
+  /* Stage must NOT claim the full viewport on mobile — the section is
+     already 100svh and flex; a 100svh stage pushed the FIND/AIM/HIT
+     pills below the first view. Let flex distribute the height. */
   .home-hero-gunze .hero-gunze-stage {
-    min-height: 100svh;
-    padding: 86px 14px 92px !important;
+    min-height: 0;
+    padding: 86px 14px 40px !important;
   }
   .hero-gunze-biz-character {
     left: var(--hero-char-mobile-left);

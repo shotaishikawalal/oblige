@@ -424,8 +424,8 @@ function HeroSectionGunze({ loaded }) {
 
   // Desktop and mobile coordinates for the 6 business characters on the inner ring.
   const bizPositions = [
-    { top: "17%", left: "29%", mobileTop: "19%", mobileLeft: "25%" },
-    { top: "18%", left: "63%", mobileTop: "19%", mobileLeft: "75%" },
+    { top: "20%", left: "29%", mobileTop: "21%", mobileLeft: "25%" },
+    { top: "21%", left: "63%", mobileTop: "21%", mobileLeft: "75%" },
     { top: "43%", left: "80%", mobileTop: "43%", mobileLeft: "91%" },
     { top: "72%", left: "68%", mobileTop: "76%", mobileLeft: "75%" },
     { top: "73%", left: "27%", mobileTop: "76%", mobileLeft: "25%" },
@@ -602,6 +602,7 @@ function HeroSectionGunze({ loaded }) {
             fontFamily: F.body, fontSize: "clamp(11px, 1.05vw, 14px)",
             color: C.textMuted, marginTop: 14,
             letterSpacing: "0.04em",
+            textWrap: "balance",
           }}>{h.taglineSub}</p>
         </div>
 
@@ -714,7 +715,7 @@ function HeroEditorialVisual({ hit }) {
 
 /* ── MARQUEE TICKER BAND ── */
 function MarqueeBand() {
-  const text = "Creating the Night. Defining the Scene.";
+  const text = "Find the Mark. Aim the Night. Hit the Scene.";
   const dot = "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0";
   // Each copy needs enough repetitions to fill the viewport
   const single = Array(8).fill(text).join(dot) + dot;
